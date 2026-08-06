@@ -453,4 +453,4 @@ To change the schedule, edit the cron expression in `.github/workflows/daily-dig
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=duanyytop/agents-radar&type=Date)](https://star-history.com/#duanyytop/agents-radar&Date)
+[![Star History Chart](https://star-history.dera.page/svg?repos=duanyytop/agents-radar&type=Date)](https://star-history.dera.page/#duanyytop/agents-radar&Date)
