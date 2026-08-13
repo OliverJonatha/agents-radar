@@ -14,7 +14,6 @@
     "notify": "tsx src/notify.ts",
     "notify:feishu": "tsx src/feishu.ts",
     "close-stale": "tsx src/close-stale-issues.ts",
-    "xiaohongshu": "tsx src/social.ts xiaohongshu",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -22,7 +21,6 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
-    "dotenv": "^17.3.1",
     "js-yaml": "^4.1.1",
     "marked": "^17.0.4",
     "openai": "^6.27.0"
