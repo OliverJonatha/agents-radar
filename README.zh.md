@@ -2,7 +2,7 @@
 
 [English](./README.md) | 中文
 
-每天早上 08:00 CST 自动运行的 GitHub Actions 工作流。聚合 10 个 AI 生态数据源，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
+每天早上 07:00 CST 自动运行的 GitHub Actions 工作流。聚合 10 个 AI 生态数据源，以中英双语每日简报的形式发布为 GitHub Issues 并提交为 Markdown 文件。每周和每月自动生成汇总报告。
 
 ### 数据源
 
@@ -443,15 +443,17 @@ OpenAI 内容精选            (research / release / company / safety / ...)
 
 ## 定时计划
 
-默认 cron 表达式 `"0 0 * * *"` = **00:00 UTC = 08:00 CST**。
+默认 cron 表达式 `"0 23 * * *"` = **23:00 UTC = 次日 07:00 CST**。
+
+GitHub 的定时任务是排队执行的，并不准时 —— 本工作流实测延迟在 45~125 分钟之间。选 07:00 CST 是为了让整个 run（约 20 分钟）尽量在 09:00 CST 前跑完，从而落在 DeepSeek 的 off-peak 折扣时段内。
 
 修改时间请编辑 `.github/workflows/daily-digest.yml` 中的 cron 表达式：
 
-| CST   | UTC cron      |
-|-------|---------------|
-| 08:00 | `0 0 * * *`  |
-| 09:00 | `0 1 * * *`  |
-| 10:00 | `0 2 * * *`  |
+| CST      | UTC cron       |
+|----------|----------------|
+| 06:00 次日 | `0 22 * * *`  |
+| 07:00 次日 | `0 23 * * *`  |
+| 08:00    | `0 0 * * *`    |
 
 ## Star History
 

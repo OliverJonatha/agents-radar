@@ -2,7 +2,7 @@
 
 English | [中文](./README.zh.md)
 
-A GitHub Actions workflow that runs every morning at 08:00 CST. It aggregates AI ecosystem signals from 10 data sources, then publishes bilingual (Chinese + English) daily digests as GitHub Issues and committed Markdown files.
+A GitHub Actions workflow that runs every morning at 07:00 CST. It aggregates AI ecosystem signals from 10 data sources, then publishes bilingual (Chinese + English) daily digests as GitHub Issues and committed Markdown files.
 
 ### Data Sources
 
@@ -456,9 +456,11 @@ Weekly and monthly rollup reports were discontinued in July 2026; past ones rema
 
 | Workflow | Cron | UTC | CST |
 |----------|------|-----|-----|
-| Daily digest | `0 0 * * *` | 00:00 daily | 08:00 daily |
+| Daily digest | `0 23 * * *` | 23:00 daily | 07:00 next day |
 
 To change the schedule, edit the cron expression in `.github/workflows/daily-digest.yml`.
+
+GitHub's scheduled runs are queued, not guaranteed — observed delays for this workflow range from 45 to 125 minutes. The 07:00 CST target aims to get the whole run (~20 min) finished before 09:00 CST, which keeps it inside the DeepSeek off-peak pricing window.
 
 ## Star History
 
