@@ -55,7 +55,7 @@ The pipeline runs in four sequential phases, each implemented as a named async f
 |------|---------------|
 | `src/index.ts` | Orchestration: repo config, phase functions, `main()` |
 | `src/i18n.ts` | Centralized bilingual strings: `Lang` type, report titles, issue labels, footer text, `REPORT_LABELS`, `NOTIFY_LABELS` |
-| `src/github.ts` | GitHub API helpers: `fetchRecentItems`, `fetchRecentReleases`, `fetchSkillsData`, `createGitHubIssue`; shared `RepoFetch` type |
+| `src/github.ts` | GitHub API helpers: `fetchRecentItems`, `fetchRecentReleases`, `fetchRecentDiscussions` (GraphQL), `fetchSkillsData`, `createGitHubIssue`; shared `RepoFetch` type |
 | `src/config.ts` | Loads `config.yml` into `RadarConfig` (`cliRepos`, `skillsRepo`, `openclaw`, `openclawPeers`, `infraRepos`); built-in defaults when a section is missing |
 | `src/prompts.ts` | LLM prompt builders for repo reports: `buildCliPrompt`, `buildPeerPrompt`, `buildInfraPrompt`, `buildComparisonPrompt`, `buildInfraComparisonPrompt`, `buildPeersComparisonPrompt`, `buildSkillsPrompt` |
 | `src/prompts-data.ts` | LLM prompt builders for data-source reports: `buildTrendingPrompt`, `buildWebReportPrompt`, `buildHnPrompt` |
@@ -91,8 +91,9 @@ Files written to `digests/YYYY-MM-DD/`:
 
 ## Tracked sources
 
-- **CLI_REPOS** (10): claude-code, codex, gemini-cli, copilot-cli, kimi-cli, opencode, pi, qwen-code, deepseek-tui, grok-build
-- **OPENCLAW** + **OPENCLAW_PEERS** (13): openclaw/openclaw + 12 peer projects (sorted by stars)
+- **CLI_REPOS** (9): claude-code, codex, gemini-cli, copilot-cli, opencode, pi, qwen-code, codewhale, deepseek-harness
+- **Discussions** (`discussions: true` in `config.yml`): codex, pi, codewhale, deepseek-harness. deepseek-harness has Issues/PRs disabled upstream — Discussions is its only community channel.
+- **OPENCLAW** + **OPENCLAW_PEERS** (12): openclaw/openclaw + 11 peer projects (sorted by stars)
 - **INFRA_REPOS** (6): vllm, sglang, llama-cpp, ollama, litellm, unsloth — inference engines, gateway and fine-tuning layer
 - **CLAUDE_SKILLS_REPO**: anthropics/skills — no date filter, sorted by popularity
 - **Web**: anthropic.com + openai.com via sitemap, state in `digests/web-state.json`
@@ -111,7 +112,8 @@ Files written to `digests/YYYY-MM-DD/`:
 - LLM provider is selected via `LLM_PROVIDER` env var (default: `anthropic`). Valid values: `anthropic`, `openai`, `github-copilot`, `openrouter`, `deepseek`.
 - Provider implementations live in `src/providers/`. Each file implements the `LlmProvider` interface. The factory in `src/providers/index.ts` validates the provider name and logs only the provider name — never API keys or endpoint URLs.
 - GitHub issue label colors are defined in `LABEL_COLORS` in `src/github.ts`. Add new labels there.
-- `sampleNote(total, sampled)` in `src/prompts.ts` formats the "(共 N 条，展示前 M 条)" note. Reuse it — do not inline the same string format.
+- GitHub Discussions have no REST API, so `fetchRecentDiscussions` uses GraphQL. Enable per-repo with `discussions: true` — most tracked repos have the board enabled but dormant, and an unconditional fetch would just burn quota. Only `buildCliPrompt` renders a Discussions section, and it is omitted entirely when there is no data.
+- `sampleNote(total, sampled, lang, by)` in `src/prompts.ts` formats the "(共 N 条，展示前 M 条)" note. Reuse it — do not inline the same string format. Pass `by: "engagement"` when the sample was ranked by comments + upvotes (discussions) instead of comments alone.
 - Web state (`digests/web-state.json`) is committed to git on every run. It is the source of truth for which URLs have been seen.
 
 ## Web UI & RSS Feed

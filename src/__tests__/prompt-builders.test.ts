@@ -9,7 +9,7 @@ import {
   buildSkillsPrompt,
 } from "../prompts.ts";
 import { buildTrendingPrompt, buildWebReportPrompt, buildHnPrompt } from "../prompts-data.ts";
-import type { RepoConfig, GitHubItem, GitHubRelease } from "../github.ts";
+import type { RepoConfig, GitHubItem, GitHubRelease, GitHubDiscussion } from "../github.ts";
 import type { RepoDigest } from "../prompts.ts";
 import type { TrendingData } from "../trending.ts";
 import type { HnData } from "../hn.ts";
@@ -38,6 +38,23 @@ function makeItem(overrides: Partial<GitHubItem> = {}): GitHubItem {
   };
 }
 
+function makeDiscussion(overrides: Partial<GitHubDiscussion> = {}): GitHubDiscussion {
+  return {
+    number: 42,
+    title: "Discussion title",
+    body: "Discussion body",
+    category: "Ideas",
+    author: "alice",
+    created_at: "2026-03-09T00:00:00Z",
+    updated_at: "2026-03-09T12:00:00Z",
+    comments: 4,
+    upvotes: 16,
+    answered: false,
+    html_url: "https://github.com/org/test/discussions/42",
+    ...overrides,
+  };
+}
+
 const release: GitHubRelease = {
   tag_name: "v1.0.0",
   name: "Release 1.0",
@@ -46,7 +63,15 @@ const release: GitHubRelease = {
 };
 
 function makeDigest(overrides: Partial<RepoDigest> = {}): RepoDigest {
-  return { config: cfg, issues: [], prs: [], releases: [], summary: "Summary", ...overrides };
+  return {
+    config: cfg,
+    issues: [],
+    prs: [],
+    releases: [],
+    discussions: [],
+    summary: "Summary",
+    ...overrides,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -55,7 +80,7 @@ function makeDigest(overrides: Partial<RepoDigest> = {}): RepoDigest {
 
 describe("buildCliPrompt", () => {
   it("generates Chinese prompt by default", () => {
-    const result = buildCliPrompt(cfg, [makeItem()], [makeItem()], [release], "2026-03-09");
+    const result = buildCliPrompt(cfg, [makeItem()], [makeItem()], [release], [], "2026-03-09");
     expect(result).toContain("技术分析师");
     expect(result).toContain("TestTool");
     expect(result).toContain("2026-03-09");
@@ -64,22 +89,52 @@ describe("buildCliPrompt", () => {
   });
 
   it("generates English prompt", () => {
-    const result = buildCliPrompt(cfg, [makeItem()], [], [], "2026-03-09", "en");
+    const result = buildCliPrompt(cfg, [makeItem()], [], [], [], "2026-03-09", "en");
     expect(result).toContain("technical analyst");
     expect(result).toContain("TestTool");
     expect(result).toContain("Hot Issues");
   });
 
   it("shows 无 when no data", () => {
-    const result = buildCliPrompt(cfg, [], [], [], "2026-03-09");
+    const result = buildCliPrompt(cfg, [], [], [], [], "2026-03-09");
     expect(result).toContain("无");
   });
 
   it("includes sample notes when items exceed limit", () => {
     const items = Array.from({ length: 50 }, (_, i) => makeItem({ number: i, comments: i }));
-    const result = buildCliPrompt(cfg, items, [], [], "2026-03-09");
+    const result = buildCliPrompt(cfg, items, [], [], [], "2026-03-09");
     expect(result).toContain("共 50 条");
     expect(result).toContain("30 条");
+  });
+
+  it("omits the Discussions section when there is no discussion data", () => {
+    const result = buildCliPrompt(cfg, [makeItem()], [], [], [], "2026-03-09");
+    expect(result).not.toContain("最新 Discussions");
+  });
+
+  it("renders the Discussions section when data is present", () => {
+    const result = buildCliPrompt(cfg, [], [], [], [makeDiscussion()], "2026-03-09");
+    expect(result).toContain("最新 Discussions");
+    expect(result).toContain("#42 [Ideas]");
+    expect(result).toContain("热门 Discussions");
+  });
+
+  it("renders the Discussions section in English", () => {
+    const result = buildCliPrompt(cfg, [], [], [], [makeDiscussion()], "2026-03-09", "en");
+    expect(result).toContain("Latest Discussions");
+    expect(result).toContain("Hot Discussions");
+  });
+
+  it("samples discussions by engagement when they exceed the limit", () => {
+    const items = Array.from({ length: 40 }, (_, i) =>
+      makeDiscussion({ number: i, comments: 0, upvotes: i }),
+    );
+    const result = buildCliPrompt(cfg, [], [], [], items, "2026-03-09");
+    expect(result).toContain("共 40 条");
+    expect(result).toContain("评论数 + 点赞数最多的 25 条");
+    // Highest-upvoted kept, lowest dropped
+    expect(result).toContain("#39 [Ideas]");
+    expect(result).not.toContain("#0 [Ideas]");
   });
 });
 

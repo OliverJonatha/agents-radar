@@ -122,12 +122,15 @@ wrangler deploy
 | OpenAI Codex | [openai/codex](https://github.com/openai/codex) |
 | Gemini CLI | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) |
 | GitHub Copilot CLI | [github/copilot-cli](https://github.com/github/copilot-cli) |
-| Kimi Code CLI | [MoonshotAI/kimi-cli](https://github.com/MoonshotAI/kimi-cli) |
 | OpenCode | [anomalyco/opencode](https://github.com/anomalyco/opencode) |
-| Pi | [badlogic/pi-mono](https://github.com/badlogic/pi-mono) |
+| Pi | [earendil-works/pi](https://github.com/earendil-works/pi) |
 | Qwen Code | [QwenLM/qwen-code](https://github.com/QwenLM/qwen-code) |
-| DeepSeek TUI | [Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI) |
-| Grok Build | [xai-org/grok-build](https://github.com/xai-org/grok-build) |
+| CodeWhale | [Hmbown/CodeWhale](https://github.com/Hmbown/CodeWhale) |
+| DeepSeek Harness | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) |
+
+Repos marked `discussions: true` in `config.yml` (Codex, Pi, CodeWhale, DeepSeek Harness) also have their
+GitHub Discussions pulled in. DeepSeek Harness has Issues and PRs disabled upstream, so Discussions is the
+only community channel it has.
 
 ### Claude Code Skills (GitHub)
 
@@ -355,10 +358,9 @@ Each report is generated in both Chinese (`ai-cli.md`) and English (`ai-cli-en.m
   <details> OpenAI Codex   — Today's summary / Hot issues / PR progress / Trends
   <details> Gemini CLI     — ...
   <details> GitHub Copilot CLI — ...
-  <details> Kimi Code CLI  — ...
   <details> OpenCode       — ...
   <details> Qwen Code      — ...
-  <details> DeepSeek TUI   — ...
+  <details> CodeWhale      — ...
 ```
 
 `ai-agents.md` / `ai-agents-en.md` structure:

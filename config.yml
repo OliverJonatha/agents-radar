@@ -6,6 +6,8 @@
 # Tracked for per-tool digests and cross-tool comparison.
 # Each entry requires: id (filename slug), repo (owner/repo), name (display name).
 # Set paginated: true for high-volume repos with many daily updates.
+# Set discussions: true to also pull GitHub Discussions (GraphQL). Enable only
+# where the board is actually active — most repos have it on but dormant.
 
 cli_repos:
   - id: claude-code
@@ -14,30 +16,33 @@ cli_repos:
   - id: codex
     repo: openai/codex
     name: OpenAI Codex
+    discussions: true
   - id: gemini-cli
     repo: google-gemini/gemini-cli
     name: Gemini CLI
   - id: copilot-cli
     repo: github/copilot-cli
     name: GitHub Copilot CLI
-  - id: kimi-cli
-    repo: MoonshotAI/kimi-cli
-    name: Kimi Code CLI
   - id: opencode
     repo: anomalyco/opencode
     name: OpenCode
   - id: pi
-    repo: badlogic/pi-mono
+    repo: earendil-works/pi
     name: Pi
+    discussions: true
   - id: qwen-code
     repo: QwenLM/qwen-code
     name: Qwen Code
-  - id: deepseek-tui
-    repo: Hmbown/DeepSeek-TUI
-    name: DeepSeek TUI
-  - id: grok-build
-    repo: xai-org/grok-build
-    name: Grok Build
+  - id: codewhale
+    repo: Hmbown/CodeWhale
+    name: CodeWhale
+    discussions: true
+  # Issues and PRs are disabled upstream — Discussions is the only community
+  # channel this repo has.
+  - id: deepseek-harness
+    repo: deepseek-ai/deepseek-harness
+    name: DeepSeek Harness
+    discussions: true
 
 # ── Claude Code Skills ────────────────────────────────────────────────────────
 # Tracked separately without a date filter, sorted by community engagement.

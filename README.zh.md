@@ -122,11 +122,14 @@ wrangler deploy
 | OpenAI Codex | [openai/codex](https://github.com/openai/codex) |
 | Gemini CLI | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) |
 | GitHub Copilot CLI | [github/copilot-cli](https://github.com/github/copilot-cli) |
-| Kimi Code CLI | [MoonshotAI/kimi-cli](https://github.com/MoonshotAI/kimi-cli) |
 | OpenCode | [anomalyco/opencode](https://github.com/anomalyco/opencode) |
+| Pi | [earendil-works/pi](https://github.com/earendil-works/pi) |
 | Qwen Code | [QwenLM/qwen-code](https://github.com/QwenLM/qwen-code) |
-| DeepSeek TUI | [Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI) |
-| Grok Build | [xai-org/grok-build](https://github.com/xai-org/grok-build) |
+| CodeWhale | [Hmbown/CodeWhale](https://github.com/Hmbown/CodeWhale) |
+| DeepSeek Harness | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) |
+
+在 `config.yml` 中标记 `discussions: true` 的仓库（Codex、Pi、CodeWhale、DeepSeek Harness）会额外抓取
+GitHub Discussions。DeepSeek Harness 上游关闭了 Issues 和 PR，Discussions 是它唯一的社区渠道。
 
 ### Claude Code Skills（GitHub）
 
@@ -347,10 +350,9 @@ pnpm start
                              今日速览 / 热点 Issues / PR 进展 / 趋势
   <details> OpenAI Codex   — 今日速览 / 热点 Issues / PR 进展 / 趋势
   <details> Gemini CLI     — ...
-  <details> Kimi Code CLI  — ...
   <details> OpenCode       — ...
   <details> Qwen Code      — ...
-  <details> DeepSeek TUI   — ...
+  <details> CodeWhale      — ...
 ```
 
 `ai-agents.md` 结构：

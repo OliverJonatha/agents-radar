@@ -21,6 +21,16 @@ describe("toRepoConfig", () => {
     const result = toRepoConfig({ id: "test", repo: "org/test", name: "Test", paginated: false });
     expect(result).not.toHaveProperty("paginated");
   });
+
+  it("includes discussions when true", () => {
+    const result = toRepoConfig({ id: "test", repo: "org/test", name: "Test", discussions: true });
+    expect(result).toEqual({ id: "test", repo: "org/test", name: "Test", discussions: true });
+  });
+
+  it("omits discussions when false", () => {
+    const result = toRepoConfig({ id: "test", repo: "org/test", name: "Test", discussions: false });
+    expect(result).not.toHaveProperty("discussions");
+  });
 });
 
 // ---------------------------------------------------------------------------

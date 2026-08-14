@@ -19,6 +19,12 @@ export interface RepoConfig {
    * Use for high-volume repos with many daily updates.
    */
   paginated?: boolean;
+  /**
+   * Also fetch GitHub Discussions (GraphQL). Enable only for repos whose
+   * discussion board is actually active — most tracked repos have it enabled
+   * but dormant, and the extra call would just burn GraphQL quota.
+   */
+  discussions?: boolean;
 }
 
 export interface GitHubUser {
@@ -55,11 +61,27 @@ export interface GitHubRelease {
   published_at: string;
 }
 
+export interface GitHubDiscussion {
+  number: number;
+  title: string;
+  body?: string | null;
+  category: string;
+  author: string;
+  created_at: string;
+  updated_at: string;
+  comments: number;
+  upvotes: number;
+  /** True when the thread has an accepted answer (Q&A categories only). */
+  answered: boolean;
+  html_url: string;
+}
+
 export interface RepoFetch {
   cfg: RepoConfig;
   issues: GitHubItem[];
   prs: GitHubItem[];
   releases: GitHubRelease[];
+  discussions: GitHubDiscussion[];
 }
 
 // ---------------------------------------------------------------------------
@@ -151,6 +173,116 @@ export async function fetchRecentReleases(repo: string, since: Date): Promise<Gi
     per_page: "10",
   });
   return releases.filter((r) => new Date(r.published_at) >= since);
+}
+
+interface DiscussionNode {
+  number: number;
+  title: string;
+  body?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  upvoteCount: number;
+  url: string;
+  answer: { id: string } | null;
+  category: { name: string } | null;
+  author: { login: string } | null;
+  comments: { totalCount: number };
+}
+
+interface DiscussionsResponse {
+  data?: {
+    repository?: {
+      discussions?: {
+        pageInfo: { hasNextPage: boolean; endCursor: string | null };
+        nodes: DiscussionNode[];
+      } | null;
+    } | null;
+  };
+  errors?: { message: string }[];
+}
+
+const DISCUSSIONS_QUERY = `
+query($owner: String!, $name: String!, $after: String) {
+  repository(owner: $owner, name: $name) {
+    discussions(first: 100, after: $after, orderBy: {field: UPDATED_AT, direction: DESC}) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        number
+        title
+        body
+        createdAt
+        updatedAt
+        upvoteCount
+        url
+        answer { id }
+        category { name }
+        author { login }
+        comments { totalCount }
+      }
+    }
+  }
+}`;
+
+/** Discussion bodies are trimmed at fetch time — prompts only ever show a snippet. */
+const DISCUSSION_BODY_LIMIT = 500;
+
+function toDiscussion(n: DiscussionNode): GitHubDiscussion {
+  return {
+    number: n.number,
+    title: n.title,
+    body: (n.body ?? "").slice(0, DISCUSSION_BODY_LIMIT),
+    category: n.category?.name ?? "General",
+    author: n.author?.login ?? "ghost",
+    created_at: n.createdAt,
+    updated_at: n.updatedAt,
+    comments: n.comments.totalCount,
+    upvotes: n.upvoteCount,
+    answered: n.answer !== null,
+    html_url: n.url,
+  };
+}
+
+/**
+ * Fetch discussions updated since `since`, newest first.
+ * Discussions have no REST endpoint, so this goes through GraphQL.
+ * Paginates until a page ends before `since` or MAX_PAGES is reached.
+ */
+export async function fetchRecentDiscussions(repo: string, since: Date): Promise<GitHubDiscussion[]> {
+  const [owner, name] = repo.split("/");
+  if (!owner || !name) throw new Error(`Invalid repo slug: ${repo}`);
+
+  const all: GitHubDiscussion[] = [];
+  let after: string | null = null;
+
+  for (let page = 0; page < MAX_PAGES; page++) {
+    const resp = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: { ...headers(), "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: DISCUSSIONS_QUERY,
+        variables: { owner, name, after },
+      }),
+    });
+    if (!resp.ok) throw new Error(`GitHub GraphQL error ${resp.status} (${repo}): ${await resp.text()}`);
+
+    const json = (await resp.json()) as DiscussionsResponse;
+    // GraphQL reports failures with HTTP 200 and an `errors` array
+    if (json.errors?.length) {
+      throw new Error(`GitHub GraphQL error (${repo}): ${json.errors.map((e) => e.message).join("; ")}`);
+    }
+
+    const conn = json.data?.repository?.discussions;
+    if (!conn || conn.nodes.length === 0) break;
+
+    all.push(...conn.nodes.filter((n) => new Date(n.updatedAt) >= since).map(toDiscussion));
+
+    const last = conn.nodes[conn.nodes.length - 1];
+    if (last && new Date(last.updatedAt) < since) break;
+    if (!conn.pageInfo.hasNextPage) break;
+    after = conn.pageInfo.endCursor;
+  }
+
+  return all;
 }
 
 export async function ensureLabel(name: string, color: string): Promise<void> {

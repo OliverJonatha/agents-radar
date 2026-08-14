@@ -16,6 +16,7 @@ import {
   type RepoFetch,
   fetchRecentItems,
   fetchRecentReleases,
+  fetchRecentDiscussions,
   fetchSkillsData,
   createGitHubIssue,
 } from "./github.ts";
@@ -125,19 +126,21 @@ async function fetchAllData(
     Promise.all(
       allConfigs.map(async (cfg) => {
         try {
-          const [issuesRaw, prs, releases] = await Promise.all([
+          const [issuesRaw, prs, releases, discussions] = await Promise.all([
             fetchRecentItems(cfg, "issues", since),
             fetchRecentItems(cfg, "pulls", since),
             fetchRecentReleases(cfg.repo, since),
+            cfg.discussions ? fetchRecentDiscussions(cfg.repo, since) : Promise.resolve([]),
           ]);
           const issues = issuesRaw.filter((i) => !i.pull_request);
           console.log(
-            `  [${cfg.id}] issues: ${issues.length}, prs: ${prs.length}, releases: ${releases.length}`,
+            `  [${cfg.id}] issues: ${issues.length}, prs: ${prs.length}, releases: ${releases.length}` +
+              (cfg.discussions ? `, discussions: ${discussions.length}` : ""),
           );
-          return { cfg, issues, prs, releases };
+          return { cfg, issues, prs, releases, discussions };
         } catch (err) {
           console.error(`  [${cfg.id}] fetch failed: ${err}`);
-          return { cfg, issues: [], prs: [], releases: [] };
+          return { cfg, issues: [], prs: [], releases: [], discussions: [] };
         }
       }),
     ),
@@ -212,17 +215,17 @@ async function summarize(id: string, prompt: string, failMsg: string, maxTokens?
 
 /** Summarize a repo's activity, returning a RepoDigest. Skips LLM if no data. */
 async function summarizeRepo(
-  { cfg, issues, prs, releases }: RepoFetch,
+  { cfg, issues, prs, releases, discussions }: RepoFetch,
   prompt: string,
   noActivityMsg: string,
   failMsg: string,
 ): Promise<RepoDigest> {
-  if (!issues.length && !prs.length && !releases.length) {
+  if (!issues.length && !prs.length && !releases.length && !discussions.length) {
     console.log(`  [${cfg.id}] No activity, skipping LLM call`);
-    return { config: cfg, issues, prs, releases, summary: noActivityMsg };
+    return { config: cfg, issues, prs, releases, discussions, summary: noActivityMsg };
   }
   const summary = await summarize(cfg.id, prompt, failMsg);
-  return { config: cfg, issues, prs, releases, summary };
+  return { config: cfg, issues, prs, releases, discussions, summary };
 }
 
 async function generateSummaries(
@@ -251,7 +254,7 @@ async function generateSummaries(
         fetchedCli.map((f) =>
           summarizeRepo(
             f,
-            buildCliPrompt(f.cfg, f.issues, f.prs, f.releases, dateStr, lang),
+            buildCliPrompt(f.cfg, f.issues, f.prs, f.releases, f.discussions, dateStr, lang),
             noActivity,
             fail,
           ),
@@ -388,6 +391,7 @@ async function main(): Promise<void> {
     issues: fetchedOpenclaw.issues,
     prs: fetchedOpenclaw.prs,
     releases: fetchedOpenclaw.releases,
+    discussions: fetchedOpenclaw.discussions,
     summary: summariesByLang[lang].openclawSummary,
   });
 
