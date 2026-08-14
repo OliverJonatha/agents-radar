@@ -17,6 +17,7 @@ interface RawRepoEntry {
   repo: string;
   name: string;
   paginated?: boolean;
+  discussions?: boolean;
 }
 
 interface RawConfig {
@@ -44,9 +45,14 @@ const DEFAULT_CLI_REPOS: RepoConfig[] = [
   { id: "codex", repo: "openai/codex", name: "OpenAI Codex" },
   { id: "gemini-cli", repo: "google-gemini/gemini-cli", name: "Gemini CLI" },
   { id: "copilot-cli", repo: "github/copilot-cli", name: "GitHub Copilot CLI" },
-  { id: "kimi-cli", repo: "MoonshotAI/kimi-cli", name: "Kimi Code CLI" },
   { id: "opencode", repo: "anomalyco/opencode", name: "OpenCode" },
   { id: "qwen-code", repo: "QwenLM/qwen-code", name: "Qwen Code" },
+  {
+    id: "deepseek-harness",
+    repo: "deepseek-ai/deepseek-harness",
+    name: "DeepSeek Harness",
+    discussions: true,
+  },
 ];
 
 const DEFAULT_SKILLS_REPO = "anthropics/skills";
@@ -89,7 +95,13 @@ const DEFAULT_INFRA_REPOS: RepoConfig[] = [
 // ---------------------------------------------------------------------------
 
 export function toRepoConfig(e: RawRepoEntry): RepoConfig {
-  return { id: e.id, repo: e.repo, name: e.name, ...(e.paginated ? { paginated: true } : {}) };
+  return {
+    id: e.id,
+    repo: e.repo,
+    name: e.name,
+    ...(e.paginated ? { paginated: true } : {}),
+    ...(e.discussions ? { discussions: true } : {}),
+  };
 }
 
 export function loadConfig(configPath = "config.yml"): RadarConfig {

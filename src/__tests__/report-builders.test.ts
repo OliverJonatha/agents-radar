@@ -17,6 +17,7 @@ function makeDigest(overrides: Partial<RepoDigest> = {}): RepoDigest {
     issues: [],
     prs: [],
     releases: [],
+    discussions: [],
     summary: "Test summary content",
     ...overrides,
   };
@@ -108,6 +109,7 @@ describe("buildOpenclawReportContent", () => {
       issues: [{ number: 1 } as unknown as GitHubItem],
       prs: [] as GitHubItem[],
       releases: [] as GitHubRelease[],
+      discussions: [],
     };
 
     const result = buildOpenclawReportContent(
@@ -137,7 +139,7 @@ describe("buildOpenclawReportContent", () => {
   it("renders in English", () => {
     const openclaw = { id: "openclaw", repo: "openclaw/openclaw", name: "OpenClaw" };
     const result = buildOpenclawReportContent(
-      { cfg: openclaw, issues: [], prs: [], releases: [] },
+      { cfg: openclaw, issues: [], prs: [], releases: [], discussions: [] },
       [],
       "summary",
       "comparison",

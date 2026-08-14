@@ -2,7 +2,7 @@
  * LLM prompt builders and item formatting.
  */
 
-import type { RepoConfig, GitHubItem, GitHubRelease } from "./github.ts";
+import type { RepoConfig, GitHubItem, GitHubRelease, GitHubDiscussion } from "./github.ts";
 import type { Lang } from "./i18n.ts";
 
 // ---------------------------------------------------------------------------
@@ -14,6 +14,7 @@ export interface RepoDigest {
   issues: GitHubItem[];
   prs: GitHubItem[];
   releases: GitHubRelease[];
+  discussions: GitHubDiscussion[];
   summary: string;
 }
 
@@ -49,25 +50,72 @@ export function formatItem(item: GitHubItem, lang: Lang = "zh"): string {
   ].join("\n");
 }
 
+export function formatDiscussion(d: GitHubDiscussion, lang: Lang = "zh"): string {
+  const body = (d.body ?? "").replace(/\n/g, " ").trim().slice(0, 300);
+  const ellipsis = (d.body ?? "").length > 300 ? "..." : "";
+  const t =
+    lang === "en"
+      ? { author: "Author", created: "Created", updated: "Updated", comments: "Comments", url: "URL" }
+      : { author: "作者", created: "创建", updated: "更新", comments: "评论", url: "链接" };
+  const answered = d.answered ? (lang === "en" ? " [ANSWERED]" : " [已解决]") : "";
+  // Same URL-shortening as formatItem: keep "owner/repo" only, so the rendered
+  // issue body never contains a full github.com link that triggers back-refs.
+  const repoSlug = d.html_url.replace(/^https:\/\/github\.com\//, "").replace(/\/discussions\/\d+$/, "");
+  return [
+    `#${d.number} [${d.category}]${answered} ${d.title}`,
+    `  ${t.author}: ${d.author} | ${t.created}: ${d.created_at.slice(0, 10)} | ${t.updated}: ${d.updated_at.slice(0, 10)} | ${t.comments}: ${d.comments} | 👍: ${d.upvotes}`,
+    `  ${t.url}: ${repoSlug} Discussion #${d.number}`,
+    `  ${lang === "en" ? "Summary" : "摘要"}: ${body}${ellipsis}`,
+  ].join("\n");
+}
+
 // ---------------------------------------------------------------------------
 // Sampling helpers (shared)
 // ---------------------------------------------------------------------------
 
 const CLI_ISSUE_LIMIT = 30;
 const CLI_PR_LIMIT = 20;
+// Higher than the issue/PR limits: for a repo with Issues/PRs disabled the
+// discussion list is the entire report, not a supplement to them.
+const CLI_DISCUSSION_LIMIT = 40;
 
 /** Sort by comment count desc, take top N. */
 export function topN(items: GitHubItem[], n: number): GitHubItem[] {
   return [...items].sort((a, b) => b.comments - a.comments).slice(0, n);
 }
 
-export function sampleNote(total: number, sampled: number, lang: Lang = "zh"): string {
+/**
+ * Sort discussions by engagement (comments + upvotes) desc, take top N.
+ * Unlike issues, upvotes are the primary signal on a discussion board — many
+ * high-value threads are feature requests with votes but no replies.
+ */
+export function topDiscussions(items: GitHubDiscussion[], n: number): GitHubDiscussion[] {
+  return [...items].sort((a, b) => b.comments + b.upvotes - (a.comments + a.upvotes)).slice(0, n);
+}
+
+/** What the top-N sample was ranked by, so the note doesn't misstate the sort. */
+export type SampleBy = "comments" | "engagement";
+
+const SAMPLE_BY_TEXT: Record<SampleBy, Record<Lang, string>> = {
+  comments: { en: "comment count", zh: "评论数" },
+  engagement: { en: "comments + upvotes", zh: "评论数 + 点赞数" },
+};
+
+export function sampleNote(
+  total: number,
+  sampled: number,
+  lang: Lang = "zh",
+  by: SampleBy = "comments",
+): string {
+  const criterion = SAMPLE_BY_TEXT[by][lang];
   if (lang === "en") {
     return total > sampled
-      ? `(Total: ${total} items; showing top ${sampled} by comment count)`
+      ? `(Total: ${total} items; showing top ${sampled} by ${criterion})`
       : `(Total: ${total} items)`;
   }
-  return total > sampled ? `（共 ${total} 条，以下展示评论数最多的 ${sampled} 条）` : `（共 ${total} 条）`;
+  return total > sampled
+    ? `（共 ${total} 条，以下展示${criterion}最多的 ${sampled} 条）`
+    : `（共 ${total} 条）`;
 }
 
 // ---------------------------------------------------------------------------
@@ -79,11 +127,13 @@ export function buildCliPrompt(
   issues: GitHubItem[],
   prs: GitHubItem[],
   releases: GitHubRelease[],
+  discussions: GitHubDiscussion[],
   dateStr: string,
   lang: Lang = "zh",
 ): string {
   const sampledIssues = topN(issues, CLI_ISSUE_LIMIT);
   const sampledPrs = topN(prs, CLI_PR_LIMIT);
+  const sampledDiscussions = topDiscussions(discussions, CLI_DISCUSSION_LIMIT);
 
   const issuesText =
     sampledIssues.map((i) => formatItem(i, lang)).join("\n") || (lang === "en" ? "None" : "无");
@@ -96,6 +146,16 @@ export function buildCliPrompt(
 
   const issueNote = sampleNote(issues.length, sampledIssues.length, lang);
   const prNote = sampleNote(prs.length, sampledPrs.length, lang);
+
+  // Repos without discussions enabled get no section at all, rather than an
+  // empty one the model would feel obliged to comment on.
+  const discussionsSection = sampledDiscussions.length
+    ? (lang === "en"
+        ? `\n## Latest Discussions (updated in last 24h)${sampleNote(discussions.length, sampledDiscussions.length, lang, "engagement")}\n`
+        : `\n## 最新 Discussions（过去24小时内更新）${sampleNote(discussions.length, sampledDiscussions.length, lang, "engagement")}\n`) +
+      sampledDiscussions.map((d) => formatDiscussion(d, lang)).join("\n") +
+      "\n"
+    : "";
 
   if (lang === "en") {
     return `You are a technical analyst focused on AI developer tools. Based on the following GitHub data, generate the ${cfg.name} community digest for ${dateStr}.
@@ -110,7 +170,7 @@ ${issuesText}
 
 ## Latest Pull Requests (updated in last 24h)${prNote}
 ${prsText}
-
+${discussionsSection}
 ---
 
 Generate a structured English digest with the following sections:
@@ -119,8 +179,9 @@ Generate a structured English digest with the following sections:
 2. **Releases** - If new versions exist, summarize changes; omit if none
 3. **Hot Issues** - Pick 10 noteworthy Issues, explain why they matter and community reaction
 4. **Key PR Progress** - Pick 10 important PRs, describe features or fixes
-5. **Feature Request Trends** - Distill the most-requested feature directions from all Issues
-6. **Developer Pain Points** - Summarize recurring developer frustrations or high-frequency requests
+5. **Hot Discussions** - Pick up to 10 noteworthy Discussions, grouped by category (Ideas / Q&A / Show and tell). Omit this section entirely if no discussion data was provided
+6. **Feature Request Trends** - Distill the most-requested feature directions from all Issues and Discussions
+7. **Developer Pain Points** - Summarize recurring developer frustrations or high-frequency requests
 
 Style: concise and professional, suited for technical developers. Include GitHub links for each item.
 `;
@@ -138,7 +199,7 @@ ${issuesText}
 
 ## 最新 Pull Requests（过去24小时内更新）${prNote}
 ${prsText}
-
+${discussionsSection}
 ---
 
 请生成一份结构清晰的中文日报，包含以下部分：
@@ -147,8 +208,9 @@ ${prsText}
 2. **版本发布** - 如有新版本，总结更新内容；无则省略
 3. **社区热点 Issues** - 挑选 10 个最值得关注的 Issue，说明为什么重要、社区反应如何
 4. **重要 PR 进展** - 挑选 10 个重要的 PR，说明功能或修复内容
-5. **功能需求趋势** - 从所有 Issues 中提炼出社区最关注的功能方向（如 IDE 集成、性能、新模型支持等）
-6. **开发者关注点** - 总结开发者反馈中的痛点或高频需求
+5. **热门 Discussions** - 挑选最多 10 个值得关注的 Discussion，按分区（Ideas / Q&A / Show and tell）归类。若未提供 Discussions 数据则整节省略
+6. **功能需求趋势** - 从所有 Issues 与 Discussions 中提炼出社区最关注的功能方向（如 IDE 集成、性能、新模型支持等）
+7. **开发者关注点** - 总结开发者反馈中的痛点或高频需求
 
 语言要求：简洁专业，适合技术开发者阅读。每个条目附上 GitHub 链接。
 `;
@@ -244,7 +306,7 @@ export function buildInfraComparisonPrompt(
 
   const sections = digests
     .map((d) => {
-      const hasData = d.issues.length || d.prs.length || d.releases.length;
+      const hasData = d.issues.length || d.prs.length || d.releases.length || d.discussions.length;
       if (!hasData) return `## ${d.config.name} (github.com/${d.config.repo})\n${noActivityStr}`;
       return `## ${d.config.name} (github.com/${d.config.repo})\n${d.summary}`;
     })
@@ -405,7 +467,7 @@ export function buildPeersComparisonPrompt(
 
   const peerSections = peerDigests
     .map((d) => {
-      const hasData = d.issues.length || d.prs.length || d.releases.length;
+      const hasData = d.issues.length || d.prs.length || d.releases.length || d.discussions.length;
       if (!hasData) return `## ${d.config.name} (github.com/${d.config.repo})\n${noActivityStr}`;
       return `## ${d.config.name} (github.com/${d.config.repo})\n${d.summary}`;
     })
@@ -527,7 +589,7 @@ export function buildComparisonPrompt(digests: RepoDigest[], dateStr: string, la
 
   const sections = digests
     .map((d) => {
-      const hasData = d.issues.length || d.prs.length || d.releases.length;
+      const hasData = d.issues.length || d.prs.length || d.releases.length || d.discussions.length;
       if (!hasData) return `## ${d.config.name} (github.com/${d.config.repo})\n${noActivityStr}`;
       return `## ${d.config.name} (github.com/${d.config.repo})\n${d.summary}`;
     })
@@ -543,7 +605,7 @@ ${sections}
 Generate a cross-tool comparison report in English with these sections:
 
 1. **Ecosystem Overview** - 3-5 sentences on the overall AI CLI tools development landscape
-2. **Activity Comparison** - Table comparing Issues count, PR count, Release status for each tool today
+2. **Activity Comparison** - Table comparing Issues count, PR count, Discussions count and Release status for each tool today. Some repos have Issues/PRs disabled upstream and use Discussions as their only community channel — mark those as "N/A" rather than reporting them as inactive
 3. **Shared Feature Directions** - Requirements appearing across multiple tool communities (note which tools, specific needs)
 4. **Differentiation Analysis** - Differences in feature focus, target users, and technical approach
 5. **Community Momentum & Maturity** - Which tools have more active communities, which are rapidly iterating
@@ -562,7 +624,7 @@ ${sections}
 请基于上述各工具的动态，生成一份横向对比分析报告，包含以下部分：
 
 1. **生态全景** - 用3-5句话概括当前 AI CLI 工具整体发展态势
-2. **各工具活跃度对比** - 以表格形式汇总各工具今日的 Issues 数、PR 数、Release 情况
+2. **各工具活跃度对比** - 以表格形式汇总各工具今日的 Issues 数、PR 数、Discussions 数、Release 情况。部分仓库上游关闭了 Issues/PR，仅以 Discussions 作为社区渠道，这类请标注 "N/A"，不要判定为不活跃
 3. **共同关注的功能方向** - 多个工具社区都在关注的需求（说明哪些工具、具体诉求）
 4. **差异化定位分析** - 各工具在功能侧重、目标用户、技术路线上的差异
 5. **社区热度与成熟度** - 哪些工具社区更活跃，哪些处于快速迭代阶段
