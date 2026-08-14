@@ -226,6 +226,14 @@ query($owner: String!, $name: String!, $after: String) {
 /** Discussion bodies are trimmed at fetch time — prompts only ever show a snippet. */
 const DISCUSSION_BODY_LIMIT = 500;
 
+/**
+ * Higher than MAX_PAGES: a repo with Issues/PRs disabled routes its entire
+ * community through Discussions, so a day's worth easily exceeds 500 threads.
+ * GraphQL pages are cheap (~1 rate-limit point each) and the loop still stops
+ * as soon as a page ends before `since`.
+ */
+const MAX_DISCUSSION_PAGES = 20;
+
 function toDiscussion(n: DiscussionNode): GitHubDiscussion {
   return {
     number: n.number,
@@ -245,7 +253,7 @@ function toDiscussion(n: DiscussionNode): GitHubDiscussion {
 /**
  * Fetch discussions updated since `since`, newest first.
  * Discussions have no REST endpoint, so this goes through GraphQL.
- * Paginates until a page ends before `since` or MAX_PAGES is reached.
+ * Paginates until a page ends before `since` or MAX_DISCUSSION_PAGES is reached.
  */
 export async function fetchRecentDiscussions(repo: string, since: Date): Promise<GitHubDiscussion[]> {
   const [owner, name] = repo.split("/");
@@ -254,7 +262,7 @@ export async function fetchRecentDiscussions(repo: string, since: Date): Promise
   const all: GitHubDiscussion[] = [];
   let after: string | null = null;
 
-  for (let page = 0; page < MAX_PAGES; page++) {
+  for (let page = 0; page < MAX_DISCUSSION_PAGES; page++) {
     const resp = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: { ...headers(), "Content-Type": "application/json" },

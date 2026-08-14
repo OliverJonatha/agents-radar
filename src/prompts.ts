@@ -75,7 +75,9 @@ export function formatDiscussion(d: GitHubDiscussion, lang: Lang = "zh"): string
 
 const CLI_ISSUE_LIMIT = 30;
 const CLI_PR_LIMIT = 20;
-const CLI_DISCUSSION_LIMIT = 25;
+// Higher than the issue/PR limits: for a repo with Issues/PRs disabled the
+// discussion list is the entire report, not a supplement to them.
+const CLI_DISCUSSION_LIMIT = 40;
 
 /** Sort by comment count desc, take top N. */
 export function topN(items: GitHubItem[], n: number): GitHubItem[] {

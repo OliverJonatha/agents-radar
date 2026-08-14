@@ -126,14 +126,14 @@ describe("buildCliPrompt", () => {
   });
 
   it("samples discussions by engagement when they exceed the limit", () => {
-    const items = Array.from({ length: 40 }, (_, i) =>
+    const items = Array.from({ length: 60 }, (_, i) =>
       makeDiscussion({ number: i, comments: 0, upvotes: i }),
     );
     const result = buildCliPrompt(cfg, [], [], [], items, "2026-03-09");
-    expect(result).toContain("共 40 条");
-    expect(result).toContain("评论数 + 点赞数最多的 25 条");
+    expect(result).toContain("共 60 条");
+    expect(result).toContain("评论数 + 点赞数最多的 40 条");
     // Highest-upvoted kept, lowest dropped
-    expect(result).toContain("#39 [Ideas]");
+    expect(result).toContain("#59 [Ideas]");
     expect(result).not.toContain("#0 [Ideas]");
   });
 });
