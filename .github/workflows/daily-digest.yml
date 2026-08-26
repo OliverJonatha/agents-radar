@@ -3,8 +3,10 @@ name: Daily Agents Radar
 on:
   schedule:
     # 23:00 UTC daily = 07:00 CST (UTC+8) the next day.
-    # GitHub queues scheduled runs and often delays them by 45-125 min; 07:00 CST
-    # aims to finish the run before 09:00 CST, inside DeepSeek's off-peak window.
+    # GitHub queues scheduled runs and often delays them by 45-125 min, so the
+    # digest lands somewhere in the 07:00-09:00 CST window. qwen-flash has flat
+    # pricing, so the exact slot no longer affects cost (it did under DeepSeek's
+    # peak/off-peak scheme).
     - cron: "0 23 * * *"
   workflow_dispatch:
 
@@ -38,8 +40,8 @@ jobs:
       - name: Run daily digest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_PROVIDER: deepseek
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          LLM_PROVIDER: qwen
+          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
           PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
           DIGEST_REPO: ${{ github.repository }}
         run: pnpm start
