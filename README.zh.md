@@ -8,13 +8,13 @@
 
 | 来源 | 类型 | 数据内容 |
 |------|------|---------|
-| [GitHub Repos](https://github.com) | API | 17+ 个 AI 工具仓库的 Issues、PR、Releases |
+| [GitHub Repos](https://github.com) | API | 18 个 AI 工具仓库的 Issues、PR、Releases |
 | [Claude Code Skills](https://github.com/anthropics/skills) | API | 按社区活跃度排序的热门 Skills |
 | [GitHub Trending](https://github.com/trending) | HTML + API | 每日热门仓库 + AI 主题搜索（7 天窗口） |
 | [Hacker News](https://news.ycombinator.com) | [Algolia API](https://hn.algolia.com/api) | 过去 24 小时 Top 30 AI 热帖，6 组并行查询 |
 | [Product Hunt](https://www.producthunt.com) | GraphQL API | 昨日 AI 产品按投票排序 |
 | [ArXiv](https://arxiv.org) | [ArXiv API](https://export.arxiv.org/api/query) | cs.AI、cs.CL、cs.LG 最新论文（48 小时内） |
-| [Hugging Face](https://huggingface.co) | [Hub API](https://huggingface.co/api/models) | 按周点赞排序的 30 个热门模型 |
+| [Hugging Face](https://huggingface.co) | [Hub API](https://huggingface.co/api/models) | 按周点赞排序的 30 个热门模型 —— **周更**，仅周一 |
 | [Dev.to](https://dev.to) | [Forem API](https://dev.to/api) | 5 个标签下的 AI/LLM 热门文章 |
 | [Lobste.rs](https://lobste.rs) | JSON API | 7 天内 AI/ML 标签内容 |
 | [Anthropic](https://anthropic.com) + [OpenAI](https://openai.com) | Sitemap | 通过 `lastmod` 差异检测新文章 |
@@ -125,11 +125,8 @@ wrangler deploy
 | OpenCode | [anomalyco/opencode](https://github.com/anomalyco/opencode) |
 | Pi | [earendil-works/pi](https://github.com/earendil-works/pi) |
 | Qwen Code | [QwenLM/qwen-code](https://github.com/QwenLM/qwen-code) |
-| CodeWhale | [Hmbown/CodeWhale](https://github.com/Hmbown/CodeWhale) |
-| DeepSeek Harness | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) |
 
-在 `config.yml` 中标记 `discussions: true` 的仓库（Codex、Pi、CodeWhale、DeepSeek Harness）会额外抓取
-GitHub Discussions。DeepSeek Harness 上游关闭了 Issues 和 PR，Discussions 是它唯一的社区渠道。
+在 `config.yml` 中标记 `discussions: true` 的仓库（Codex、Pi）会额外抓取 GitHub Discussions。
 
 ### Claude Code Skills（GitHub）
 
@@ -145,18 +142,11 @@ OpenClaw 作为重点追踪项目，同时横向对比多个同赛道项目，�
 
 | 项目 | 仓库 | Stars |
 |------|------|-------|
-| OpenClaw | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 348.1k |
-| NanoBot | [HKUDS/nanobot](https://github.com/HKUDS/nanobot) | 37.9k |
-| Hermes Agent | [nousresearch/hermes-agent](https://github.com/nousresearch/hermes-agent) | 32.3k |
-| PicoClaw | [sipeed/picoclaw](https://github.com/sipeed/picoclaw) | 27.5k |
-| NanoClaw | [qwibitai/nanoclaw](https://github.com/qwibitai/nanoclaw) | 26.5k |
-| ZeroClaw | [zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw) | 30.1k |
-| CoPaw | [agentscope-ai/CoPaw](https://github.com/agentscope-ai/CoPaw) | 14.4k |
-| IronClaw | [nearai/ironclaw](https://github.com/nearai/ironclaw) | 11.4k |
-| NullClaw | [nullclaw/nullclaw](https://github.com/nullclaw/nullclaw) | 7.0k |
-| LobsterAI | [netease-youdao/LobsterAI](https://github.com/netease-youdao/LobsterAI) | 4.8k |
-| Moltis | [moltis-org/moltis](https://github.com/moltis-org/moltis) | 2.5k |
-| ZeptoClaw | [qhkm/zeptoclaw](https://github.com/qhkm/zeptoclaw) | 567 |
+| OpenClaw | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 387.8k |
+| Hermes Agent | [nousresearch/hermes-agent](https://github.com/nousresearch/hermes-agent) | 237.0k |
+| QwenPaw | [agentscope-ai/QwenPaw](https://github.com/agentscope-ai/QwenPaw) | 34.5k |
+| ZeroClaw | [zeroclaw-labs/zeroclaw](https://github.com/zeroclaw-labs/zeroclaw) | 32.7k |
+| IronClaw | [nearai/ironclaw](https://github.com/nearai/ironclaw) | 12.6k |
 
 ### AI 基础设施（GitHub）
 
@@ -202,12 +192,13 @@ LLM 负责过滤非 AI 项目，将结果按维度分类（AI 基础工具 / AI 
 - 抓取所有追踪仓库过去 24 小时内更新的 Issues、PR 和 Releases
 - 追踪热门 Claude Code Skills，按社区参与度而非时间排序
 - 为每个 CLI 仓库生成单独摘要，并输出跨工具横向对比分析
-- 生成 OpenClaw 深度项目报告，并与 11 个同赛道项目进行横向对比
+- 生成 OpenClaw 深度项目报告，并与 4 个同赛道项目进行横向对比
 - 追踪 6 个 AI 基础设施项目（推理引擎、网关、微调框架），独立成报并输出横向对比
 - 通过 Sitemap 抓取 Anthropic 和 OpenAI 官网内容，增量检测新文章
 - 每日监测 GitHub Trending + 搜索 6 个 AI 主题标签，按维度分类并提炼趋势信号
 - 抓取 Hacker News 过去 24 小时 AI 热门帖子（top 30，按分数排序），生成社区情绪报告
 - 以 GitHub Issues 形式发布报告，同时提交 Markdown 文件至 `digests/YYYY-MM-DD/`
+- 每份报告只用英文生成一次，再翻译成中文，不再对同一份数据跑两遍完整流水线
 - 每日通过 GitHub Actions 定时运行，支持手动触发
 - 所有追踪仓库均可通过 `config.yml` 配置，无需修改代码
 
@@ -336,7 +327,7 @@ pnpm start
 | 文件 | 内容 | GitHub Issue 标签 |
 |------|------|------------------|
 | `ai-cli.md` | CLI 简报 — 跨工具横向对比 + 各工具详细报告 | `digest` |
-| `ai-agents.md` | OpenClaw 深度报告 + 横向生态对比 + 11 个同赛道项目详情 | `openclaw` |
+| `ai-agents.md` | OpenClaw 深度报告 + 横向生态对比 + 4 个同赛道项目详情 | `openclaw` |
 | `ai-infra.md` | AI 基础设施日报 — 横向对比 + 各项目详细报告 | `infra` |
 | `ai-web.md` | 官网内容报告（仅在有新内容时生成） | `web` |
 | `ai-trending.md` | GitHub AI 趋势热榜 — 按维度分类 + 趋势信号分析（仅在有数据时生成） | `trending` |
@@ -359,13 +350,13 @@ pnpm start
   <details> OpenAI Codex   — 今日速览 / 热点 Issues / PR 进展 / 趋势
   <details> Gemini CLI     — ...
   <details> OpenCode       — ...
+  <details> Pi             — ...
   <details> Qwen Code      — ...
-  <details> CodeWhale      — ...
 ```
 
 `ai-agents.md` 结构：
 ```
-Issues: N | PRs: N | 覆盖项目: 10 个
+Issues: N | PRs: N | 覆盖项目: 5 个
 
 ## OpenClaw 项目深度报告
   今日速览 / 版本发布 / 项目进展 / 社区热点 /
@@ -376,16 +367,10 @@ Issues: N | PRs: N | 覆盖项目: 10 个
   共同技术方向 / 差异化定位 / 社区热度与成熟度 / 趋势信号
 
 ## 同赛道项目详细报告
-  <details> Zeroclaw   — 今日速览 / 版本发布 / 项目进展 / ...（8节）
-  <details> EasyClaw   — ...
-  <details> LobsterAI  — ...
-  <details> ZeptoClaw  — ...
-  <details> NanoBot      — ...
+  <details> ZeroClaw     — 今日速览 / 版本发布 / 项目进展 / ...（8节）
   <details> Hermes Agent — ...
-  <details> PicoClaw     — ...
-  <details> NanoClaw   — ...
-  <details> IronClaw   — ...
-  <details> CoPaw      — ...
+  <details> IronClaw     — ...
+  <details> QwenPaw      — ...
 ```
 
 `ai-infra.md` 结构：
