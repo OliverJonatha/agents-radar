@@ -5,6 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { type Lang, FOOTER } from "./i18n.ts";
+import { buildTranslationPrompt } from "./prompts.ts";
 import { sleep } from "./date.ts";
 
 // ---------------------------------------------------------------------------
@@ -78,6 +79,35 @@ export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): P
     } finally {
       if (!released) releaseSlot();
     }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Translation
+// ---------------------------------------------------------------------------
+
+/**
+ * Translate a finished English report body into Chinese.
+ *
+ * Report bodies are generated once in English and translated from there. The
+ * previous design ran the whole pipeline twice — once per language — over the
+ * same GitHub/API data, which doubled the bill for identical information. A
+ * translation prompt carries only the finished report instead of the raw item
+ * dump, so it costs a fraction of the input tokens.
+ *
+ * `maxTokens` should match the budget the English body was generated with, or
+ * a long report gets truncated mid-translation.
+ *
+ * Falls back to the English text on failure: a Chinese report that is partly
+ * English still carries the day's information, an empty one carries none.
+ */
+export async function translateToZh(text: string, maxTokens = LLM_TOKENS_DEFAULT): Promise<string> {
+  if (!text.trim()) return text;
+  try {
+    return await callLlm(buildTranslationPrompt(text), maxTokens);
+  } catch (err) {
+    console.error(`[translate] Failed, falling back to English: ${err}`);
+    return text;
   }
 }
 
