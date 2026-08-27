@@ -29,15 +29,25 @@ import {
   buildInfraComparisonPrompt,
   buildPeersComparisonPrompt,
   buildSkillsPrompt,
+  buildJsonTranslationPrompt,
 } from "./prompts.ts";
 import { buildTrendingPrompt, buildHighlightsPrompt, type ReportHighlights } from "./prompts-data.ts";
-import { callLlm, parseLlmJson, saveFile, autoGenFooter, LLM_TOKENS_TRENDING } from "./report.ts";
+import {
+  callLlm,
+  translateToZh,
+  parseLlmJson,
+  saveFile,
+  autoGenFooter,
+  LLM_TOKENS_TRENDING,
+} from "./report.ts";
 import {
   buildCliReportContent,
   buildOpenclawReportContent,
   buildInfraReportContent,
 } from "./report-builders.ts";
 import {
+  type BilingualBody,
+  LANGS,
   saveWebReport,
   saveTrendingReport,
   saveHnReport,
@@ -55,7 +65,7 @@ import { fetchHfData, type HfData } from "./hf.ts";
 import { fetchDevtoData, type DevtoData } from "./devto.ts";
 import { fetchLobstersData, type LobstersData } from "./lobsters.ts";
 import { loadConfig } from "./config.ts";
-import { toCstDateStr, toUtcStr } from "./date.ts";
+import { toCstDateStr, toUtcStr, weekdayOf } from "./date.ts";
 import {
   type Lang,
   MSG,
@@ -94,6 +104,7 @@ function requireEnv(name: string): string {
 async function fetchAllData(
   since: Date,
   webState: WebState,
+  fetchHf: boolean,
 ): Promise<{
   fetched: RepoFetch[];
   skillsData: { prs: GitHubItem[]; issues: GitHubItem[] };
@@ -108,7 +119,8 @@ async function fetchAllData(
 }> {
   const allConfigs = [...CLI_REPOS, OPENCLAW, ...OPENCLAW_PEERS, ...INFRA_REPOS];
   console.log(
-    `  Tracking: ${allConfigs.map((r) => r.id).join(", ")}, claude-code-skills, web, hn, ph, arxiv, hf, devto, lobsters`,
+    `  Tracking: ${allConfigs.map((r) => r.id).join(", ")}, claude-code-skills, web, hn, ph, arxiv, ` +
+      `${fetchHf ? "hf, " : ""}devto, lobsters`,
   );
 
   const [
@@ -179,7 +191,9 @@ async function fetchAllData(
     fetchHnData().catch((): HnData => ({ stories: [], fetchSuccess: false })),
     fetchPhData().catch((): PhData => ({ products: [], fetchSuccess: false })),
     fetchArxivData().catch((): ArxivData => ({ papers: [], fetchSuccess: false })),
-    fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false })),
+    fetchHf
+      ? fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false }))
+      : Promise.resolve<HfData>({ models: [], fetchSuccess: false }),
     fetchDevtoData().catch((): DevtoData => ({ articles: [], fetchSuccess: false })),
     fetchLobstersData().catch((): LobstersData => ({ stories: [], fetchSuccess: false })),
   ]);
@@ -228,6 +242,21 @@ async function summarizeRepo(
   return { config: cfg, issues, prs, releases, discussions, summary };
 }
 
+/** Every LLM-generated report body for one language. */
+interface Summaries {
+  cliDigests: RepoDigest[];
+  openclawSummary: string;
+  skillsSummary: string;
+  peerDigests: RepoDigest[];
+  infraDigests: RepoDigest[];
+  trendingSummary: string;
+}
+
+/**
+ * Generate every report body in English. Chinese comes from
+ * `translateSummaries`, not from a second pass over the raw data — see
+ * `translateToZh` in report.ts for why.
+ */
 async function generateSummaries(
   fetchedCli: RepoFetch[],
   fetchedOpenclaw: RepoFetch,
@@ -236,15 +265,8 @@ async function generateSummaries(
   fetchedInfra: RepoFetch[],
   trendingData: TrendingData,
   dateStr: string,
-  lang: Lang = "zh",
-): Promise<{
-  cliDigests: RepoDigest[];
-  openclawSummary: string;
-  skillsSummary: string;
-  peerDigests: RepoDigest[];
-  infraDigests: RepoDigest[];
-  trendingSummary: string;
-}> {
+): Promise<Summaries> {
+  const lang: Lang = "en";
   const noActivity = MSG.noActivity[lang];
   const fail = MSG.summaryFailed[lang];
 
@@ -318,8 +340,53 @@ async function generateSummaries(
 }
 
 // ---------------------------------------------------------------------------
+// Phase 2b: Chinese translation
+// ---------------------------------------------------------------------------
+
+/**
+ * Fixed status strings ("no activity", "generation failed") are i18n constants,
+ * not model output. Map them straight across rather than paying for a
+ * translation call that would only re-derive Chinese we already have — on a
+ * quiet day that is most of the peer digests.
+ */
+const FIXED_EN_TO_ZH = new Map(Object.values(MSG).map((m) => [m.en, m.zh] as [string, string]));
+
+function localize(enText: string, maxTokens?: number): Promise<string> {
+  const fixed = FIXED_EN_TO_ZH.get(enText);
+  return fixed !== undefined ? Promise.resolve(fixed) : translateToZh(enText, maxTokens);
+}
+
+async function localizeDigest(d: RepoDigest): Promise<RepoDigest> {
+  return { ...d, summary: await localize(d.summary) };
+}
+
+/** Translate a full set of English report bodies into Chinese. */
+async function translateSummaries(en: Summaries): Promise<Summaries> {
+  const [cliDigests, openclawSummary, skillsSummary, peerDigests, infraDigests, trendingSummary] =
+    await Promise.all([
+      Promise.all(en.cliDigests.map(localizeDigest)),
+      localize(en.openclawSummary),
+      localize(en.skillsSummary),
+      Promise.all(en.peerDigests.map(localizeDigest)),
+      Promise.all(en.infraDigests.map(localizeDigest)),
+      localize(en.trendingSummary, LLM_TOKENS_TRENDING),
+    ]);
+  return { cliDigests, openclawSummary, skillsSummary, peerDigests, infraDigests, trendingSummary };
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
+
+/**
+ * The Hugging Face report runs weekly, not daily. The Hub's trending list is
+ * ranked by cumulative downloads, so it barely moves: measured over 14 days,
+ * 90.5% of the models in a given day's report were already in the previous
+ * day's. Weekly keeps the signal and drops 12 LLM calls a week (six days of
+ * generate + translate), plus the Hub fetch on those days.
+ * 1 = Monday, against the CST date the digest folder is named for.
+ */
+const HF_REPORT_WEEKDAY = 1;
 
 async function main(): Promise<void> {
   requireEnv("GITHUB_TOKEN");
@@ -331,7 +398,10 @@ async function main(): Promise<void> {
   const digestRepo = process.env["DIGEST_REPO"] ?? "";
 
   const providerName = process.env["LLM_PROVIDER"] ?? "anthropic";
-  console.log(`[${now.toISOString()}] Starting digest | provider: ${providerName}`);
+  const isHfWeek = weekdayOf(dateStr) === HF_REPORT_WEEKDAY;
+  console.log(
+    `[${now.toISOString()}] Starting digest | provider: ${providerName} | HF weekly: ${isHfWeek ? "yes" : "no"}`,
+  );
 
   // 1. Fetch all data in parallel
   const webState = loadWebState();
@@ -346,7 +416,7 @@ async function main(): Promise<void> {
     hfData,
     devtoData,
     lobstersData,
-  } = await fetchAllData(since, webState);
+  } = await fetchAllData(since, webState, isHfWeek);
 
   const peerIds = new Set(OPENCLAW_PEERS.map((p) => p.id));
   const infraIds = new Set(INFRA_REPOS.map((r) => r.id));
@@ -357,34 +427,24 @@ async function main(): Promise<void> {
   const fetchedPeers = fetched.filter((f) => peerIds.has(f.cfg.id));
   const fetchedInfra = fetched.filter((f) => infraIds.has(f.cfg.id));
 
-  // 2. Generate per-repo LLM summaries in parallel (zh + en simultaneously)
-  console.log("  Generating summaries in ZH and EN in parallel...");
-  const [zhSummaries, enSummaries] = await Promise.all([
-    generateSummaries(
-      fetchedCli,
-      fetchedOpenclaw,
-      skillsData,
-      fetchedPeers,
-      fetchedInfra,
-      trendingData,
-      dateStr,
-      "zh",
-    ),
-    generateSummaries(
-      fetchedCli,
-      fetchedOpenclaw,
-      skillsData,
-      fetchedPeers,
-      fetchedInfra,
-      trendingData,
-      dateStr,
-      "en",
-    ),
-  ]);
+  // 2. Generate every report body once in English, then translate to Chinese
+  console.log("  Generating summaries (EN)...");
+  const enSummaries = await generateSummaries(
+    fetchedCli,
+    fetchedOpenclaw,
+    skillsData,
+    fetchedPeers,
+    fetchedInfra,
+    trendingData,
+    dateStr,
+  );
 
-  // 3. Generate cross-repo comparisons in parallel (zh + en)
-  console.log("  Calling LLM for comparative analyses (ZH + EN)...");
-  const summariesByLang = { zh: zhSummaries, en: enSummaries };
+  console.log("  Translating summaries (EN -> ZH)...");
+  const zhSummaries = await translateSummaries(enSummaries);
+
+  // 3. Generate cross-repo comparisons in English, then translate
+  console.log("  Calling LLM for comparative analyses (EN)...");
+  const summariesByLang: Record<Lang, Summaries> = { zh: zhSummaries, en: enSummaries };
 
   const makeOpenclawDigest = (lang: Lang): RepoDigest => ({
     config: OPENCLAW,
@@ -395,20 +455,17 @@ async function main(): Promise<void> {
     summary: summariesByLang[lang].openclawSummary,
   });
 
-  const [
-    zhComparison,
-    zhPeersComparison,
-    zhInfraComparison,
-    enComparison,
-    enPeersComparison,
-    enInfraComparison,
-  ] = await Promise.all([
-    callLlm(buildComparisonPrompt(zhSummaries.cliDigests, dateStr, "zh")),
-    callLlm(buildPeersComparisonPrompt(makeOpenclawDigest("zh"), zhSummaries.peerDigests, dateStr, "zh")),
-    callLlm(buildInfraComparisonPrompt(zhSummaries.infraDigests, dateStr, "zh")),
+  const [enComparison, enPeersComparison, enInfraComparison] = await Promise.all([
     callLlm(buildComparisonPrompt(enSummaries.cliDigests, dateStr, "en")),
     callLlm(buildPeersComparisonPrompt(makeOpenclawDigest("en"), enSummaries.peerDigests, dateStr, "en")),
     callLlm(buildInfraComparisonPrompt(enSummaries.infraDigests, dateStr, "en")),
+  ]);
+
+  console.log("  Translating comparative analyses (EN -> ZH)...");
+  const [zhComparison, zhPeersComparison, zhInfraComparison] = await Promise.all([
+    translateToZh(enComparison),
+    translateToZh(enPeersComparison),
+    translateToZh(enInfraComparison),
   ]);
 
   const comparisonByLang = { zh: zhComparison, en: enComparison };
@@ -420,7 +477,7 @@ async function main(): Promise<void> {
   const openclawContent: Record<Lang, string> = {} as Record<Lang, string>;
   const infraContent: Record<Lang, string> = {} as Record<Lang, string>;
 
-  for (const lang of ["zh", "en"] as const) {
+  for (const lang of LANGS) {
     const s = summariesByLang[lang];
     const ft = autoGenFooter(lang);
     const suffix = lang === "en" ? "-en" : "";
@@ -462,40 +519,25 @@ async function main(): Promise<void> {
     console.log(`  Saved ${saveFile(infraContent[lang], dateStr, `ai-infra${suffix}.md`)}`);
   }
 
-  // Web report: zh saves state, en skips state save
-  for (const lang of ["zh", "en"] as const) {
-    await saveWebReport(webResults, webState, utcStr, dateStr, digestRepo, autoGenFooter(lang), lang);
+  // Each saver now emits both languages: it generates its body in English,
+  // translates it, and writes both files plus both issues.
+  const trendingSummaries: BilingualBody = {
+    zh: zhSummaries.trendingSummary,
+    en: enSummaries.trendingSummary,
+  };
+
+  if (!isHfWeek) {
+    console.log("  [hf] Weekly report — not scheduled today, skipping.");
   }
 
   await Promise.all([
-    saveTrendingReport(
-      trendingData,
-      zhSummaries.trendingSummary,
-      utcStr,
-      dateStr,
-      digestRepo,
-      autoGenFooter("zh"),
-      "zh",
-    ),
-    saveTrendingReport(
-      trendingData,
-      enSummaries.trendingSummary,
-      utcStr,
-      dateStr,
-      digestRepo,
-      autoGenFooter("en"),
-      "en",
-    ),
-    saveHnReport(hnData, utcStr, dateStr, digestRepo, autoGenFooter("zh"), "zh"),
-    saveHnReport(hnData, utcStr, dateStr, digestRepo, autoGenFooter("en"), "en"),
-    savePhReport(phData, utcStr, dateStr, digestRepo, autoGenFooter("zh"), "zh"),
-    savePhReport(phData, utcStr, dateStr, digestRepo, autoGenFooter("en"), "en"),
-    saveArxivReport(arxivData, utcStr, dateStr, digestRepo, autoGenFooter("zh"), "zh"),
-    saveArxivReport(arxivData, utcStr, dateStr, digestRepo, autoGenFooter("en"), "en"),
-    saveHfReport(hfData, utcStr, dateStr, digestRepo, autoGenFooter("zh"), "zh"),
-    saveHfReport(hfData, utcStr, dateStr, digestRepo, autoGenFooter("en"), "en"),
-    saveCommunityReport(devtoData, lobstersData, utcStr, dateStr, digestRepo, autoGenFooter("zh"), "zh"),
-    saveCommunityReport(devtoData, lobstersData, utcStr, dateStr, digestRepo, autoGenFooter("en"), "en"),
+    saveWebReport(webResults, webState, utcStr, dateStr, digestRepo),
+    saveTrendingReport(trendingData, trendingSummaries, utcStr, dateStr, digestRepo),
+    saveHnReport(hnData, utcStr, dateStr, digestRepo),
+    savePhReport(phData, utcStr, dateStr, digestRepo),
+    saveArxivReport(arxivData, utcStr, dateStr, digestRepo),
+    saveCommunityReport(devtoData, lobstersData, utcStr, dateStr, digestRepo),
+    ...(isHfWeek ? [saveHfReport(hfData, utcStr, dateStr, digestRepo)] : []),
   ]);
 
   // 5. Generate highlights for Telegram notification
@@ -504,52 +546,51 @@ async function main(): Promise<void> {
     return fs.existsSync(p) ? fs.readFileSync(p, "utf-8") : undefined;
   };
 
-  const zhReports: Record<string, string> = {
-    "ai-cli": cliContent.zh,
-    "ai-agents": openclawContent.zh,
-    "ai-infra": infraContent.zh,
-  };
+  // Highlights are extracted from the English reports only — the Chinese set is
+  // translated from the result, so the Chinese files are never re-read here.
   const enReports: Record<string, string> = {
     "ai-cli": cliContent.en,
     "ai-agents": openclawContent.en,
     "ai-infra": infraContent.en,
   };
-  for (const [id, zhFile, enFile] of [
-    ["ai-trending", "ai-trending.md", "ai-trending-en.md"],
-    ["ai-web", "ai-web.md", "ai-web-en.md"],
-    ["ai-hn", "ai-hn.md", "ai-hn-en.md"],
-    ["ai-ph", "ai-ph.md", "ai-ph-en.md"],
-    ["ai-arxiv", "ai-arxiv.md", "ai-arxiv-en.md"],
-    ["ai-hf", "ai-hf.md", "ai-hf-en.md"],
-    ["ai-community", "ai-community.md", "ai-community-en.md"],
+  for (const [id, enFile] of [
+    ["ai-trending", "ai-trending-en.md"],
+    ["ai-web", "ai-web-en.md"],
+    ["ai-hn", "ai-hn-en.md"],
+    ["ai-ph", "ai-ph-en.md"],
+    ["ai-arxiv", "ai-arxiv-en.md"],
+    ["ai-hf", "ai-hf-en.md"],
+    ["ai-community", "ai-community-en.md"],
   ] as const) {
-    const zh = readReport(zhFile);
     const en = readReport(enFile);
-    if (zh) zhReports[id] = zh;
     if (en) enReports[id] = en;
   }
 
   console.log("  Generating highlights for Telegram...");
   const highlights: Record<Lang, ReportHighlights> = { zh: {}, en: {} };
-  // Generate + parse one language, retrying once. The LLM occasionally emits
+  // Both passes parse JSON, and both retry once: the LLM occasionally emits
   // slightly malformed JSON that repairJson can't fix (seen 2026-07-13: zh
   // failed with "Expected ',' or ']' after array element"); a fresh generation
-  // usually returns valid JSON. Each language runs independently so a failure
-  // in one never wipes the other.
-  const genHighlights = async (reports: Record<string, string>, lang: Lang): Promise<ReportHighlights> => {
+  // usually returns valid JSON.
+  const attemptJson = async (label: string, prompt: string): Promise<ReportHighlights> => {
     for (let attempt = 1; attempt <= 2; attempt++) {
       try {
-        return parseLlmJson<ReportHighlights>(await callLlm(buildHighlightsPrompt(reports, lang), 2048));
+        return parseLlmJson<ReportHighlights>(await callLlm(prompt, 2048));
       } catch (err) {
         const tag = attempt < 2 ? "retrying" : "giving up";
-        console.error(`  [highlights] ${lang} attempt ${attempt} failed (${tag}): ${err}`);
+        console.error(`  [highlights] ${label} attempt ${attempt} failed (${tag}): ${err}`);
       }
     }
     return {};
   };
-  const [zhRes, enRes] = await Promise.all([genHighlights(zhReports, "zh"), genHighlights(enReports, "en")]);
-  highlights.zh = zhRes;
-  highlights.en = enRes;
+
+  // English is extracted from the reports; Chinese is translated from that
+  // result. The extraction prompt carries every report body, the translation
+  // prompt carries only the short highlight list.
+  highlights.en = await attemptJson("en", buildHighlightsPrompt(enReports, "en"));
+  highlights.zh = Object.keys(highlights.en).length
+    ? await attemptJson("zh", buildJsonTranslationPrompt(JSON.stringify(highlights.en)))
+    : {};
 
   // If one language failed (generation or parse) but the other succeeded,
   // backfill the empty one from the other so notifications never render with

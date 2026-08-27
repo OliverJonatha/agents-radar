@@ -42,17 +42,12 @@ export interface RadarConfig {
 
 const DEFAULT_CLI_REPOS: RepoConfig[] = [
   { id: "claude-code", repo: "anthropics/claude-code", name: "Claude Code" },
-  { id: "codex", repo: "openai/codex", name: "OpenAI Codex" },
+  { id: "codex", repo: "openai/codex", name: "OpenAI Codex", discussions: true },
   { id: "gemini-cli", repo: "google-gemini/gemini-cli", name: "Gemini CLI" },
   { id: "copilot-cli", repo: "github/copilot-cli", name: "GitHub Copilot CLI" },
   { id: "opencode", repo: "anomalyco/opencode", name: "OpenCode" },
+  { id: "pi", repo: "earendil-works/pi", name: "Pi", discussions: true },
   { id: "qwen-code", repo: "QwenLM/qwen-code", name: "Qwen Code" },
-  {
-    id: "deepseek-harness",
-    repo: "deepseek-ai/deepseek-harness",
-    name: "DeepSeek Harness",
-    discussions: true,
-  },
 ];
 
 const DEFAULT_SKILLS_REPO = "anthropics/skills";
@@ -65,17 +60,9 @@ const DEFAULT_OPENCLAW: RepoConfig = {
 };
 
 const DEFAULT_OPENCLAW_PEERS: RepoConfig[] = [
-  { id: "nanobot", repo: "HKUDS/nanobot", name: "NanoBot", paginated: true },
   { id: "hermes-agent", repo: "nousresearch/hermes-agent", name: "Hermes Agent" },
-  { id: "picoclaw", repo: "sipeed/picoclaw", name: "PicoClaw", paginated: true },
-  { id: "nanoclaw", repo: "qwibitai/nanoclaw", name: "NanoClaw" },
-  { id: "nullclaw", repo: "nullclaw/nullclaw", name: "NullClaw" },
   { id: "ironclaw", repo: "nearai/ironclaw", name: "IronClaw" },
-  { id: "lobsterai", repo: "netease-youdao/LobsterAI", name: "LobsterAI" },
-  { id: "copaw", repo: "agentscope-ai/CoPaw", name: "CoPaw" },
-  { id: "moltis", repo: "moltis-org/moltis", name: "Moltis" },
-  { id: "zeptoclaw", repo: "qhkm/zeptoclaw", name: "ZeptoClaw" },
-  { id: "easyclaw", repo: "gaoyangz77/easyclaw", name: "EasyClaw" },
+  { id: "qwenpaw", repo: "agentscope-ai/QwenPaw", name: "QwenPaw" },
   { id: "zeroclaw", repo: "zeroclaw-labs/zeroclaw", name: "ZeroClaw" },
 ];
 

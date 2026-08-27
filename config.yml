@@ -33,16 +33,6 @@ cli_repos:
   - id: qwen-code
     repo: QwenLM/qwen-code
     name: Qwen Code
-  - id: codewhale
-    repo: Hmbown/CodeWhale
-    name: CodeWhale
-    discussions: true
-  # Issues and PRs are disabled upstream — Discussions is the only community
-  # channel this repo has.
-  - id: deepseek-harness
-    repo: deepseek-ai/deepseek-harness
-    name: DeepSeek Harness
-    discussions: true
 
 # ── Claude Code Skills ────────────────────────────────────────────────────────
 # Tracked separately without a date filter, sorted by community engagement.
@@ -62,38 +52,15 @@ openclaw:
 # Tracked alongside OpenClaw for cross-ecosystem comparison.
 
 openclaw_peers:
-  - id: nanobot
-    repo: HKUDS/nanobot
-    name: NanoBot
-    paginated: true
   - id: hermes-agent
     repo: nousresearch/hermes-agent
     name: Hermes Agent
-  - id: picoclaw
-    repo: sipeed/picoclaw
-    name: PicoClaw
-    paginated: true
-  - id: nanoclaw
-    repo: qwibitai/nanoclaw
-    name: NanoClaw
-  - id: nullclaw
-    repo: nullclaw/nullclaw
-    name: NullClaw
   - id: ironclaw
     repo: nearai/ironclaw
     name: IronClaw
-  - id: lobsterai
-    repo: netease-youdao/LobsterAI
-    name: LobsterAI
-  - id: moltis
-    repo: moltis-org/moltis
-    name: Moltis
-  - id: copaw
-    repo: agentscope-ai/CoPaw
-    name: CoPaw
-  - id: zeptoclaw
-    repo: qhkm/zeptoclaw
-    name: ZeptoClaw
+  - id: qwenpaw
+    repo: agentscope-ai/QwenPaw
+    name: QwenPaw
   - id: zeroclaw
     repo: zeroclaw-labs/zeroclaw
     name: ZeroClaw
