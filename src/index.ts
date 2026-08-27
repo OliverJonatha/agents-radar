@@ -65,7 +65,7 @@ import { fetchHfData, type HfData } from "./hf.ts";
 import { fetchDevtoData, type DevtoData } from "./devto.ts";
 import { fetchLobstersData, type LobstersData } from "./lobsters.ts";
 import { loadConfig } from "./config.ts";
-import { toCstDateStr, toUtcStr } from "./date.ts";
+import { toCstDateStr, toUtcStr, weekdayOf } from "./date.ts";
 import {
   type Lang,
   MSG,
@@ -104,6 +104,7 @@ function requireEnv(name: string): string {
 async function fetchAllData(
   since: Date,
   webState: WebState,
+  fetchHf: boolean,
 ): Promise<{
   fetched: RepoFetch[];
   skillsData: { prs: GitHubItem[]; issues: GitHubItem[] };
@@ -118,7 +119,8 @@ async function fetchAllData(
 }> {
   const allConfigs = [...CLI_REPOS, OPENCLAW, ...OPENCLAW_PEERS, ...INFRA_REPOS];
   console.log(
-    `  Tracking: ${allConfigs.map((r) => r.id).join(", ")}, claude-code-skills, web, hn, ph, arxiv, hf, devto, lobsters`,
+    `  Tracking: ${allConfigs.map((r) => r.id).join(", ")}, claude-code-skills, web, hn, ph, arxiv, ` +
+      `${fetchHf ? "hf, " : ""}devto, lobsters`,
   );
 
   const [
@@ -189,7 +191,9 @@ async function fetchAllData(
     fetchHnData().catch((): HnData => ({ stories: [], fetchSuccess: false })),
     fetchPhData().catch((): PhData => ({ products: [], fetchSuccess: false })),
     fetchArxivData().catch((): ArxivData => ({ papers: [], fetchSuccess: false })),
-    fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false })),
+    fetchHf
+      ? fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false }))
+      : Promise.resolve<HfData>({ models: [], fetchSuccess: false }),
     fetchDevtoData().catch((): DevtoData => ({ articles: [], fetchSuccess: false })),
     fetchLobstersData().catch((): LobstersData => ({ stories: [], fetchSuccess: false })),
   ]);
@@ -374,6 +378,16 @@ async function translateSummaries(en: Summaries): Promise<Summaries> {
 // Main
 // ---------------------------------------------------------------------------
 
+/**
+ * The Hugging Face report runs weekly, not daily. The Hub's trending list is
+ * ranked by cumulative downloads, so it barely moves: measured over 14 days,
+ * 90.5% of the models in a given day's report were already in the previous
+ * day's. Weekly keeps the signal and drops 12 LLM calls a week (six days of
+ * generate + translate), plus the Hub fetch on those days.
+ * 1 = Monday, against the CST date the digest folder is named for.
+ */
+const HF_REPORT_WEEKDAY = 1;
+
 async function main(): Promise<void> {
   requireEnv("GITHUB_TOKEN");
 
@@ -384,7 +398,10 @@ async function main(): Promise<void> {
   const digestRepo = process.env["DIGEST_REPO"] ?? "";
 
   const providerName = process.env["LLM_PROVIDER"] ?? "anthropic";
-  console.log(`[${now.toISOString()}] Starting digest | provider: ${providerName}`);
+  const isHfWeek = weekdayOf(dateStr) === HF_REPORT_WEEKDAY;
+  console.log(
+    `[${now.toISOString()}] Starting digest | provider: ${providerName} | HF weekly: ${isHfWeek ? "yes" : "no"}`,
+  );
 
   // 1. Fetch all data in parallel
   const webState = loadWebState();
@@ -399,7 +416,7 @@ async function main(): Promise<void> {
     hfData,
     devtoData,
     lobstersData,
-  } = await fetchAllData(since, webState);
+  } = await fetchAllData(since, webState, isHfWeek);
 
   const peerIds = new Set(OPENCLAW_PEERS.map((p) => p.id));
   const infraIds = new Set(INFRA_REPOS.map((r) => r.id));
@@ -509,14 +526,18 @@ async function main(): Promise<void> {
     en: enSummaries.trendingSummary,
   };
 
+  if (!isHfWeek) {
+    console.log("  [hf] Weekly report — not scheduled today, skipping.");
+  }
+
   await Promise.all([
     saveWebReport(webResults, webState, utcStr, dateStr, digestRepo),
     saveTrendingReport(trendingData, trendingSummaries, utcStr, dateStr, digestRepo),
     saveHnReport(hnData, utcStr, dateStr, digestRepo),
     savePhReport(phData, utcStr, dateStr, digestRepo),
     saveArxivReport(arxivData, utcStr, dateStr, digestRepo),
-    saveHfReport(hfData, utcStr, dateStr, digestRepo),
     saveCommunityReport(devtoData, lobstersData, utcStr, dateStr, digestRepo),
+    ...(isHfWeek ? [saveHfReport(hfData, utcStr, dateStr, digestRepo)] : []),
   ]);
 
   // 5. Generate highlights for Telegram notification

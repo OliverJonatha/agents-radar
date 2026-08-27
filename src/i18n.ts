@@ -97,10 +97,12 @@ export const ARXIV_REPORT = {
     lang === "en" ? `📚 ArXiv AI Research Digest ${dateStr}` : `📚 ArXiv AI 研究日报 ${dateStr}`,
 } as const;
 
+// The HF report runs weekly (see HF_REPORT_WEEKDAY in index.ts) — the Hub's
+// download-ranked list barely moves day to day, so the titles say "weekly".
 export const HF_REPORT = {
-  title: t("Hugging Face 热门模型日报", "Hugging Face Trending Models Digest"),
+  title: t("Hugging Face 热门模型周报", "Hugging Face Trending Models Weekly"),
   issueTitle: (dateStr: string, lang: Lang) =>
-    lang === "en" ? `🤗 Hugging Face Trending Models ${dateStr}` : `🤗 Hugging Face 热门模型日报 ${dateStr}`,
+    lang === "en" ? `🤗 Hugging Face Trending Models ${dateStr}` : `🤗 Hugging Face 热门模型周报 ${dateStr}`,
 } as const;
 
 export const COMMUNITY_REPORT = {
@@ -164,8 +166,8 @@ export const REPORT_LABELS: Record<string, string> = {
   "ai-ph-en": "Product Hunt AI Products Digest",
   "ai-arxiv": "ArXiv AI 研究日报",
   "ai-arxiv-en": "ArXiv AI Research Digest",
-  "ai-hf": "Hugging Face 热门模型日报",
-  "ai-hf-en": "Hugging Face Trending Models Digest",
+  "ai-hf": "Hugging Face 热门模型周报",
+  "ai-hf-en": "Hugging Face Trending Models Weekly",
   "ai-community": "技术社区 AI 动态日报",
   "ai-community-en": "Tech Community AI Digest",
   // Weekly/monthly rollups are no longer generated; kept so archived reports
