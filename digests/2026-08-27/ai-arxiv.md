@@ -1,69 +1,85 @@
 # ArXiv AI 研究日报 2026-08-27
 
-> 数据来源: [ArXiv](https://arxiv.org/) (cs.AI, cs.CL, cs.LG) | 共 50 篇论文 | 生成时间: 2026-08-27 01:21 UTC
+> 数据来源: [ArXiv](https://arxiv.org/) (cs.AI, cs.CL, cs.LG) | 共 50 篇论文 | 生成时间: 2026-08-27 04:07 UTC
 
 ---
 
-# ArXiv AI 研究日报（2026-08-27）
+---
+
+### 📅 **ArXiv AI 研究日报｜2026-08-27**
 
 ---
 
-## 今日速览  
-今日投稿聚焦于大语言模型的可解释性与鲁棒性、多智能体系统的可靠性机制、以及面向真实世界应用的高效建模框架。核心突破包括：**稀疏自动编码器在剪枝下的稳定性分析**、**多智能体系统中“生成-通信-选择”链路的失效溯源**、以及**基于物理先验的气象与地质建模新范式**。值得注意的是，**自进化代码智能体面临“自我污染”风险**，引发对安全闭环机制的反思；同时，跨领域迁移能力成为分子、嗅觉与医学预测中的关键挑战。
+#### ✅ **今日速览**  
+2026年8月26日，ArXiv 上发布50篇AI前沿论文，聚焦大模型推理效率、多模态理解与智能体系统演化。核心突破包括：**视觉原生推理**（VBVR-Pro）、**自进化数据合成**（VISA）、**可验证的规划链**（Trace Integrity）以及**物理世界中的生成式代理**（Agentic Autoresearch）。跨领域融合趋势显著，尤其在医疗、交通、地质等垂直场景中，结合知识图谱、因果建模与机制可解释性构建高可靠性系统。
 
 ---
 
-## 重点论文
-
-### 🧠 大语言模型（架构、训练、对齐、评估）
+#### 🧠 **大语言模型（架构、训练、对齐、评估）**
 
 | 论文 | 作者 | 简要说明 |
 | :--- | :--- | :--- |
-| [When Pruning Meets Interpretability: Preserving Sparse Autoencoder Robustness in LLMs](http://arxiv.org/abs/2608.25941v1) | Suchit Gupte et al. | 首次系统研究剪枝对稀疏自动编码器（SAE）解释力的影响，揭示其在压缩后仍保持稳健的理论条件，为可解释性工具的部署提供可信保障。 |
-| [Skill Issue: Are Skills Language-Invariant in LLMs?](http://arxiv.org/abs/2608.25832v1) | Bobby Cheng et al. | 提出跨语言技能不一致性量化框架，发现语言差异显著影响模型行为而非仅知识覆盖，挑战“通用技能”假设。 |
-| [TailSFT: Filtered Fine-Tuning Improves Post-Training Performance](http://arxiv.org/abs/2608.25756v1) | Sadhika Malladi et al. | 提出过滤式微调策略，证明通过筛选高质量数据可显著提升强化学习后训练阶段的推理与代理能力，优化资源利用效率。 |
-
-### 🤖 智能体与推理（规划、工具使用、多智能体、思维链）
-
-| 论文 | 作者 | 简要说明 |
-| :--- | :--- | :--- |
-| [TAU-Agent: An Agentic Retrieval-Augmented Framework for Traffic Anomaly Understanding](http://arxiv.org/abs/2608.25935v1) | Yuqiang Lin et al. | 构建首个面向交通异常理解的代理检索增强框架，融合任务感知检索与动态推理，实现从检测到解释的端到端可追溯分析。 |
-| [Repair or Resample? Rethinking Failure Debugging in LLM Multi-Agent Systems](http://arxiv.org/abs/2608.25920v1) | Zhongwen Luan et al. | 挑战传统重采样调试范式，提出“修复优先”策略，强调在长周期任务中定位并修正中间错误比盲目重跑更具成本效益。 |
-| [ToST: A Tree-of-Thought Socratic Teaching Framework for Multi-Path Guidance and Parallel Thinking](http://arxiv.org/abs/2608.25775v1) | Feng Ling et al. | 引入树状思维的苏格拉底式教学框架，支持多路径引导与并行思考，使LLM能更灵活地指导复杂问题求解过程。 |
-
-### 🔧 方法与框架（新技术、基准测试、效率优化）
-
-| 论文 | 作者 | 简要说明 |
-| :--- | :--- | :--- |
-| [MetaSieve: Faster Relational Deep Learning through SQL-Based Metapath Selection](http://arxiv.org/abs/2608.25903v1) | Fahim Shahriar Khan et al. | 提出基于SQL的元路径选择方法，显著降低关系深度学习中搜索空间复杂度，实现更高效的图神经网络训练。 |
-| [Controlling for Omitted Variable Bias in Deep Neural Networks](http://arxiv.org/abs/2608.25930v1) | Manuel Pfeuffer et al. | 将统计学中的控制变量思想引入深度学习，显式建模图像中隐含的人口统计等协变量，提升模型公平性与泛化鲁棒性。 |
-| [How Edge of Stability Hinders SCAFFOLD in Federated Optimization](http://arxiv.org/abs/2608.25873v1) | Anant Khandelwal et al. | 揭示边缘稳定现象对联邦优化算法SCAFFOLD的实际阻碍作用，指出理论优势在现实异构数据下可能失效，推动算法改进。 |
-
-### 📊 应用（垂直领域、多模态、代码生成）
-
-| 论文 | 作者 | 简要说明 |
-| :--- | :--- | :--- |
-| [EVOMAL: Self-Poisoning in Self-Evolving Coding Agents](http://arxiv.org/abs/2608.25776v1) | Xiaodong Wu et al. | 首次揭示自演化代码智能体存在“自我污染”漏洞——恶意技能可被复制传播，警示自动化工具链的安全设计盲区。 |
-| [Precipitation Downscaling Using Foundation Model-Conditioned Diffusion](http://arxiv.org/abs/2608.25858v1) | Victor Nascimento Ribeiro et al. | 利用基础模型条件扩散实现高分辨率降水降尺度，结合大气强迫信号，为水文灾害评估提供更精确输入。 |
-| [Learning from waste: Machine Learning for health risk prediction and computer vision-based sorting in Ghana](http://arxiv.org/abs/2608.25759v1) | Hilda Adwubi Osei et al. | 在加纳实地部署视觉+机器学习系统，实现垃圾分类与健康风险预警一体化，体现AI在发展中国家可持续治理中的落地潜力。 |
+| [**Prefix Sliding for efficient test-time scaling**](http://arxiv.org/abs/2608.26070v1) | Muennighoff et al. | 提出“前缀滑动”机制，在不牺牲性能前提下大幅降低长推理任务的内存开销，为测试时扩展提供轻量级方案。 |
+| [**When Personality Meets Quantization: A Layer-wise MBTI Analysis of Quantized LLMs**](http://arxiv.org/abs/2608.25977v1) | Fu et al. | 首次将MBTI人格框架应用于量化后LLM分析，揭示不同层量化对模型“性格”特征的影响，推动可信对齐研究。 |
+| [**Unveiling Spectral Mechanisms in Training-Free LLM Text Detection**](http://arxiv.org/abs/2608.25944v1) | Luo et al. | 揭示训练无关检测中频谱特性与文本生成模式的关系，提出超越概率统计的新信号维度，提升伪造内容识别精度。 |
+| [**How Much Rank Does LoRA Need? Rank-Error Bounds for Transformer Attention**](http://arxiv.org/abs/2608.26052v1) | Conangla Planes | 建立LoRA秩与注意力近似误差之间的理论边界，实现从经验调参到数学指导的跃迁，优化微调资源配置。 |
 
 ---
 
-## 研究趋势信号  
-当前研究正从“模型性能提升”转向“系统级可靠性与安全性”。多个工作指向**多智能体系统中行为链断裂的根源分析**（如生成-通信-选择耦合失效），强调需建立**故障溯源与修复机制**。同时，“**自进化智能体的安全闭环**”成为热点，尤其在代码生成领域暴露的“自我污染”问题，促使研究者关注**工具链的可验证性与隔离机制**。此外，**跨域迁移能力**（如分子、嗅觉、医疗）的瓶颈凸显，预示未来将更重视**结构化表示学习与因果先验注入**。
+#### 🤖 **智能体与推理（规划、工具使用、多智能体、思维链）**
+
+| 论文 | 作者 | 简要说明 |
+| :--- | :--- | :--- |
+| [**Agentic Autoresearch for Cell-Edge Power Control**](http://arxiv.org/abs/2608.26093v1) | Khan et al. | 首次将自主研究代理（autoresearcher）用于无线资源管理，实现从架构设计到损失函数的全自动化生成，重塑算法研发范式。 |
+| [**SwarmWorld: Stigmergic technological evolution in societies of language-model agents**](http://arxiv.org/abs/2608.26081v1) | Pal et al. | 构建基于信息素交互的多语言智能体社会，实现无预设角色的集体创新，展示非对话式协同智能的潜力。 |
+| [**ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows**](http://arxiv.org/abs/2608.25992v1) | Li et al. | 设计在线进度感知的调度器，在质量与成本间动态权衡，显著降低复杂任务中多智能体系统的运行开销。 |
+| [**VISA: Agentic Self-Evolving Data Synthesis for Multimodal Instruction Following**](http://arxiv.org/abs/2608.26013v1) | Zeng et al. | 引入自我演化的数据生成框架，通过失败反馈闭环优化指令数据质量，解决传统“生成-过滤”流程的信息浪费问题。 |
+| [**TAU-Agent: An Agentic Retrieval-Augmented Framework for Traffic Anomaly Understanding**](http://arxiv.org/abs/2608.25935v1) | Lin et al. | 构建面向交通异常理解的智能体系统，融合检索增强与动态推理，实现从事件检测到解释生成的一体化闭环。 |
 
 ---
 
-## 值得精读
+#### 🔧 **方法与框架（新技术、基准测试、效率优化）**
 
-1. **[EVOMAL: Self-Poisoning in Self-Evolving Coding Agents](http://arxiv.org/abs/2608.25776v1)**  
-   该文首次揭示自演化代码智能体的深层安全缺陷——恶意技能可通过模仿传播，形成“自我污染”循环。这不仅挑战了自动化工具链的信任基础，也为构建可信自主系统提供了关键警醒。
+| 论文 | 作者 | 简要说明 |
+| :--- | :--- | :--- |
+| [**VBVR-Pro: A Scalable and Verifiable Suite for Native Visual Reasoning**](http://arxiv.org/abs/2608.26105v1) | Xu et al. | 推出首个支持原生视觉推理的可验证基准套件，使图像本身成为推理载体而非输入，推动视觉认知范式变革。 |
+| [**LivingRAG: Augmenting Graph RAG with Experience**](http://arxiv.org/abs/2608.25960v1) | Cui et al. | 将历史推理轨迹作为“经验记忆”注入图谱RAG，实现跨查询的知识复用，缓解独立查询导致的重复计算。 |
+| [**ICON Decomposition: Multivariate Concept-Level Explanations of Deep Representations**](http://arxiv.org/abs/2608.26083v1) | Rane et al. | 提出概念级分解方法，精准定位深层网络中的“捷径学习”行为，为模型审计提供可操作的诊断工具。 |
+| [**Spectral Allocation: Why Muon Outperforms Adam, and How to Improve Muon**](http://arxiv.org/abs/2608.25990v1) | Wu et al. | 从谱探测角度揭示正交优化器Muon加速机制，提出改进策略，深化对大规模语言模型训练动力学的理解。 |
+| [**A Statistical Audit of Physical AI Benchmark Redundancy**](http://arxiv.org/abs/2608.25940v1) | Navasardyan & Davtyan | 首次量化物理AI领域的基准冗余度，揭示评价体系碎片化问题，呼吁建立统一评估矩阵。 |
 
-2. **[TAU-Agent: An Agentic Retrieval-Augmented Framework for Traffic Anomaly Understanding](http://arxiv.org/abs/2608.25935v1)**  
-   提出一个真正面向真实场景的交通异常理解框架，融合检索、推理与解释生成，具备可扩展的多模态输入处理能力，是“可解释智能体”在复杂物理系统中落地的重要范例。
+---
 
-3. **[Controlling for Omitted Variable Bias in Deep Neural Networks](http://arxiv.org/abs/2608.25930v1)**  
-   将经典统计思想引入深度学习，为解决偏见与不公平性提供可操作的技术路径。其核心贡献在于“显式建模隐藏协变量”，为负责任AI提供新的理论工具箱。
+#### 📊 **应用（垂直领域、多模态、代码生成）**
+
+| 论文 | 作者 | 简要说明 |
+| :--- | :--- | :--- |
+| [**PlanSightRAG: A Visual-First Multimodal RAG for Automating Compliance Checking**](http://arxiv.org/abs/2608.26091v1) | Subedi et al. | 面向建筑规范图纸的视觉优先多模态RAG系统，保留几何布局信息，克服传统OCR的语义丢失缺陷。 |
+| [**MyoMechanix: Biomechanically-Grounded Compositional Skilled Activity Understanding**](http://arxiv.org/abs/2608.26094v1) | Yin et al. | 融合肌肉力学信号与动作视频，实现运动质量评估的生物力学可解释性，适用于康复与体育训练。 |
+| [**CardioFusion-AI: Robust ECG--PPG Fusion under Signal Degradation**](http://arxiv.org/abs/2608.26000v1) | Kamalakannan et al. | 提出鲁棒双模态融合框架，有效应对运动伪影与传感器脱落，提升可穿戴设备的心血管监测可靠性。 |
+| [**SciMIF: Understanding Multimodal Instruction Following in Scientific Domains**](http://arxiv.org/abs/2608.25973v1) | Shen et al. | 构建首个科学领域多模态指令遵循评测基准，评估模型在科研文献与图表理解中的综合能力。 |
+| [**Code World Model: Coding Agent as World Brain**](http://arxiv.org/abs/2608.25927v1) | Chen et al. | 将代码生成代理作为“世界脑”，模拟程序执行背后的逻辑规则，突破仅依赖视觉观测的世界建模局限。 |
+
+---
+
+#### 🌐 **研究趋势信号**  
+当前研究正从“模型性能提升”转向“系统可靠性与可解释性”。多个论文强调**可验证推理链**（如Trace Integrity、ICON）、**跨任务经验积累**（LivingRAG）、**物理世界中的自主演化**（Agentic Autoresearch、SwarmWorld），反映出智能体系统正迈向具备长期记忆、自我修正与集体进化的“类生命”状态。同时，**机制可解释性**（如稀疏自编码器、谱分析）与**低资源适配**（如小语种ASR、模型压缩）成为关键突破口，显示技术落地正走向精细化与场景化。
+
+---
+
+#### 🔍 **值得精读**  
+1. **[VBVR-Pro: A Scalable and Verifiable Suite for Native Visual Reasoning](http://arxiv.org/abs/2608.26105v1)**  
+   ——首次将图像视为推理介质而非输入，挑战传统“语言中心”范式，开启视觉原生认知新纪元，极具思想冲击力。
+
+2. **[Agentic Autoresearch for Cell-Edge Power Control](http://arxiv.org/abs/2608.26093v1)**  
+   ——真正意义上让机器“自己发明算法”，是人工智能从“工具”迈向“创造者”的里程碑，未来可能重塑科研流程。
+
+3. **[TraceML: An Empirical Analysis of Human-Agent Planning in ML Development](http://arxiv.org/abs/2608.26086v1)**  
+   ——实证揭示人类与代理在开发过程中的协作差异，为设计更高效人机协同系统提供底层依据，具有深远实践意义。
+
+--- 
+
+> 📌 *本报告基于2026-08-26发布于cs.AI、cs.CL、cs.LG类别的最新论文，所有链接均为ArXiv官方地址。*
 
 ---
 *本日报由 [agents-radar](https://github.com/duanyytop/agents-radar) 自动生成。*

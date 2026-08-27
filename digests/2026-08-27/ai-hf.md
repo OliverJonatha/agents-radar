@@ -1,6 +1,6 @@
 # Hugging Face 热门模型日报 2026-08-27
 
-> 数据来源: [Hugging Face Hub](https://huggingface.co/) | 共 30 个模型 | 生成时间: 2026-08-27 01:21 UTC
+> 数据来源: [Hugging Face Hub](https://huggingface.co/) | 共 30 个模型 | 生成时间: 2026-08-27 04:07 UTC
 
 ---
 
@@ -9,7 +9,7 @@
 ### 📅 Hugging Face 热门模型日报（2026-08-27）
 
 #### ✅ 今日速览  
-Qwen 系列持续领跑，**Qwen3.8-27B** 以超 329 万下载量稳居榜首，成为当前最活跃的开源多模态模型。**Kimi-K3** 与 **DeepSeek-V4-Flash-0731** 在对话与文本生成领域表现亮眼，点赞数突破万级。社区对 **GGUF** 格式微调模型热情高涨，多个“Uncensored”“Abliterated”版本下载破百万，反映对本地部署与自由化推理的强烈需求。多模态生成能力加速演进，MiniMax-H3 和 LTX-2.5 在视频生成方向展现强劲势头。
+Qwen 系列持续领跑，**Qwen3.8-27B** 以超 329 万下载量稳居榜首，成为当前最活跃的开源大模型。多模态生成模型如 **MiniMax-H3** 与 **LTX-2.5** 在视频生成领域表现亮眼，下载量突破 470 万。社区量化热潮不减，**GGUF 格式**在 Qwen、GLM 等模型上广泛传播，尤其 **unsloth** 和 **orcarouter** 等团队推动高性能本地部署。此外，“无限制”（uncensored）与“去抑制”（abliterated）标签频现，反映用户对自由化模型的强烈需求。
 
 ---
 
@@ -17,9 +17,9 @@ Qwen 系列持续领跑，**Qwen3.8-27B** 以超 329 万下载量稳居榜首，
 
 | 模型 | 作者 | 点赞 | 下载 | 简要说明 |
 | :--- | :--- | ---: | ---: | :--- |
-| [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) | Qwen | 12,901 | 3,298,569 | Qwen 官方发布的 27B 多模态大模型，支持图像-文本-对话，下载量遥遥领先，是当前最主流的开源对话引擎之一。 |
-| [moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3) | moonshotai | 11,019 | 2,921,257 | Kimi-K3 作为国产大模型代表，聚焦图像-文本理解，点赞与下载双高，体现中文场景下的强竞争力。 |
-| [deepseek-ai/DeepSeek-V4-Flash-0731](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) | deepseek-ai | 3,739 | 3,857,140 | DeepSeek-V4 的轻量化闪存版，兼顾性能与推理效率，广泛用于本地部署与实时对话系统。 |
+| [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B) | Qwen | 12,921 | 3,298,569 | 27B 参数级通用对话模型，支持图像-文本-文本多轮交互，是目前最受欢迎的开源大模型之一。 |
+| [Moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3) | moonshotai | 11,021 | 2,921,257 | Kimi-K3 作为国产头部模型，具备强推理与多模态理解能力，下载量逼近千万，生态扩张迅速。 |
+| [DeepSeek-V4-Flash-0731](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) | deepseek-ai | 3,743 | 3,857,140 | DeepSeek V4 系列优化版本，专注高效文本生成，适配长上下文任务，社区反馈积极。 |
 
 ---
 
@@ -27,16 +27,20 @@ Qwen 系列持续领跑，**Qwen3.8-27B** 以超 329 万下载量稳居榜首，
 
 | 模型 | 作者 | 点赞 | 下载 | 简要说明 |
 | :--- | :--- | ---: | ---: | :--- |
-| [Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5) | Lightricks | 1,865 | 894,094 | 基于扩散模型的图像→视频生成模型，支持文本驱动视频创作，下载量破八十万，预示短视频生成新范式。 |
-| [MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3) | MiniMaxAI | 4,499 | 4,793,098 | 支持图文转视频的多模态生成模型，下载量近五百万，已成为国内最具影响力的视频生成基座之一。 |
-| [MiniMaxAI/MiniMax-Music3](https://huggingface.co/MiniMaxAI/MiniMax-Music3) | MiniMaxAI | 1,261 | 19,501 | 文本生成音乐的专用模型，虽下载量不高但具备潜力，标志着生成式音乐进入实用阶段。 |
-| [Audio8/Audio8-TTS-Preview-0.1b](https://huggingface.co/Audio8/Audio8-TTS-Preview-0.1b) | Audio8 | 174 | 4,257 | 高质量文本转语音模型，采用 ARK-TTS 架构，适合语音助手与内容播客场景。 |
+| [Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5) | Lightricks | 1,872 | 894,094 | 基于扩散模型的单文件图像转视频模型，支持高保真动态生成，发布后快速获关注。 |
+| [MiniMaxAI/MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3) | MiniMaxAI | 4,504 | 4,793,098 | 支持图文到视频生成的多模态模型，已成主流生成工具链核心组件，下载量领先。 |
+| [MiniMaxAI/MiniMax-Music3](https://huggingface.co/MiniMaxAI/MiniMax-Music3) | MiniMaxAI | 1,264 | 19,501 | 文本生成音乐的专用模型，虽下载量不高，但代表文本到音频生成的技术前沿。 |
+| [Audio8/Audio8-TTS-Preview-0.1b](https://huggingface.co/Audio8/Audio8-TTS-Preview-0.1b) | Audio8 | 174 | 4,257 | 预览版语音合成模型，基于 ARK-TTS 架构，支持高质量文本转语音，适合研究与测试。 |
 
 ---
 
 ### 🔧 专用模型（代码、数学、医疗、嵌入）
 
-> 无相关模型上榜。
+| 模型 | 作者 | 点赞 | 下载 | 简要说明 |
+| :--- | :--- | ---: | ---: | :--- |
+| [sensenova/SenseNova-U1.5-8B-MoT](https://huggingface.co/sensenova/SenseNova-U1.5-8B-MoT) | sensenova | 173 | 3,264 | 全能型多模态模型，支持任意输入输出转换，原生支持视觉、文本、特征提取，潜力巨大。 |
+
+> 注：本分类下仅 1 个模型上榜，其余未达热度门槛。
 
 ---
 
@@ -44,26 +48,23 @@ Qwen 系列持续领跑，**Qwen3.8-27B** 以超 329 万下载量稳居榜首，
 
 | 模型 | 作者 | 点赞 | 下载 | 简要说明 |
 | :--- | :--- | ---: | ---: | :--- |
-| [unsloth/Qwen3.8-27B-GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF) | unsloth | 2,997 | 7,638,591 | UnSloth 提供的 GGUF 量化版本，支持 llama.cpp 本地运行，下载量超七百六十万，是当前最流行的本地部署方案之一。 |
-| [JonathanColetti/Qwen3.8-27B-Uncensored-GGUF](https://huggingface.co/JonathanColetti/Qwen3.8-27B-Uncensored-GGUF) | JonathanColetti | 749 | 1,620,754 | “无审查”版本，结合 MTP 优化，下载量突破百万，反映用户对去中心化、自由化模型的强烈偏好。 |
-| [HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF](https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF) | HauhauCS | 657 | 911,795 | 强调“激进 MTP 优化”的版本，适配低资源设备，推动大模型在边缘端落地。 |
-| [ornith-ai/Ornith-1.5-35B-A3B-GGUF](https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B-GGUF) | ornith-ai | 317 | 1,391,218 | 35B MoE 模型的 GGUF 版本，兼具性能与可部署性，吸引研究者与开发者关注。 |
+| [unsloth/Qwen3.8-27B-GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF) | unsloth | 3,010 | 7,638,591 | 由 unsloth 团队提供的高质量 GGUF 量化版本，支持 llama.cpp 本地运行，下载量破七百万，是本地部署首选。 |
+| [HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF](https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF) | HauhauCS | 664 | 911,795 | “激进” MTP 量化策略，兼顾性能与自由度，受极客社区欢迎。 |
+| [JonathanColetti/Qwen3.8-27B-Uncensored-GGUF](https://huggingface.co/JonathanColetti/Qwen3.8-27B-Uncensored-GGUF) | JonathanColetti | 756 | 1,620,754 | 专为本地部署设计的 uncensored GGUF 版本，支持多种硬件平台，下载量超百万。 |
+| [DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF](https://huggingface.co/DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF) | DavidAU | 253 | 232,525 | 融合 GAIN 训练与冷融合技术的优化版本，强调鲁棒性与响应一致性，属高阶微调实践。 |
 
 ---
 
 ### 🌐 生态信号  
-
-当前模型生态呈现“**头部集中 + 社区分化**”特征：**Qwen 与 Kimi 系列**持续主导多模态与对话任务，而 **GGUF 量化格式**已成主流部署标准，尤其在“Uncensored”“Abliterated”等自由化微调版本中爆发增长。超过 10 个模型依赖 **UnSloth、Orcarouter、HauhauCS** 等社区团队进行优化，显示开源生态正从“发布模型”转向“优化分发”。尽管闭源模型（如 Kimi-K3）仍具吸引力，但 **权重公开 + 本地部署 + 自定义微调** 成为开发者首选，凸显“可解释、可控、可定制”的开源优势。此外，**多模态生成**（尤其是图文转视频）正在快速成熟，成为下一波创新热点。
+当前开源模型生态呈现“**大模型家族化 + 社区工程化**”双轨并行趋势。**Qwen 系列**（含 Qwen3.8-27B、Flash-Next）和 **MiniMax-H3** 成为绝对主力，其高下载量与多格式适配（GGUF、MLX、FP8）反映出用户对可部署性的极致追求。**量化与微调社区**空前活跃，特别是 GGUF 格式在 Qwen、GLM 等模型上的广泛应用，表明本地化推理已成为主流需求。值得注意的是，“uncensored”“abliterated”等标签高频出现，暗示用户对模型自由度与合规边界存在深层博弈。与此同时，**闭源模型（如 Kimi-K3）仍保持强劲势头**，但其权重开放程度有限，反向刺激了开源社区的创新与再封装热情。
 
 ---
 
 ### 🔍 值得探索
 
-1. **[unsloth/Qwen3.8-27B-GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)**：若需在本地部署高性能大模型，此版本是最佳选择——兼容 llama.cpp，支持多设备运行，下载量超七百万，社区验证充分。
-
-2. **[Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)**：想尝试图像生成视频？该模型支持高保真文本驱动视频合成，已在创意产业小范围应用，极具前瞻性。
-
-3. **[DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF](https://huggingface.co/DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF)**：融合 GAIN 训练与冷融合技术的进阶版本，专为提升视觉-文本对齐精度设计，适合研究者深入挖掘多模态理解边界。
+1. **[unsloth/Qwen3.8-27B-GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)**：全球下载量最高，适配性强，适合在消费级设备上部署，是体验大模型的“黄金入口”。  
+2. **[Lightricks/LTX-2.5](https://huggingface.co/Lightricks/LTX-2.5)**：单文件图像转视频模型，无需复杂配置即可生成动态内容，适合创意工作流快速原型验证。  
+3. **[DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1...](https://huggingface.co/DavidAU/Qwen3.8-27B-Cold-Fusion-GAIN-V1.1-NM-DAU-NEO-MAX-MTP-GGUF)**：融合先进训练技术的定制化版本，对研究者而言是理解模型优化路径的优质样本。
 
 ---
 *本日报由 [agents-radar](https://github.com/duanyytop/agents-radar) 自动生成。*

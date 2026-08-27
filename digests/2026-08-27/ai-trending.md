@@ -1,6 +1,6 @@
 # AI 开源趋势日报 2026-08-27
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-08-27 01:21 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-08-27 04:07 UTC
 
 ---
 
@@ -8,68 +8,62 @@
 
 ---
 
-## 今日速览  
-今日开源社区对 **AI 智能体（Agent）工作流与技能化能力** 的关注达到新高，以“技能库”“本地记忆”“自动化任务”为核心的工具链爆发式增长。多个项目在 Trending 榜单中实现 **单日新增超千星**，尤其以 Claude Code 生态的插件与技能系统最为活跃。与此同时，**本地化、可自托管的 AI 工作流框架** 和 **面向垂直场景（如求职、科研）的 Agent 应用** 成为新热点，反映出开发者正从“模型可用”迈向“智能体可部署”的工程化阶段。
+## 1. 今日速览  
+今日 AI 开源领域呈现“**智能体工具链爆发**”态势，以 Claude Code 为核心的 Agent 框架与技能生态迅速升温。`Alishahryar1/free-claude-code` 和 `MadsLorentzen/ai-job-search` 等项目凭借本地化部署、免费使用和高实用性快速吸睛。`K-Dense-AI/scientific-agent-skills` 等专业技能库受科学界追捧，反映垂直领域 Agent 正从通用走向专业化。同时，`VoltAgent/awesome-agent-skills` 与 `ConardLi/garden-skills` 等开源技能集合持续扩张，表明 **Agent Skills 已成为可复用的基础设施**。
 
 ---
 
-## 各维度热门项目
+## 2. 各维度热门项目
 
-### 🤖 AI 智能体/工作流
+### 🔧 AI 基础工具（框架、SDK、CLI）
 | 项目 | 语言 | Stars（总量 / 今日） | 简要说明 |
 | :--- | :--- | ---: | :--- |
-| [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) | Python | 810（+810） | 基于 Claude Code 的自我组织知识图谱系统，将任意资料自动链接为连贯的 Markdown 知识网络，是“第二大脑”类项目的典范。 |
-| [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search) | Python | 1,300（+1,300） | 本地运行的 AI 求职框架，支持简历定制、投递评估、面试准备，真正实现“私有化、可控化”求职自动化。 |
-| [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | —— | 242（+242） | 聚合超 1000 个通用 & 场景化智能体技能，兼容 Claude Code、Cursor、Gemini CLI 等主流平台，成为智能体开发的“技能百科全书”。 |
-| [K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills) | Python | 138（+138） | 专为科学领域设计的 163 个已验证技能库，覆盖生物、化学、医药等方向，被全球 17.5 万科学家使用，推动 AI 科研民主化。 |
-| [ConardLi/garden-skills](https://github.com/ConardLi/garden-skills) | CSS | 113（+113） | 集成网页设计、图像生成、知识检索等多类技能的开源集合，体现“提示即代码”理念向 UI 层延伸的趋势。 |
+| [Alishahryar1/free-claude-code](https://github.com/Alishahryar1/free-claude-code) | Python | 0（+536） | 免费调用 Claude Code、Codex 等模型的终端工具，提供 1.3B+ 免费令牌，支持语音输入，为开发者提供低成本实验入口。 |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | JavaScript | 0（+1598） | 让 AI 代理“像懒惰的资深开发者一样思考”，通过代码生成优化减少冗余输出，是提升 Agent 效率的关键工程实践。 |
+| [rohitg00/ai-engineering-from-scratch](https://github.com/rohitg00/ai-engineering-from-scratch) | Python | 0（+838） | 从零构建并交付 AI 工程系统，强调“学完即能上手”，契合当前开发者对可落地训练路径的需求。 |
 
-> 注：`browser-use/browser-use`（+149）虽属工作流类，但因技术栈偏重浏览器自动化且非核心智能体，暂不列入主表。
-
-### 🔧 AI 基础工具（框架/SDK/CLI）
+### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
 | 项目 | 语言 | Stars（总量 / 今日） | 简要说明 |
 | :--- | :--- | ---: | :--- |
-| [tt-a1i/archify](https://github.com/tt-a1i/archify) | HTML | 0（+1,035） | 可自执行的 HTML 架构图生成器，支持动画与清晰导出，让“架构设计”从手绘走向可验证、可复用的 AI 工具链。 |
-| [rohitg00/ai-engineering-from-scratch](https://github.com/rohitg00/ai-engineering-from-scratch) | Python | 838（+838） | “从零构建 AI 工程系统”的实战教程，强调“学完即能交付”，契合当前开发者对“可落地能力”的迫切需求。 |
-| [tinyhumansai/openhuman](https://github.com/tinyhumansai/openhuman) | Rust | 525（+525） | 本地优先的个人超级智能体，具备长期记忆、任务编排与多代理协同能力，是未来“个人 AI 助手”的理想原型。 |
-| [Alishahryar1/free-claude-code](https://github.com/Alishahryar1/free-claude-code) | Python | 536（+536） | 提供免费调用 Claude Code 等模型的终端入口，累计释放 13 亿+ 免费令牌，降低大模型使用门槛。 |
+| [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search) | Python | 0（+1300） | 本地运行的 AI 求职框架，自动评估职位、定制简历、撰写求职信、准备面试，实现全流程自动化，适合个人职业发展。 |
+| [AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) | Python | 0（+810） | 基于 Karpathy LLM Wiki 模式，将 Obsidian 变为自组织的 AI 第二大脑，支持知识图谱构建与跨文件链接，打造私有化知识中枢。 |
+| [tinyhumansai/openhuman](https://github.com/tinyhumansai/openhuman) | Rust | 0（+525） | 本地优先的个人超级智能体，具备记忆、任务编排、多智能体协调能力，定位“你的个人认知外延”。 |
+| [Panniantong/Agent-Reach](https://github.com/Panniantong/Agent-Reach) | Python | 75,706 | 为 AI 代理赋予“互联网之眼”，支持无 API 费用地爬取 Twitter、Reddit、YouTube 等平台内容，突破信息孤岛。 |
 
-### 🔍 RAG/知识库
+### 📦 AI 应用（具体应用产品、垂直场景解决方案）
 | 项目 | 语言 | Stars（总量 / 今日） | 简要说明 |
 | :--- | :--- | ---: | :--- |
-| [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | JavaScript | 91,960（+91,960） | 实现跨会话持久记忆的 AI 记忆系统，压缩并注入上下文，显著减少重复输入，提升智能体连续性体验。 |
-| [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | Go | 89,330（+89,330） | 集成 Agent 与 RAG 的领先引擎，支持文档解析、知识图谱构建与多模态检索，适用于企业级知识中枢搭建。 |
-| [mem0ai/mem0](https://github.com/mem0ai/mem0) | Python | 64,123（+64,123） | 通用记忆层，可为任意智能体提供统一、可扩展的长期记忆支持，是构建“有成长感”智能体的关键基础设施。 |
-| [Cognee/cognee](https://github.com/topoteretes/cognee) | Python | 30,281（+30,281） | 自托管式知识图谱引擎，赋予智能体跨会话、跨任务的记忆能力，支持复杂推理与上下文关联。 |
+| [freestylefly/awesome-gpt-image-2](https://github.com/freestylefly/awesome-gpt-image-2) | JavaScript | 0（+4050） | GPT-Image2 工业级提示词引擎与模板库，逆向工程 530+ 案例，提炼出可复用的图像生成技能，极大降低提示工程门槛。 |
+| [santifer/career-ops](https://github.com/santifer/career-ops) | JavaScript | 68,699 | 开源本地化求职助手，自动评分职位、优化简历、追踪申请状态，兼容多种主流 AI 编码工具，实操性强。 |
+| [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | Python | 49,659 | AI 自动生成带动画、图表、音频的原生 PPT，支持自定义模板，大幅提升汇报效率，尤其适合技术团队。 |
 
-> 注：`langchain-ai/langgraph`、`langchain-ai/langchain` 等虽属该类，但更偏向框架抽象，未进入本表；`open-webui` 为界面层，不归入。
-
-### 📦 AI 应用（垂直场景解决方案）
+### 🧠 大模型/训练（模型权重、训练框架、微调工具）
 | 项目 | 语言 | Stars（总量 / 今日） | 简要说明 |
 | :--- | :--- | ---: | :--- |
-| [freestylefly/awesome-gpt-image-2](https://github.com/freestylefly/awesome-gpt-image-2) | JavaScript | 0（+4,050） | GPT-Image2 工业级提示词模板库，含 530+ 案例逆向工程，20+ 完整模板，是当前最系统的“提示工程工业化”成果。 |
-| [hugohe3/ppt-master](https://github.com/hugohe3/ppt-master) | Python | 49,612（+49,612） | AI 自动生成带动画、图表、语音的原生 PPT，支持自定义模板，极大提升商务演示效率。 |
-| [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) | Python | 64,018（+64,018） | 多市场股票分析系统，整合行情、新闻、决策看板，支持零成本定时运行，是金融领域 LLM 应用的标杆案例。 |
+| [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) | Jupyter Notebook | 103,869 | 逐步用 PyTorch 实现类 ChatGPT 的大模型，是学习模型底层原理的经典教学资源，社区热度持续上升。 |
+| [jingyaogong/minimind](https://github.com/jingyaogong/minimind) | Python | 55,049 | 仅用 2 小时即可从头训练一个 64M 参数小模型，适合边缘设备或教学实验，推动轻量化建模普及。 |
+
+### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
+| 项目 | 语言 | Stars（总量 / 今日） | 简要说明 |
+| :--- | :--- | ---: | :--- |
+| [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | Python | 111,125 | 无需向量库，基于本地解析代码、文档等构建可解释的知识图谱，适用于高精度、可验证的 RAG 场景。 |
+| [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | JavaScript | 91,966 | 实现会话间持久上下文记忆，压缩历史并智能注入，显著降低长对话中的 token 消耗，是 Agent 长期记忆的核心组件。 |
+| [Cognee](https://github.com/topoteretes/cognee) | Python | 30,288 | 自托管的 AI 记忆平台，支持跨会话持久化知识图谱，让 Agent 拥有“真正”的长期记忆能力。 |
 
 ---
 
-## 趋势信号分析（200–300 字）
+## 3. 趋势信号分析
 
-今日最显著的趋势是 **“智能体技能化”与“本地化工作流”双轮驱动**。以 `awesome-agent-skills`、`scientific-agent-skills`、`claude-mem` 为代表的项目集体爆发，表明开发者正从“使用模型”转向“构建可复用、可组合的 AI 能力单元”。尤其值得注意的是，**“技能库”已从辅助功能升级为核心资产**，其价值体现在标准化、可共享、可验证的特性上。
-
-此外，**本地运行、私有部署、免 API 费用** 成为关键标签。`free-claude-code` 单日吸粉 536 星，`ai-job-search` 追随其后，反映用户对数据主权与成本控制的高度敏感。这与近期 Anthropic 推出官方插件目录、微软强化 Copilot 安全策略等事件形成呼应，预示着 **企业级 AI 应用正加速向“可审计、可治理、可本地化”演进**。
-
-同时，**前端提示工程（Prompt as Code）** 在 `awesome-gpt-image-2` 中展现工业化潜力，标志着“提示”正从经验主义走向工程化体系。这一趋势或将催生新一代“智能体开发语言”或“技能描述标准”。
+今日最显著的趋势是 **AI Agent 技术栈从“单点工具”迈向“完整工作流生态”**。多个项目聚焦于“技能化”（Skill-based）设计范式，如 `awesome-gpt-image-2` 和 `K-Dense-AI/scientific-agent-skills` 显著提升了提示工程的工业化水平，表明开发者正从“写提示”转向“组装技能”。与此同时，`free-claude-code` 和 `ai-job-search` 等项目凸显 **本地化、低成本、免订阅** 的开发偏好，反映出对大模型厂商依赖的规避心理。值得注意的是，`ponytail` 和 `graphify` 等项目首次在热榜中出现，代表 **智能体工程化能力（如代码优化、结构化推理）** 成为新焦点。这与近期 Anthropic 推出 Claude Code 插件体系高度呼应，预示着 **以“Agent + Skill + Memory + Tool”为架构的下一代开发范式正在形成**。
 
 ---
 
-## 社区关注热点
-
-- **[VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)**：1000+ 技能聚合，是构建智能体的“瑞士军刀”，建议所有开发者收藏并贡献。
-- **[K-Dense-AI/scientific-agent-skills](https://github.com/K-Dense-AI/scientific-agent-skills)**：专为科研设计，若你在生命科学、药物发现等领域，此库可直接提升研究效率。
-- **[AgriciDaniel/claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)**：结合 Obsidian 与 Claude Code，打造个人知识中枢，适合追求高效信息管理的开发者。
-- **[freestylefly/awesome-gpt-image-2](https://github.com/freestylefly/awesome-gpt-image-2)**：提示工程工业化的里程碑，可直接用于生成高质量图像输出，特别适合内容创作者。
-- **[tinyhumansai/openhuman](https://github.com/tinyhumansai/openhuman)**：Rust 编写、本地优先、多代理协同，代表了下一代个人智能体的发展方向，值得关注长期演进。
+## 4. 社区关注热点
+- ✅ **`Alishahryar1/free-claude-code`**：免费使用 Claude Code 等模型的终端工具，1.3B+ 免费令牌，适合初学者快速入门。
+- ✅ **`freestylefly/awesome-gpt-image-2`**：530+ 工业级图像提示案例，是提示工程标准化的重要里程碑。
+- ✅ **`K-Dense-AI/scientific-agent-skills`**：专为科研设计的 163 个验证技能，被 17.5 万科学家使用，体现垂直领域 Agent 的成熟。
+- ✅ **`Graphify-Labs/graphify`**：无向量库的本地知识图谱构建方案，解决 RAG 中“黑箱”问题，极具可信度。
+- ✅ **`VoltAgent/awesome-agent-skills`**：汇聚 1000+ 技能，兼容主流平台，是构建 AI 工作流的“技能超市”。
 
 ---
 *本日报由 [agents-radar](https://github.com/duanyytop/agents-radar) 自动生成。*

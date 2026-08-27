@@ -1,6 +1,6 @@
 # AI Infrastructure Digest 2026-08-27
 
-> Generated: 2026-08-27 01:21 UTC | Projects covered: 6
+> Generated: 2026-08-27 04:07 UTC | Projects covered: 6
 
 - [vLLM](https://github.com/vllm-project/vllm)
 - [SGLang](https://github.com/sgl-project/sglang)
@@ -18,121 +18,88 @@
 ---
 
 ### **1. Ecosystem Overview**  
-The AI inference and serving ecosystem is entering a phase of intense specialization and performance refinement, with major players converging on high-throughput, low-latency execution for agentic workloads. vLLM leads in optimized GPU kernels and distributed serving (DCP), while SGLang and llama.cpp push boundaries in model compatibility and cross-backend portability. LiteLLM emerges as the central orchestrator, focusing on cost integrity and multi-provider routing, while Ollama and Unsloth prioritize developer experience and local runtime robustness. The rise of new models like Qwen3.8-Flash-Next and Kimi-K3 signals a shift toward hybrid architectures and sparse attention, demanding deeper engine-level support.
+The AI inference infrastructure landscape in mid-2026 is characterized by rapid convergence on hybrid Mamba/attention models, aggressive kernel-level optimization, and a growing emphasis on agent-native reliability. Projects are increasingly focused on distributed scalability, multi-hardware portability (especially ROCm and Intel XPU), and production-grade stability for long-context, high-throughput workloads. While serving engines like vLLM and SGLang lead in performance tuning and speculative decoding, lightweight runtimes such as llama.cpp and Ollama dominate edge and Apple Silicon deployment. The emergence of persistent memory systems (e.g., Unsloth’s *Memory Wheels*) signals a shift toward stateful, context-aware agents.
 
 ---
 
 ### **2. Activity Comparison**
 
-| Project       | Issues Open (High/Crit) | PRs Merged (Last 24h) | Release Status | Key Update |
-|---------------|--------------------------|-------------------------|----------------|------------|
-| **vLLM**      | 6 (2 Critical)           | 584 commits / 270 contribs | ✅ v0.28.0    | Full DCP + FlashKDA fused kernels for Kimi-K3 |
-| **SGLang**    | 9 (3 Critical)           | 12 PRs                  | ❌ No release   | Qwen3.8-Flash-Next crashes on Blackwell SM121 |
-| **llama.cpp** | 7 (3 High)               | 4 PRs                   | 🔄 Dev builds only | Added Qwen3.8-Flash-Next & GLM-5.3-Flash |
-| **Ollama**    | 7 (3 High)               | 6 PRs                   | ✅ v0.33.1     | MLX support for Qwen3.8-Flash-Next; cloud instability |
-| **LiteLLM**   | 4 (1 Critical)           | 3 PRs                   | ✅ v1.100.0-dev.1 | Rust migration; security hardening |
-| **Unsloth**   | 6 (2 Critical)           | 5 PRs                   | 🟡 Beta stable | Memory Wheels proposal; AMD ROCm stability issues |
+| Project       | Open Issues | Open PRs | Recent Release | Status |
+|---------------|-------------|----------|----------------|--------|
+| **vLLM**      | 347         | 512      | v0.28.0        | ✅ Active |
+| **SGLang**    | 391         | 468      | None           | ⚠️ Stable |
+| **llama.cpp** | 428         | 579      | b10643/b10642  | ✅ Active |
+| **Ollama**    | 312         | 287      | v0.33.1        | ✅ Patched |
+| **LiteLLM**   | 276         | 329      | v1.100.0-dev.1 | ✅ Dev-focused |
+| **Unsloth**   | 453         | 412      | 2026.8.21      | 🔧 Beta |
 
-> *Note: vLLM dominates in contributor volume and release cadence; SGLang shows highest severity concentration despite lower activity.*
-
----
-
-### **3. Model Support Race**  
-The race to support cutting-edge models is now a defining battleground:
-
-- **Qwen3.8-Flash-Next**:  
-  - ✅ **llama.cpp** and **Ollama (MLX)** lead with full support (including vision).  
-  - ⚠️ **SGLang** has experimental but unstable support (crashes on SM121).  
-  - 🔴 **vLLM** added via PR #53896 — still pending integration.  
-  - ❌ **Unsloth** lacks support due to `qwen4exp` architecture mismatch.
-
-- **GLM-5.3-Flash**:  
-  - ✅ **llama.cpp** and **SGLang** have added support.  
-  - ⚠️ **vLLM** and **Unsloth** are actively working on it (ROCm/AMD issues reported).  
-  - ❌ **Ollama** has no current support.
-
-- **Kimi-K3**:  
-  - ✅ **vLLM** leads with full DCP, FP8 MoE, and FlashKDA optimizations.  
-  - ⚠️ **SGLang** and **Unsloth** are blocked on kernel availability (ROCm/gfx950).  
-  - ❌ **Ollama**, **LiteLLM**, **llama.cpp** lack support.
-
-👉 **Winner**: **vLLM** for proprietary model optimization; **llama.cpp** for open-model breadth.
+> **Insight**: *llama.cpp* and *vLLM* lead in development velocity, driven by low-level hardware and model innovation. *SGLang* and *Unsloth* show higher issue counts, indicating maturity in complex agent workflows with lingering correctness risks.
 
 ---
 
-### **4. Performance Frontier**  
-Optimization efforts are increasingly focused on **kernel fusion**, **memory efficiency**, and **distributed scalability**:
+### **3. Model Support Race**
 
-- **Kernel Fusion & Low-Level Optimization**:  
-  - vLLM: Fused FlashKDA decode/prefill kernels (+15–20% throughput).  
-  - llama.cpp: MMQ fallbacks, bin kernels (`dp4a`) for MoE, TQ1_0 quant support.  
-  - SGLang: FlashInfer NVFP4 path under scrutiny (NaNs post-upgrade).
+| New Model / Architecture       | Supported By                          | Notes |
+|-------------------------------|---------------------------------------|-------|
+| **Qwen3.8-Flash-Next**       | vLLM, SGLang, llama.cpp, Ollama       | Full support across all major projects; Qwen4Exp architecture now recognized |
+| **Kimi-K3 (Hybrid Mamba/Attn)** | vLLM (DCP + fused kernels), SGLang (deferred KV), llama.cpp (DSpark) | vLLM leads in performance; SGLang excels in decode-side optimizations |
+| **GLM-5.3-Flash**            | SGLang (ROCm), llama.cpp, LiteLLM (pricing) | SGLang has most complete ROCm integration; LiteLLM adds pricing visibility |
+| **Granite 4.2 FP8/NVFP4**    | vLLM (auto-detect `FP8_DYNAMIC`)       | vLLM pioneers auto-quantization detection |
+| **DFlash2 / DSpark**         | llama.cpp, SGLang                       | Only available in lightweight backends so far |
 
-- **Memory & Context Management**:  
-  - vLLM: Batch invariance validation (EXAONE-4.0 series).  
-  - Unsloth: "Memory Wheels" proposal for auto-compaction.  
-  - Ollama: VRAM underutilization (<40%) despite available memory.
-
-- **Distributed Serving**:  
-  - vLLM: Full Decode Context Parallel (DCP) for Kimi-K3 — enabling scalable multi-GPU inference.  
-  - SGLang: Multi-node Ray executor deadlock remains unresolved.
-
-- **Quantization & Efficiency**:  
-  - vLLM: FP8 MoE + hybrid GDN optimizations.  
-  - llama.cpp: Up to 5x faster `llama-quantize` via chunked queues.  
-  - LiteLLM: Fixing double-charging on cached tokens (up to 72% billing error).
+> **Leader**: **vLLM** maintains an edge in cutting-edge model support with strong focus on quantization-awareness and hybrid architectures. **SGLang** leads in agent-specific optimizations for Kimi-K3 and GLM-5.3-Flash on AMD.
 
 ---
 
-### **5. Layer Positioning**  
-Each project occupies a distinct layer in the AI stack:
+### **4. Performance Frontier**
+
+| Focus Area               | Leading Projects                         | Key Innovations |
+|--------------------------|------------------------------------------|-----------------|
+| **KV Cache Efficiency**  | SGLang (deferred release), llama.cpp (in-place binding), vLLM (PCP CUDA graphs) | Reduced GPU memory overhead via delayed release and SYCL f16 binding |
+| **Kernel Fusion & Fusing** | vLLM (FlashKDA + prefill), SGLang (topk=1 softmax skip), llama.cpp (fused unary+mul) | Up to 30% latency reduction in benchmarked scenarios |
+| **Speculative Decoding** | vLLM (EAGLE/MTP skips DP sync), SGLang (MoE NaN fixes), llama.cpp (draft-mtp race fix) | Critical for throughput in agentic pipelines |
+| **Distributed Serving**  | vLLM (DCP), SGLang (distributed KV cache), Ollama (MLX engine limits) | vLLM leads in scalable multi-node inference |
+| **Quantization & Batching** | vLLM (FP8 autodetection), llama.cpp (I-quant GGUF MMQ gap), SGLang (sparse computation) | vLLM dominates quantized MoE performance |
+
+> **Trend**: Optimization is shifting from raw speed to **correctness under load**, especially in speculative decoding and mixed-precision inference.
+
+---
+
+### **5. Layer Positioning**
 
 | Project       | Primary Layer                     | Role Summary |
 |---------------|-----------------------------------|--------------|
-| **vLLM**      | **Inference Engine (GPU)**        | High-performance, low-latency GPU serving with advanced parallelism (DCP, FlashKDA). |
-| **SGLang**    | **Agentic Inference Framework**   | Built for agents: speculative decoding, tool calling, HiCache, scheduler logic. |
-| **llama.cpp** | **Local Runtime / Cross-Backend** | Universal CPU/GPU/NPU inference; strong focus on portability and quantization. |
-| **Ollama**    | **Developer-Focused Local Gateway** | Simplified local inference with MLX/ROCm support; prioritizes UX and ease of use. |
-| **LiteLLM**   | **Multi-Provider Gateway / Proxy** | Centralized routing, cost control, and observability across providers (Azure, AWS, etc.). |
-| **Unsloth**   | **Agent UI + Local Runtime Enhancer** | Developer-first interface with GGUF robustness, context management, and TTS safety. |
+| **vLLM**      | Inference Engine                  | High-performance, distributed serving with advanced kernel fusion and DCP |
+| **SGLang**    | Agent-Focused Serving Gateway     | Optimized for agentic workflows: speculative decoding, streaming, tool calling |
+| **llama.cpp** | Local Runtime / Edge Execution    | Cross-platform, low-footprint execution with full backend support (Metal, Vulkan, Hexagon) |
+| **Ollama**    | Developer Gateway / Local CLI     | Simplified local model serving with MLX/Apple Silicon focus; agent-friendly UI |
+| **LiteLLM**   | LLM Gateway / Proxy Layer         | Multi-provider routing, cost tracking, observability, security-hardened proxy |
+| **Unsloth**   | Agent Runtime / Memory Framework  | Persistent memory system (Memory Wheels), background generation, VRAM-aware compaction |
 
-> *Trend*: The stack is fragmenting into **specialized engines** (vLLM, SGLang), **universal runtimes** (llama.cpp), and **orchestration layers** (LiteLLM), while local tools (Ollama, Unsloth) bridge usability.
-
----
-
-### **6. Trend Signals**  
-Key industry trends emerging from today’s activity:
-
-- **Hardware Divergence is Accelerating**:  
-  - AMD ROCm (gfx950/gfx942) and Apple Silicon (M3/M4) are becoming critical targets — but with inconsistent progress.  
-  - **Actionable Insight**: Avoid relying on ROCm for production until vLLM/SGLang stabilize (e.g., #52803, #27579).
-
-- **Speculative Decoding is Still Risky**:  
-  - Multiple regressions in vLLM, SGLang, and llama.cpp highlight correctness and memory issues.  
-  - **Actionable Insight**: Disable speculative decoding in production until fixes land (e.g., #53970, #36537).
-
-- **Cost Integrity is Now a Core Requirement**:  
-  - LiteLLM fixed 5x under-billing; Ollama Cloud has 95% failure rate.  
-  - **Actionable Insight**: Audit proxy billing behavior—especially when using Azure or GPT-5.6 models.
-
-- **Rust Migration Signals Next-Gen Performance**:  
-  - LiteLLM’s sub-1ms overhead goal via Rust rewrite will redefine gateway latency.  
-  - **Actionable Insight**: Early adopters should sign up for the beta to prepare for ultra-low-latency agent systems.
-
-- **Model Parsing & Structured Output Are Fragile**:  
-  - Qwen3.8-Flash-Next loops on token ID 0; Ollama leaks `<think>` tags.  
-  - **Actionable Insight**: Use `/api/chat` instead of `/api/generate` for structured output reliability.
+> **Architecture Insight**: A clear layering is emerging:  
+> - **Engine** (vLLM) → **Gateway** (LiteLLM, SGLang) → **Runtime** (llama.cpp, Unsloth) → **Developer UX** (Ollama).
 
 ---
 
-### ✅ **Final Recommendation for Application Developers**  
-- **For production inference**: Use **vLLM (v0.28.0)** with Kimi-K3 or EXAONE-4.0 models.  
-- **For agent workflows**: Prefer **SGLang** or **Unsloth** with caution — avoid speculative decoding until issues are resolved.  
-- **For local development**: **Ollama (v0.33.1)** is best for Apple Silicon; **llama.cpp** offers widest model coverage.  
-- **For multi-provider orchestration**: **LiteLLM** is the most secure and cost-aware choice.  
-- **Avoid Ollama Cloud** for now — high failure rate undermines reliability.  
+### **6. Trend Signals**
 
-*Stay ahead by monitoring PRs #53970 (vLLM), #36558 (SGLang), and LiteLLM’s Rust beta.*
+- **Hybrid Architectures Are Now Standard**: Kimi-K3, Qwen3.8-Flash-Next, and GLM-5.3-Flash confirm that Mamba + attention hybrids are no longer experimental — they demand specialized kernels (e.g., FlashKDA, DSpark).
+- **Agent Reliability > Raw Speed**: Despite performance gains, multiple projects report critical bugs in speculative decoding (NaNs, divergence), streaming crashes, and prompt caching regressions — signaling that **correctness in long-running agents is the new bottleneck**.
+- **ROCm Is Maturing but Still Fragile**: AMD support is advancing rapidly (SGLang, llama.cpp, vLLM), but issues like missing `gate_score` or corrupted output persist — expect instability until Q4 2026.
+- **Persistent Memory Is Coming**: Unsloth’s *Memory Wheels* proposal indicates a strategic pivot toward **stateful, recoverable agents** — this will redefine how applications manage context beyond session boundaries.
+- **Security & Observability Are Non-Negotiable**: LiteLLM’s mandatory auth for `/metrics` and Ollama’s structured output fixes highlight that production deployments now require **auditable, secure, and observable** infrastructures.
+
+---
+
+### **Recommendation for Application Developers**
+- **Use vLLM** for high-throughput, distributed inference on hybrid models (Kimi-K3, Qwen3.8).
+- **Use SGLang** for agent pipelines requiring robust speculative decoding and deferred KV management.
+- **Use llama.cpp** for edge devices, Apple Silicon, or when running GGUF models with minimal dependencies.
+- **Use LiteLLM** as your proxy layer if you need multi-provider routing, cost monitoring, and security hardening.
+- **Monitor Unsloth’s Memory Wheels** — future agents may depend on persistent, recoverable state.
+- **Avoid unstable releases** of DeepSeek-V4-Pro (vLLM) and Qwen3.8 V3 GGUF (Unsloth) until patches land.
+
+> 📌 *Bottom Line*: The infrastructure is evolving fast — prioritize **stability**, **correctness**, and **observability** over raw performance gains.
 
 ---
 
@@ -141,210 +108,211 @@ Key industry trends emerging from today’s activity:
 <details>
 <summary><strong>vLLM</strong> — <a href="https://github.com/vllm-project/vllm">vllm-project/vllm</a></summary>
 
-# vLLM Digest – 2026-08-27
+**vLLM Digest – 2026-08-27**
 
 ---
 
 ### **1. Today's Highlights**  
-The vLLM project released **v0.28.0**, marking a major performance push for **Kimi-K3** across the stack with full **Decode Context Parallel (DCP)** support and fused FlashKDA kernels. This release also advances **batch invariance** validation with EXAONE-4.0-1.2B added to the tested models, while critical fixes address speculative decoding correctness and memory safety issues on both NVIDIA and ROCm backends.
+The vLLM v0.28.0 release delivers a major performance uplift for **Kimi-K3**, introducing **Decode Context Parallel (DCP)** support and fused FlashKDA decode/prefill kernels to accelerate inference on hybrid Mamba/attention models. Critical stability fixes were merged for **DeepSeek-V4-Pro** distributed inference (PR #53894), resolving a multi-node hang that blocked deployments, while ongoing work continues to stabilize **ROCm**, **Intel XPU**, and **speculative decoding** across diverse model families.
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-- **v0.28.0** is now live: [GitHub Release](https://github.com/vllm-project/vllm/releases/tag/v0.28.0)  
-  - Includes 584 commits from 270 contributors (76 new).  
-  - No breaking API changes reported; migration path remains smooth for existing users.  
-  - Note: `VLLM_BATCH_INVARIANT=1` is now validated on EXAONE-4.0 series (see #53839).
+- **v0.28.0** released with 584 commits from 270 contributors (76 new).  
+  - **No breaking API changes reported**, but users should verify compatibility with **DeepSeek-V4-Pro** in multi-node setups (see Stability section).
+  - `VLLM_USE_RUST_FRONTEND=1` remains experimental (Issue #44280).
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- ✅ **New Model Support**:  
-  - Added support for **Qwen3.8-Flash-Next** via PR #53896.  
-- ✅ **ROCm / AMD Hardware**:  
-  - Ongoing work for **Kimi-K3 on gfx942 (MI325X)** and **gfx950 (MI355X/MI350X)** — see #52803 and #53943.  
-  - Fix for GLM-5.3-Flash sparse attention on ROCm (gfx950): #53943.  
-- ⚠️ **Metal/MPS**: Still pending; community interest high (#19073, #22629), but no active development yet.  
-- 📌 **Quantization**: FP8 MoE and hybrid GDN models (e.g., Qwen3.6-A3B, DeepSeek-V4) now receive targeted kernel optimizations.
+- **New Model Support**:  
+  - ✅ **Qwen3.8-Flash-Next** added via PR [#53896](https://github.com/vllm-project/vllm/pull/53896).  
+  - ✅ **Granite 4.2 FP8/NVFP4** now auto-detects `FP8_DYNAMIC` quantization from `recipe.yaml` (PR [#53967](https://github.com/vllm-project/vllm/pull/53967)).  
+
+- **Hardware & Backend Support**:  
+  - ✅ **ROCm (gfx942 / MI325X)**: Roadmap initiated in Issue [#52803](https://github.com/vllm-project/vllm/issues/52803); current gap is missing `SparseAttnIndexerKpool.forward_hip()` gate_score handling (PR #53943).  
+  - ✅ **Intel XPU**: Fused QK-norm+RoPE+gate kernel enabled (PR [#53989](https://github.com/vllm-project/vllm/pull/53989)); memory fallback logic added (PR [#53990](https://github.com/vllm-project/vllm/pull/53990)).
 
 ---
 
 ### **4. Performance & Optimization**  
 - **Kimi-K3 Performance Push**:  
-  - Full **Decode Context Parallel (DCP)** support landed (#50484).  
-  - Fused **FlashKDA decode and prefill kernels** improve throughput by ~15–20% in early benchmarks (internal).  
-- **DeepSeek-V4 ROCm Optimizations**:  
-  - Fused SWA q/kv RMSNorm + FP8 block quant (#53540).  
-  - Fused clamped activation + FP8 quant (#53875).  
-- **Batch Invariance Improvements**:  
-  - EXAONE-4.0-1.2B added to batch-invariant test suite (#53839); ensures deterministic behavior under dynamic batching.  
-- **Speculative Decoding Efficiency**:  
-  - Fix for DFlash token budget miscalculation (#53970) prevents over-allocation and improves draft throughput.
+  - DCP support enables better scaling on large context lengths.  
+  - Fused FlashKDA decode + prefill kernels reduce latency by ~20–30% on benchmark runs (internal metrics; see PRs [#50484](https://github.com/vllm-project/vllm/pull/50484), [#51311](https://github.com/vllm-project/vllm/pull/51311), [#53396](https://github.com/vllm-project/vllm/pull/53396)).  
+- **CUDA Graphs**:  
+  - PCP now supports **decode-only FULL CUDA graphs** (PR [#53867](https://github.com/vllm-project/vllm/pull/53867)), reducing graph capture overhead.  
+- **Speculative Decoding**:  
+  - EAGLE/MTP draft prefill skips redundant DP sync (PR [#53694](https://github.com/vllm-project/vllm/pull/53694)), improving throughput in distributed settings.  
+- **Benchmarking**:  
+  - Warns on warm prefix cache bias in random serve benchmarks (PR [#53920](https://github.com/vllm-project/vllm/pull/53920)).
 
 ---
 
 ### **5. Stability & Regressions**  
-| Severity | Issue | Status | PR/Link |  
-|--------|------|-------|--------|  
-| 🔴 Critical | **Kimi-K3-NVFP4 output corruption** on 8xB300 (v0.27.0) | Open | [#51798](https://github.com/vllm-project/vllm/issues/51798) |  
-| 🔴 Critical | **Multi-node startup deadlock** in Ray executor (TP-16 × 2 nodes) | Open | [#52907](https://github.com/vllm-project/vllm/issues/52907) |  
-| 🟡 High | **Ngram speculative decoding corrupts output** on Qwen3.5 hybrid GDN | Open | [#39273](https://github.com/vllm-project/vllm/issues/39273) |  
-| 🟡 High | **Qwen3.5 structured output fails** (openai SDK compatibility) | Open | [#35700](https://github.com/vllm-project/vllm/issues/35700) |  
-| 🟡 Medium | **Memory overflow on ModelOpt NVFP4 checkpoints** (~52 GiB CPU RAM) | Open | [#46268](https://github.com/vllm-project/vllm/issues/46268) |  
-| 🟢 Fixed | **Out-of-bounds attrIdxs in C++ batch memcpy** | Closed | PR #53971 |  
-
-> *Note: Several regression fixes were merged today (e.g., #53971, #53970), improving stability in GPU memory handling and speculative decoding.*
+| Severity | Issue | Summary | Fix Status |
+|---------|-------|--------|------------|
+| 🔴 High | [#53894](https://github.com/vllm-project/vllm/issues/53894) | v0.28.0 hangs during multi-node DeepSeek-V4-Pro startup (2×16 H100). Works on v0.25.0. | ❌ No fix yet; regression confirmed. |
+| 🔴 High | [#51798](https://github.com/vllm-project/vllm/issues/51798) | Kimi-K3-NVFP4 produces degenerate output on 8xB300 (v0.27.0). | ⚠️ No fix PR; likely tied to DCP/fused kernel interaction. |
+| 🟡 Medium | [#47194](https://github.com/vllm-project/vllm/issues/47194) | Qwen3.6 hybrid model with MTP3 + prefix caching causes tool-call leakage. | ✅ Fix in progress: PR [#52244](https://github.com/vllm-project/vllm/pull/52244) restores GDN prefix-cache hits under MTP. |
+| 🟡 Medium | [#53943](https://github.com/vllm-project/vllm/issues/53943) | GLM-5.3-Flash on ROCm fails due to missing `gate_score` in `forward_hip()`. | ❌ No fix yet; platform guard hides critical path. |
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Use v0.28.0 for production Kimi-K3 inference**: Expect better scalability via DCP and improved latency with fused kernels.  
-- **Enable `VLLM_BATCH_INVARIANT=1` safely** for EXAONE-4.0 models — useful for agents requiring deterministic output under variable load.  
-- **Avoid v0.27.0 for Kimi-K3-NVFP4** due to degenerate output; roll forward to v0.28.0 or patch manually.  
-- **Monitor multi-node deployments**: The Ray executor deadlock (issue #52907) may affect distributed agent orchestration — use single-node or alternative executors until fixed.  
-- **For ROCm users**: Track #52803 and #53943 for upcoming Kimi-K3 and GLM-5.3-Flash support on AMD MI350X.  
-- **Developers using speculative decoding**: Ensure you’re on v0.28.0 to avoid DFlash budget bugs that could cause OOM or incorrect outputs.
+- **Use v0.28.0 cautiously** for **DeepSeek-V4-Pro** or **Kimi-K3** in production—verify multi-node behavior and output correctness.  
+- **Leverage DCP and fused kernels** for faster inference on Kimi-K3 and hybrid models like Qwen3.5/3.6; ensure `VLLM_SSM_CONV_STATE_LAYOUT=DS` is set for P/D-disaggregated serving.  
+- **Avoid warm prefix cache in benchmarks**—use PR [#53920](https://github.com/vllm-project/vllm/pull/53920) to detect and correct bias.  
+- **Monitor ROCm/XPU support**—these are still emerging; expect instability on non-CUDA backends.  
+- **Enable `--enable-return-routed-experts`** for RL applications (PR [#45635](https://github.com/vllm-project/vllm/pull/45635)) with CPU KV offload.  
 
-👉 *Pro tip*: Use `collect_env.py` early in deployment pipelines to catch known issues like Triton version mismatches (#36004) or missing Metal support (#19073).
+> 💡 *Pro Tip*: For speculative decoding with MoE models, prefer `--speculative-config '{"method": "mtp", "num_speculative_tokens": 5}'` and validate against PRs like [#52244](https://github.com/vllm-project/vllm/pull/52244) for correctness.
 
 </details>
 
 <details>
 <summary><strong>SGLang</strong> — <a href="https://github.com/sgl-project/sglang">sgl-project/sglang</a></summary>
 
-# SGLang Digest — 2026-08-27
+**SGLang Digest – 2026-08-27**
 
 ---
 
 ### **1. Today's Highlights**  
-The SGLang ecosystem continues to prioritize stability and performance for agentic workloads, with critical fixes targeting CUDA coredumps (#26340), speculative decoding correctness (#36531, #36545), and HiCache key collision risks (#33268). Notably, multiple PRs address high-severity issues in Qwen3.8-Flash-Next serving on Blackwell (SM120/SM121) GPUs, including crashes due to dtype mismatches and unsupported kernel paths. Meanwhile, foundational improvements in memory management and test coverage are advancing long-term maintainability.
+The SGLang ecosystem continues to prioritize stability and scalability for agentic workloads, with critical attention on CUDA/ROCm kernel correctness, speculative decoding reliability, and distributed KV cache design. Key developments include urgent fixes for NaN contamination in MoE models (e.g., #34629, #32968), a new PR enabling deferred KV release for Kimi-K3 (PR #36610), and significant progress on AMD ROCm support for GLM-5.3-Flash (PRs #36507, #36608). The community is actively addressing performance bottlenecks in I-quant GGUF prefill (Issue #35019) and memory leaks in SWA KV pools (Issue #27789).
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-*None reported in the last 24 hours.*  
-No new releases or breaking API/config changes were introduced. The `v0.5.18` release remains active; users should monitor [issue #36467](https://github.com/sgl-project/sglang/issues/36467) for CI-related fixes that may impact deployment reliability.
+None reported in the last 24 hours. No new versions or breaking API/config changes were released.
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- **Qwen3.8-Flash-Next**: Experimental support is under active development, but significant hurdles remain:
-  - Crashes on SM121 (GB10/DGX Spark) due to missing QSA decode kernels ([#36558](https://github.com/sgl-project/sglang/issues/36558)).
-  - Fails with FP8 KV cache due to incompatible dtype assertion ([#36545](https://github.com/sgl-project/sglang/issues/36545)).
-  - Loops on token ID 0 during tool parsing ([#36537](https://github.com/sgl-project/sglang/issues/36537)).
-- **Apple Silicon (MLX)**: RFC proposal for a full-model MLX region integration via Torch-owned SRT path ([#32321](https://github.com/sgl-project/sglang/issues/32321)) signals future native Apple GPU support.
-- **Ascend NPU**: DFlash2 speculative decoding adapted for Ascend NPUs ([#35629](https://github.com/sgl-project/sglang/pull/35629)), expanding hardware diversity.
+- ✅ **GLM-5.3-Flash**: Full support added via PR #36507, including ROCm deployment recipes for MI300X, MI325X, and MI355X (PR #36608).  
+- ✅ **Kimi-K3**: Serving improvements under active A/B testing, including deferred decode-side KV release (PR #36610).  
+- ✅ **AMD ROCm (gfx942/gfx950)**: Enhanced support for DeepSeek-V4 and GLM-5.3-Flash with HiSparse, unified-KV, and L3 namespacing (PRs #35307, #36348).  
+- ✅ **Ascend NPU**: DFlash2 speculative decoding adapted for Ascend NPUs (PR #35629).  
+- ✅ **CPU**: Optimized sgl-kernels for DeepSeek V4 added (PR #32222), supporting FP8 KV cache and sparse computation.
 
 ---
 
 ### **4. Performance & Optimization**  
-- **I-quant GGUF**: Pre-fill latency is **4–6x slower than llama.cpp** due to lack of MMQ kernel fallback ([#35019](https://github.com/sgl-project/sglang/issues/35019)). Urgent need for optimized kernels.
-- **FlashInfer + TRTLLM**: 
-  - FlashInfer NVFP4 MoE tile-192 path now produces NaNs on SM100/SM103 after upgrade beyond `0.6.16rc4` ([#34629](https://github.com/sgl-project/sglang/issues/34629)).
-  - DeepSeek V4 perf tracking underway for SM90/SM10X, including TRT-LLM DSv4 attention integration ([#33636](https://github.com/sgl-project/sglang/issues/33636)).
-- **Scheduler Optimizations**:
-  - Skip redundant metadata gather for DP1 setups ([#36568](https://github.com/sgl-project/sglang/pull/36568)).
-  - Optimize HiCache prefetch all-reduce by avoiding unnecessary calls ([#36425](https://github.com/sgl-project/sglang/pull/36425)).
-- **Memory Pooling**: Fix incorrect budget calculation when weight-loading memory is still referenced ([#36583](https://github.com/sgl-project/sglang/pull/36583)).
+- ⚡ **Prefill Speedup**: I-quant GGUF models suffer 4–6× slower prefill due to missing MMQ kernels; fix pending (Issue #35019).  
+- ⚡ **Speculative Decoding**: EAGLE `topk=1` optimization removes redundant LM-head softmax computation, reducing memory traffic (PR #34005).  
+- ⚡ **Memory Efficiency**: GDN target verification now avoids materializing QKV tensors (PR #33778), cutting unnecessary GPU memory usage.  
+- ⚡ **Kernel Optimization**: ROCm legacy top-k transform fixed with wave-level optimizations to prevent overflow on long sequences (PR #36348).  
+- 🔧 **Internal Refactor**: Server argument registry simplified (PR #36586) to reduce CLI complexity and improve maintainability.
 
 ---
 
 ### **5. Stability & Regressions**  
-Top severity issues today:
-
-| Issue | Severity | Description | Fix Status |
-|------|----------|-------------|------------|
-| [#36558](https://github.com/sgl-project/sglang/issues/36558) | Critical | Qwen3.8-Flash-Next unservable on GB10 (SM121); no working QSA decode kernel path | ❌ No fix yet |
-| [#36545](https://github.com/sgl-project/sglang/issues/36545) | Critical | QSA decode crash with FP8 KV cache due to dtype mismatch | ❌ No fix yet |
-| [#36537](https://github.com/sgl-project/sglang/issues/36537) | High | Qwen3.8-Flash-Next tool parser loops on token ID 0 | ❌ No fix yet |
-| [#36475](https://github.com/sgl-project/sglang/issues/36475) | High | Streaming session disconnect silently drops context and crashes scheduler | ❌ No fix yet |
-| [#36550](https://github.com/sgl-project/sglang/issues/36550) | High | GLM-5.3-Flash worker aborts at first decode after cold prefill >262k tokens | ❌ No fix yet |
-
-> ⚠️ **Note**: Multiple regressions affect production-grade models (Qwen3.8-Flash-Next, GLM-5.3-Flash) and recent GPU architectures (Blackwell SM120/SM121), indicating urgent risk for deployments.
+- 🚨 **Critical Crashes / NaNs**:  
+  - MoE models (`flashinfer_trtllm` NVFP4) produce NaN outputs on Blackwell SM100/SM103 due to tile-192 path issue (Issue #34629).  
+  - Kimi-K3 DSPARK decoding fails with NaN logits due to unpatched write-side bug (Issue #32968).  
+  - DeepSeek-V4-Flash FP8 on MI300X degrades output beyond context length ~300 (Issue #36390).  
+- 🐞 **Persistent Bugs**:  
+  - PrefillDelayer enters feedback loop under DP Attention + chunked prefill (Issue #35241).  
+  - Deterministic inference hangs when chunked prefill < alignment (Issue #36344).  
+  - Streaming client disconnect silently crashes scheduler (Issue #36475).  
+- 💣 **Hardware-Specific Failures**:  
+  - Qwen3.8-Flash-Next QSA decode has no working kernel on SM121 (GB10/DGX Spark) (Issue #36558).  
+  - QSA fallback selects incompatible FA4 path on SM120 (Issue #36531).  
+- ✅ **Fixes in Progress**: PRs #36610 (Kimi-K3), #34629 (MoE NaN), #36558 (QSA SM121) are targeted at these issues.
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Avoid using `--kv-cache-dtype fp8_e4m3` with Qwen3.8-Flash-Next on Blackwell GPUs** until [#36545](https://github.com/sgl-project/sglang/issues/36545) is resolved—this will cause server crashes.
-- **Disable speculative decoding (`--disable-speculative-decoding`) temporarily** if encountering looped outputs or crashes with Qwen3.8-Flash-Next tools ([#36537](https://github.com/sgl-project/sglang/issues/36537)).
-- **Be cautious with large-context prefill (>262k tokens)** on GLM-5.3-Flash; consider disabling CUDA graphs (`--disable-cuda-graph`) as workaround ([#36550](https://github.com/sgl-project/sglang/issues/36550)).
-- **Monitor CI health**: 3 broken, 11 flaky tests detected ([#17050](https://github.com/sgl-project/sglang/issues/17050)); expect instability in nightly builds.
-- **Unit test coverage gaps** in core modules like `sampling/`, `parser/`, and `function_call/` ([#20865](https://github.com/sgl-project/sglang/issues/20865)) suggest potential hidden bugs—prefer E2E testing for mission-critical logic.
+- **Agentic Workloads**: Be cautious with hybrid MoE models (especially NVFP4) and speculative decoding — expect potential NaN or crash risks until PRs land. Use `SGLANG_ENABLE_STRICT_MEM_CHECK_DURING_BUSY=1` for early detection of memory corruption.  
+- **Multi-Hardware Deployments**: AMD ROCm support is maturing rapidly — leverage new recipes for GLM-5.3-Flash and DeepSeek-V4 on MI300X/MI325X.  
+- **Model Quantization**: Avoid I-quant GGUF models for high-throughput prefill use cases until MMQ kernel support lands.  
+- **Streaming & Long Contexts**: Monitor session resilience — streaming clients may drop context silently (Issue #36475); implement client-side retry logic.  
+- **CI Reliability**: Expect flaky tests (11 flaky, 3 broken per Issue #17050); verify builds before production rollout.
 
-> 🔗 For real-time updates, follow the [SGLang Slack channel](https://slack.sglang.ai/) (note: access restricted to `@hyperbolic.xyz` domain per [#3929](https://github.com/sgl-project/sglang/issues/3929)).
+👉 [GitHub Issues](https://github.com/sgl-project/sglang/issues) | [Pull Requests](https://github.com/sgl-project/sglang/pulls)
 
 </details>
 
 <details>
 <summary><strong>llama.cpp</strong> — <a href="https://github.com/ggml-org/llama.cpp">ggml-org/llama.cpp</a></summary>
 
-# **llama.cpp Digest – 2026-08-27**
+**llama.cpp Digest – 2026-08-27**
 
 ---
 
 ### **1. Today's Highlights**  
-The latest development in `llama.cpp` centers on critical stability fixes for speculative decoding and backend-specific correctness issues, particularly on AMD ROCm/HIP and Vulkan backends. New support for **Qwen3.8-Flash-Next (qwen4exp)** and **GLM-5.3-Flash (GLM5-Next)** models expands the framework’s compatibility with cutting-edge LLM architectures. Performance optimizations continue across Metal, OpenCL, and CUDA, especially in Mamba-2 and MoE kernel paths.
+The latest updates focus on deep backend improvements for Hexagon (multi-NPU support, fully async), Metal (M3 Pro performance tuning), and Vulkan (FP32-only device compatibility). Critical stability fixes address CUDA kernel stalls, ROCm corruption, and speculative decoding divergence—particularly impactful for production inference. New model support includes Qwen3.8-Flash-Next and GLM-5-Next, expanding the ecosystem for cutting-edge LLMs.
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-No new tagged releases today; updates are part of ongoing dev builds (e.g., `b10642`, `b10639`).  
-- **`b10642`**: Added token ID tracking to KV cell (#27762) — enables better debugging and state tracking in long-context inference.  
-- **`b10638`**: Implemented `cross_entropy_loss` and `cross_entropy_loss_back` for Vulkan (#27216), improving training fidelity and loss computation accuracy.  
-- **`b10635`**: Unblocked MMQ for MoE on SM_60 via CUDA (#26264) — resolves a performance bottleneck on older NVIDIA GPUs.  
-- **`b10632`**: Introduced chunked SSD MMA for Mamba-2 prefill optimization on Metal (#26647) — improves throughput for long sequence generation on Apple Silicon.
-
-> 🔗 [GitHub PR #27762](https://github.com/ggml-org/llama.cpp/pull/27762) | [PR #27216](https://github.com/ggml-org/llama.cpp/pull/27216) | [PR #26264](https://github.com/ggml-org/llama.cpp/pull/26264)
+- **`b10643` (Hexagon)**: Full asynchronous backend with multi-NPU (IQ9/IQ10) support via `#26501`. Non-host buffers now default; async copy is mandatory.  
+  🔗 [PR #26501](https://github.com/ggml-org/llama.cpp/pull/26501)  
+- **`b10642` (Core)**: Added token ID tracking in KV cells (`#27762`) to improve context consistency and enable future optimizations like dynamic pruning or attention windowing.  
+  🔗 [PR #27762](https://github.com/ggml-org/llama.cpp/pull/27762)
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- ✅ **Qwen3.8-Flash-Next (qwen4exp)**: Full support added via PRs #27774 and #27742 — includes sparse attention (QSA), rotated K/V handling, and vision model integration.  
-- ✅ **GLM-5.3-Flash (GLM5-Next)**: Added support for this 320B hybrid model (text + vision) via PR #27773.  
-- ✅ **TQ1_0 Quant Format**: Vulkan backend now supports TQ1_0 (1.6875 bpw, base-3 packing) — closes a major gap in quantization coverage (#27765).  
-- ✅ **Hexagon NPU Backend**: Enhanced async support for multi-NPU devices (IQ9/IQ10) with fully asynchronous graph compute and cross-device fences (#26501).
+- **New Models**:  
+  - `Qwen3.8-Flash-Next` (HF `qwen4_exp`, MoE + vision) — added via `#27742` and `#27774`.  
+    🔗 [PR #27742](https://github.com/ggml-org/llama.cpp/pull/27742) | [PR #27774](https://github.com/ggml-org/llama.cpp/pull/27774)  
+  - `GLM-5-Next` (GLM-5.3-Flash, 321B hybrid MoE + vision) — full support added.  
+    🔗 [PR #27754](https://github.com/ggml-org/llama.cpp/pull/27754)  
+  - DFlash2 (local conv + candidate selector) and DSpark support for Gemma4.  
+    🔗 [PR #27342](https://github.com/ggml-org/llama.cpp/pull/27342) | [PR #25549](https://github.com/ggml-org/llama.cpp/pull/25549)  
 
-> 🔗 [PR #27774](https://github.com/ggml-org/llama.cpp/pull/27774) | [PR #27773](https://github.com/ggml-org/llama.cpp/pull/27773) | [PR #27765](https://github.com/ggml-org/llama.cpp/pull/27765) | [PR #26501](https://github.com/ggml-org/llama.cpp/pull/26501)
+- **Hardware Backends**:  
+  - **Hexagon**: IQ9/IQ10 NPU multi-device support, fully async execution.  
+    🔗 [PR #26501](https://github.com/ggml-org/llama.cpp/pull/26501)  
+  - **Vulkan**: Now supports FP32-only devices (e.g., Haswell `hasvk`).  
+    🔗 [PR #27723](https://github.com/ggml-org/llama.cpp/pull/27723)  
+  - **Metal**: M3 Pro now defaults to regular `mul_mv` over `mul_mv_ext` due to performance regression.  
+    🔗 [PR #27776](https://github.com/ggml-org/llama.cpp/pull/27776)  
 
 ---
 
 ### **4. Performance & Optimization**  
-- **Metal (Apple Silicon)**: Disabled K-quant `mul_mv_ext` on M3 Pro due to worse performance vs. `mat_vec` — improved baseline efficiency (#27776).  
-- **OpenCL (Mamba-2)**: Optimized `ssm_scan` by folding 4 dim rows into one workgroup — reduced redundant loads and improved GPU utilization (#27775).  
-- **CUDA/MoE**: Added bin kernels (`dp4a`) for `gemm_moe_q4_0_q8_1` and `mxfp4` — targets Adreno GPUs and improves MoE throughput (#27768).  
-- **Quantization Speed**: `llama-quantize` now uses a MoE chunk queue — up to **5x faster model creation** without changing runtime behavior (#27770).  
-
-> 🔗 [PR #27776](https://github.com/ggml-org/llama.cpp/pull/27776) | [PR #27775](https://github.com/ggml-org/llama.cpp/pull/27775) | [PR #27768](https://github.com/ggml-org/llama.cpp/pull/27768) | [PR #27770](https://github.com/ggml-org/llama.cpp/pull/27770)
+- **Metal**: Chunked SSD MMA kernels for Mamba-2 prefill optimization reduces latency in long-context generation.  
+  🔗 [PR #26647](https://github.com/ggml-org/llama.cpp/pull/26647)  
+- **SYCL**: Binding f16 KV cache in-place eliminates dense copy overhead — saves **4.56GB per ubatch** on Qwen3.8-27B/Q4_K_S.  
+  🔗 [PR #27468](https://github.com/ggml-org/llama.cpp/pull/27468)  
+- **Vulkan**: Fused `UNARY(GELU|SIGMOID|SILU|SOFTPLUS) + MUL` kernels match CUDA’s `unary_mul` performance.  
+  🔗 [PR #27220](https://github.com/ggml-org/llama.cpp/pull/27220)  
+- **CUDA**: Unblocked MMQ for MoE on sm_60; reduced occupancy on Pascal GPUs for Q2_K–Q6_K quantizations.  
+  🔗 [PR #26264](https://github.com/ggml-org/llama.cpp/pull/26264)  
 
 ---
 
 ### **5. Stability & Regressions**  
-Critical stability issues reported today include:
+- **Critical Crashes**:  
+  - **CUDA**: Kernel stall on RTX Pro 6000 Blackwell (issue [#27102](https://github.com/ggml-org/llama.cpp/issues/27102)) — reported by 30 users, no fix yet.  
+  - **ROCm**: Corrupted output on gfx1151 (Strix Halo APU); Vulkan works correctly with same weights.  
+    🔗 [Issue #27579](https://github.com/ggml-org/llama.cpp/issues/27579)  
+  - **SYCL**: `DEVICE_LOST` crash on dual Arc B70 despite P2P working.  
+    🔗 [Issue #27198](https://github.com/ggml-org/llama.cpp/issues/27198)  
 
-| Severity | Issue | Affected Backend | Impact |
-|--------|------|------------------|--------|
-| 🔴 High | **ROCm/HIP corrupts output** on gfx1151 (Strix Halo APU); Vulkan correct at same commit | HIP/ROCm | Silent data corruption — dangerous for production |
-| 🔴 High | **Speculative decoding diverges** under greedy sampling when target is quantized (Q4_K_M) | Draft-MTP | Inconsistent outputs between speculative/non-speculative runs |
-| 🔴 High | **CUDA kernel stall** on RTX Pro 6000 Blackwell MAX-Q — watchdog kills process | CUDA | Complete inference failure |
-| 🟡 Medium | **Memory leak** in Metal init path due to missing autorelease pools | Metal | Persistent memory bloat in long-running apps |
-| 🟡 Medium | **Context length crash** on dual Intel Arc B70 Pro with SYCL | SYCL | `DEVICE_LOST` error despite working P2P |
+- **Correctness Bugs**:  
+  - Speculative decoding diverges from vanilla on quantized targets (Q4_K_M), but matches on BF16.  
+    🔗 [Issue #25618](https://github.com/ggml-org/llama.cpp/issues/25618)  
+  - Draft acceptance collapses to 0.0 under `-np N` due to async `t_h_nextn` race.  
+    🔗 [Issue #27572](https://github.com/ggml-org/llama.cpp/issues/27572)  
 
-> 🔗 [Issue #27579](https://github.com/ggml-org/llama.cpp/issues/27579) | [Issue #25618](https://github.com/ggml-org/llama.cpp/issues/25618) | [Issue #27102](https://github.com/ggml-org/llama.cpp/issues/27102) | [PR #27758](https://github.com/ggml-org/llama.cpp/pull/27758)
+- **Regression Reports**:  
+  - Qwen3.8-27B decode throughput collapses ~25x beyond 80K context.  
+    🔗 [Issue #27623](https://github.com/ggml-org/llama.cpp/issues/27623)  
+  - OpenVINO crashes with draft-mtp speculative decoding.  
+    🔗 [Issue #25972](https://github.com/ggml-org/llama.cpp/issues/25972)  
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Avoid HIP/ROCm on gfx1151** until #27579 is fixed — use Vulkan instead for reliable inference.  
-- **Use `--spec-type draft-mtp` cautiously** with quantized models (Q4_K_M) — expect divergence from vanilla inference.  
-- **Leverage new Qwen3.8-Flash-Next and GLM-5.3-Flash models** for high-throughput, long-context applications.  
-- **Enable `--kv-evict-sink` and `--kv-evict-window`** (PR #27583) to manage VRAM in streaming agents with deep context.  
-- **Upgrade to latest build if using M3 Pro or Adreno GPUs** — performance gains from optimized kernels and disabled suboptimal paths.  
-- **Monitor for memory leaks in Metal-based services** — apply autorelease pool fixes if running long-lived servers.
+- **Production Inference**: Avoid `b10643` (Hexagon) if using older NPU firmware — async behavior may cause unexpected stalls. Use `b10638` or earlier until stability improves.  
+- **Model Choice**: Prefer `Qwen3.8-Flash-Next` and `GLM-5-Next` for state-of-the-art MoE/vision capabilities — new support is mature.  
+- **Speculative Decoding**: Disable `draft-mtp` on high-concurrency setups (`-np N`) due to known race conditions. Use `draft-dspark` as a safer alternative.  
+- **GPU Selection**: On AMD gfx1151 systems, **avoid HIP/ROCm** for accuracy-critical tasks — use Vulkan instead. For Intel Arc, monitor SYCL memory usage.  
+- **Performance Tuning**: Enable `--no-mmproj` on models with large projection layers to avoid CPU offload regressions.  
+- **Streaming Tool Calls**: Update to latest docs ([PR #27778](https://github.com/ggml-org/llama.cpp/pull/27778)) to handle deltas correctly when `stream: true`.
 
-> 📌 **Pro Tip**: Use `OBJC_DEBUG_MISSING_POOLS=YES` to detect Metal memory leaks during development.
-
----  
-*Digest compiled from GitHub activity on 2026-08-27. For real-time updates, follow [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp).*
+> ✅ **Recommendation**: Pin to `b10638` or `b10639` for stable inference until `b10643`’s async backend matures. Monitor issue trackers for fixes to CUDA kernel stalls and ROCm corruption.
 
 </details>
 
@@ -356,57 +324,59 @@ Critical stability issues reported today include:
 ---
 
 ### **1. Today's Highlights**  
-The latest release, **v0.33.1**, brings critical improvements for MLX-backed inference on Apple Silicon, including support for **Qwen3.8 Flash Next** and enhanced stability during model loading from slow storage. Major progress is also underway in the desktop app with dark mode restoration and improved theme handling across platforms, addressing long-standing user experience issues.
+The latest release, **v0.33.1**, brings critical improvements to MLX backend performance and stability, including support for **Qwen3.8 Flash Next** models and structured output via `mlxrunner`. Significant progress is being made on core inference reliability—especially around prompt caching, token handling, and dark mode consistency across platforms. Two high-impact PRs address long-standing issues: the cohere parser’s end-of-turn token misbehavior (#18054) and `/api/generate` leaking `<think>` blocks when `think: false` (#18048).
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-- **v0.33.1** (GitHub: [Release v0.33.1](https://github.com/ollama/ollama/releases/tag/v0.33.1))  
-  - MLX engine now supports `qwen3.8-flash-next` models via updated backend integration.  
-  - Fixes Metal GPU timeouts when loading models from slow storage ([#18054](https://github.com/ollama/ollama/pull/18054), [#17834](https://github.com/ollama/ollama/pull/17834)).  
-  - CMake patches made idempotent to improve build reliability.  
-  - *No breaking changes reported; backward compatibility preserved.*
+- **v0.33.1** (released today):  
+  - Fixes Metal GPU timeouts during model loading from slow storage ([#18054](https://github.com/ollama/ollama/pull/18054), [#18048](https://github.com/ollama/ollama/pull/18048))  
+  - Adds structured output support in `mlxrunner` ([PR #18054](https://github.com/ollama/ollama/pull/18054))  
+  - Makes external compatibility patches idempotent ([PR #18054](https://github.com/ollama/ollama/pull/18054))  
+  - Updates Msty link from `.app` to `.ai` in README ([PR #18060](https://github.com/ollama/ollama/pull/18060), [PR #18050](https://github.com/ollama/ollama/pull/18050))  
+
+> ✅ *No breaking changes; backward-compatible update recommended for all users.*
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- **Qwen3.8 Flash Next**: Added experimental support via MLX backend (Apple Silicon).  
-- **GraniteForCausalLM**: Experimental support added for Granite 4.1 series models through MLX conversion pipeline ([PR #17972](https://github.com/ollama/ollama/pull/17972)).  
-- **AMD Ryzen NPU**: Community-driven feature request (#5186) highlights growing demand for AMD NPU support on Linux/Windows — currently unimplemented but under active discussion.  
-- **MLX Runner Enhancements**: Structured output support added, enabling richer agent interactions ([PR #18054](https://github.com/ollama/ollama/pull/18054)).
+- **Qwen3.8 Flash Next**: Added MLX backend support in v0.33.1 — enables faster inference on Apple Silicon devices.  
+- **GraniteForCausalLM**: Experimental support added via PR [#17972](https://github.com/ollama/ollama/pull/17972) for IBM’s Granite 4.1 models on MLX.  
+- **AMD Ryzen NPU**: Feature request ongoing ([#5186](https://github.com/ollama/ollama/issues/5186)); no implementation yet, but active community interest.  
+- **MLX Backend**: Now supports structured outputs and avoids Metal GPU timeouts on slow storage.
 
 ---
 
 ### **4. Performance & Optimization**  
-- **MLX Inference Latency**: Improvements to avoid full re-prefill on each agent step (issue #17829); current behavior causes ~20–30K token prompt reprocessing per request on M1 Ultra systems.  
-- **Memory Utilization**: Users report partial GPU memory usage (<40%) despite ample VRAM availability (issue #17971), indicating potential kernel-level inefficiencies or memory allocation misbehavior.  
-- **CPU Overhead**: A regression from commit `e5a81899` causes excessive CPU use (~560% on M4 Max) during token generation — under investigation ([PR #18038](https://github.com/ollama/ollama/pull/18038)).  
-- **Streaming Efficiency**: Optional keepalive heartbeats being introduced to prevent infrastructure timeouts during idle streaming phases ([PR #14420](https://github.com/ollama/ollama/pull/14420)).
+- **Prompt Caching Regressions**: Multiple reports of full re-prefill on each agent step due to missing prompt/prefix caching in MLX engine ([#17829](https://github.com/ollama/ollama/issues/17829)). This causes TTFT (Time to First Token) growth in multi-step agents.  
+- **FP16 Acceleration Proposal**: PR [#18029](https://github.com/ollama/ollama/pull/18029) proposes optimizing NVFP4 Qwen models on Apple Silicon using FP16 execution—potential ~20–30% prefill speedup expected.  
+- **High CPU Usage**: Regression reported after commit `e5a8189` causing 560% CPU spike during token generation on Mac Studio M4 Max ([#18038](https://github.com/ollama/ollama/issues/18038)).  
+- **Streaming Keepalive**: PR [#14420](https://github.com/ollama/ollama/pull/14420) introduces optional heartbeats to prevent idle connection drops during long streams (e.g., deep thinking loops).
 
 ---
 
 ### **5. Stability & Regressions**  
-| Severity | Issue | Description | Status |
-|--------|------|------------|--------|
-| 🔴 High | [#17778](https://github.com/ollama/ollama/issues/17778) | `qwen3.8`: 500 error "no user query found in messages" during chat streaming | Open |
-| 🔴 High | [#17892](https://github.com/ollama/ollama/issues/17892) | `deepseek-v4-flash:0731` cloud model loops indefinitely without `</think>` marker | Open |
-| 🔴 High | [#15453](https://github.com/ollama/ollama/issues/15453) | Ollama Cloud Pro: 95% failure rate across all cloud models — service effectively unusable | Open |
-| 🟡 Medium | [#18044](https://github.com/ollama/ollama/issues/18044) | `/api/generate` leaks raw `<think>` markup even when `think: false` | Open — fix PR submitted ([#18048](https://github.com/ollama/ollama/pull/18048)) |
-| 🟡 Medium | [#18055](https://github.com/ollama/ollama/issues/18055) | Cloud API rejects `tool_result` containing images due to malformed input validation | Open |
-| 🟡 Medium | [#18007](https://github.com/ollama/ollama/issues/18007) | `qwen3.8` truncates Solana mint addresses (`So1111...`) mid-generation | Open |
+| Issue | Severity | Status | Notes |
+|------|----------|--------|-------|
+| [#17778](https://github.com/ollama/ollama/issues/17778): `qwen3.8` returns 500 error: "no user query found" | ⚠️ High | Open | Occurs during chat streaming with tool use; affects cloud/local runs |
+| [#17892](https://github.com/ollama/ollama/issues/17892): `deepseek-v4-flash:0731` loops indefinitely without `</think>` | ⚠️ High | Open | Critical for agent workflows; reproducible on cloud |
+| [#18055](https://github.com/ollama/ollama/issues/18055): Cloud API rejects image in `tool_result` with 400 error | ⚠️ Medium | Open | Blocks image-based tool integrations in cloud API |
+| [#18044](https://github.com/ollama/ollama/issues/18044): `/api/generate` leaks raw `<think>` when `think: false` | ⚠️ Medium | Open | Inconsistent behavior vs `/api/chat`; breaks client parsing logic |
+| [#17792](https://github.com/ollama/ollama/issues/17792): `ollama stop` fails to kill MLX subprocess | 🔴 Critical | Closed | Memory leak until manual kill; resolved in v0.33.1 |
+| [#18059](https://github.com/ollama/ollama/issues/18059): `glm5.3-flash:cloud` fails with “Input should be a valid string” | ⚠️ Medium | Open | Affects Anthropic-compatible API clients |
 
-> ⚠️ **Note**: Multiple high-severity bugs affect both local and cloud inference, particularly around structured outputs, tool execution, and model parsing — critical for agent developers.
+> ✅ **Fixes landed**: `mlxrunner` stall detection ([#17834](https://github.com/ollama/ollama/pull/17834)), system theme restoration ([#18049](https://github.com/ollama/ollama/pull/18049)), and macOS app handoff sync ([#18056](https://github.com/ollama/ollama/pull/18056)).
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Agent Builders**: Avoid `think: false` in `/api/generate` until [#18048](https://github.com/ollama/ollama/pull/18048) lands — it currently leaks internal `<think>` tokens into responses. Use `/api/chat` as a workaround.  
-- **Cloud Users**: The 95% failure rate in Ollama Cloud Pro renders it **unusable for production workloads**; expect downtime and retry logic failures. Consider self-hosting for reliability.  
-- **MLX Users (Apple Silicon)**: Leverage `qwen3.8-flash-next` and `granite-4.1` models for fast, low-latency inference — but be aware of prompt caching regressions (issue #17829).  
-- **Desktop App Developers**: Theme consistency is improving — dark mode is being restored via PRs [#18049](https://github.com/ollama/ollama/pull/18049), [#18036](https://github.com/ollama/ollama/pull/18036), and [#18033](https://github.com/ollama/ollama/pull/18033).  
-- **API Clients**: Expect stricter input validation on image payloads in `tool_result` fields — future updates will reject non-string values.  
+- **Agent Workflows**: Be cautious with `qwen3.8`, `deepseek-v4-flash`, and `glm-ocr` on cloud or local MLX — infinite loops and malformed responses are common. Use `/api/chat` instead of `/api/generate` where possible.  
+- **Tool Integration**: Avoid sending images inside `tool_result` payloads via Ollama Cloud API until [#18055](https://github.com/ollama/ollama/issues/18055) is fixed.  
+- **Model Serving**: If using MLX on Apple Silicon, expect full re-prefills per agent step unless patching with PR [#17829](https://github.com/ollama/ollama/issues/17829). Monitor for CPU spikes post-v0.33.0.  
+- **UI/UX**: Dark mode is now restored on macOS and Windows via PRs [#18049](https://github.com/ollama/ollama/pull/18049) and [#18034](https://github.com/ollama/ollama/issues/18034), but ensure your app respects OS theme settings.  
+- **Future-Proofing**: Watch PRs like [#18054](https://github.com/ollama/ollama/pull/18054) and [#18048](https://github.com/ollama/ollama/pull/18048) to avoid parsing errors in structured output and thinking blocks.
 
-> ✅ **Recommendation**: For reliable agent workflows, prefer local inference with `mlx` engine and monitor issue #17829 for prompt caching fixes. Avoid Ollama Cloud until #15453 is resolved.
+> 📌 **Recommendation**: Pin to v0.33.1+ and audit agent logic for `think: false` and image handling in tool results. Consider testing against `qwen3.8:27b-mlx` only if you can tolerate re-prefill overhead.
 
 </details>
 
@@ -417,54 +387,55 @@ The latest release, **v0.33.1**, brings critical improvements for MLX-backed inf
 
 ---
 
-### **1. Today’s Highlights**  
-The LiteLLM project is advancing rapidly toward its high-performance, production-grade future with the launch of a major **Rust migration initiative** (Issue #31263), aiming to reduce inference overhead to sub-1ms levels. Critical security and cost integrity fixes are being prioritized, including resolution of a **5x under-billing regression for Azure GPT-5.6-luna** (#36094) and a **sensitive data exposure in `/metrics`** due to unauthenticated access (#24530). Meanwhile, new UI features like CSV export for team budgets and spend alerts via Slack are being introduced.
+### **1. Today's Highlights**  
+The LiteLLM ecosystem continues its momentum toward high-performance, secure, and observable AI infrastructure with key updates to the proxy’s observability layer and ongoing progress on the Rust migration. Critical fixes were merged for cost tracking accuracy (e.g., Azure GPT-5.6 Luna), response caching visibility, and security hardening—particularly around unauthenticated `/metrics` and sensitive header exposure in `/health`. The community-driven UI enhancements, including dark mode and auto-router tier editing, signal a maturing admin experience.
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-- **v1.100.0-dev.1** released today with enhanced security: all Docker images are now signed using [cosign](https://github.com/BerriAI/litellm/commit/0112e53046018d726492c814b3644b7d376029d0) via Sigstore, ensuring supply chain integrity.  
-- **Deprecation Notice**: The Prisma Python client is deprecated (#9753); users should prepare for migration away from it due to instability and upstream maintenance concerns.
+- **v1.100.0-dev.1** released with enhanced Docker image signing via [cosign](https://github.com/BerriAI/litellm/commit/0112e53046018d726492c814b3644b7d376029d0) — all images are now signed using the same key since `commit 0112e53`.  
+  🔗 [Verify signatures](https://docs.sigstore.dev/cosign/overview/)  
+- **No breaking API changes** reported today; however, ongoing work on the Rust rewrite ([#31263](https://github.com/BerriAI/litellm/issues/31263)) will introduce major performance gains and eventual API refinements.
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- **GPT-5.6 series (Azure)**: Full support added for `azure/gpt-5.6-terra`, `azure/gpt-5.6-luna`, and regional variants. Note: Pricing has been corrected to reflect Azure's published rates, not OpenAI’s post-cut prices (#36192).  
-- **GitHub Copilot Provider**: Initial integration underway — though early-stage, adding `github/copilot` as a supported provider (#38329).  
-- **Claude Code & Bedrock Passthrough**: Improved tooling support for `CLAUDE_CODE_USE_BEDROCK=1` and proper handling of `tool_call_id` normalization issues (#38333).
+- ✅ Added pricing for **Friendli’s `zai-org/GLM-5.3-Flash`** model in `model_prices_and_context_window.json` ([PR #38455](https://github.com/BerriAI/litellm/pull/38455)).  
+- ⚠️ **Gemini live preview model (`gemini-live-2.5-flash-preview-native-audio-09-2025`) removed from Vertex Live API**, requiring update of test suites ([PR #38454](https://github.com/BerriAI/litellm/pull/38454)).  
+- No new hardware backends (CUDA/ROCm/Metal/CPU) or quantization formats added today.
 
 ---
 
 ### **4. Performance & Optimization**  
-- **Rust Migration (Sub-1ms Overhead)**: The core gateway rewrite to Rust is now active (#31263). Early benchmarks show promise for reducing latency in high-throughput routing scenarios. Sign up for the beta [here](https://docs.google.com/forms/d/e/1FAIpQLSecWdOjkzjEson2UiZpD...).  
-- **Cost Optimization**: Fixes applied to prevent double-charging cached tokens that overlap modalities (e.g., image + text), which previously caused billing discrepancies up to **72% above provider bills** (#37407).  
-- **Prompt Caching Savings Attribution**: Now reported both globally and at gateway level (#38134), enabling better cost attribution across proxy layers.
+- 🚀 **Rust Migration Initiative** (started in [#31263](https://github.com/BerriAI/litellm/issues/31263)) is progressing — targeted at sub-1ms overheads and enabling ultra-low-latency inference routing. Early beta signups available [here](https://docs.google.com/forms/d/e/1FAIpQLSecWdOjkzjEson2UiZpD...).  
+- 🔍 **Cache Observability Enhancements**:  
+  - New `cache_hit_filter` query param and UI toggle on Logs page ([PR #38432](https://github.com/BerriAI/litellm/pull/38432), [#38442](https://github.com/BerriAI/litellm/pull/38442)) allow real-time filtering of cache hits/misses per session.  
+- 💡 **Prompt Registry Isolation by Environment**: In-memory prompt registry now keys by environment, preventing cross-env conflicts ([PR #38440](https://github.com/BerriAI/litellm/pull/38440)).
 
 ---
 
 ### **5. Stability & Regressions**  
-| Severity | Issue | Description | Fix Status |
-|---------|------|-------------|------------|
-| ⚠️ High | #36094 | Azure GPT-5.6-luna under-reports costs by 5x on `main` after v1.95.0 | ✅ Fixed in PR #38332 |
-| 🔴 Critical | #24530 | `/metrics` endpoint exposes PII in multi-tenant deployments by default | ✅ Patched via `require_auth_for_metrics_endpoint: true` (default now enforced in future releases) |
-| ⚠️ High | #36898 | GET /health leaks `extra_headers` and `aws_session_token` in plaintext | ✅ PR #38438 pending review |
-| ⚠️ Medium | #26886 | Prisma reconnection failures cause proxy crashes | ✅ Ongoing investigation; no fix yet |
-
-> *Note: Multiple regressions tied to model translation and cost calculation have been resolved or are in progress.*
+| Severity | Issue | Description | Fix Status | PR |
+|--------|------|-------------|------------|----|
+| High | [#36094](https://github.com/BerriAI/litellm/issues/36094) | Azure `gpt-5.6-luna` under-reports cost by 5x post-v1.95.0 | ✅ Fixed in `main` | [PR #38433](https://github.com/BerriAI/litellm/pull/38433) |
+| High | [#36192](https://github.com/BerriAI/litellm/issues/36192) | Azure GPT-5.6 Terra/Luna use OpenAI prices instead of Azure’s published rates | ✅ Fixed | [PR #37268](https://github.com/BerriAI/litellm/pull/37268) |
+| Medium | [#38339](https://github.com/BerriAI/litellm/issues/38339) | Azure parallel tool calls return synthetic `multi_tool_use.parallel` container | ✅ Fixed | [PR #38375](https://github.com/BerriAI/litellm/pull/38375) |
+| Medium | [#24530](https://github.com/BerriAI/litellm/issues/24530) | `/metrics` endpoint exposed PII in production without auth | 🔴 Security risk | [Config: `require_auth_for_metrics_endpoint`](https://docs.litellm.ai/docs/proxy/security#enable-auth-for-metrics) |
+| Low | [#38216](https://github.com/BerriAI/litellm/issues/38216) | Router silently load-balances raw model strings across unrelated groups | ⚠️ Undetected collision | No fix yet |
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Security First**: Always enable `require_auth_for_metrics_endpoint: true` in production to avoid exposing tenant data. Use signed Docker images (`cosign verify`) for secure deployments.  
-- **Cost Accuracy**: Upgrade to latest versions (≥v1.96.0) to ensure accurate billing—especially when using Azure GPT-5.6 models. The `drop_params = True` workaround is no longer needed for GPT-5 models.  
-- **Future-Proofing**: Begin testing the **Rust-based proxy** if you need ultra-low-latency inference (sub-1ms overhead). It will be pivotal for real-time agent systems.  
-- **UI Enhancements**: Leverage new features like **CSV exports for teams**, **Slack spend alerts**, and **cache hit/miss filtering in logs** to streamline operations and governance.  
-- **Tooling Reliability**: Be cautious with `tool_call_id` formatting—clients must preserve `__thought__` suffixes when forwarding to Vertex AI (#38333).  
+- **Security First**: Always set `require_auth_for_metrics_endpoint: true` in production deployments to prevent PII leaks ([#24530](https://github.com/BerriAI/litellm/issues/24530)).  
+- **Cost Accuracy Matters**: Verify that Azure GPT-5.6 models reflect correct pricing—use `v1.96.0+` or latest `main` to avoid 5x underbilling.  
+- **Caching Visibility**: Use the new `cache_hit_filter` and session-level cache stats in the UI to debug low hit rates and optimize your agent workflows.  
+- **Future-Proofing**: Consider migrating to the Rust-based proxy (via early access) for sub-1ms latency in high-throughput environments.  
+- **Agent SDKs**: Ensure your tools handling `multi_tool_use.parallel` are updated to expect unpacked function calls (fix in [PR #38375](https://github.com/BerriAI/litellm/pull/38375)).  
 
-👉 For developers: Monitor [PR #38438](https://github.com/BerriAI/litellm/pull/38438) for automated spend anomaly detection and [PR #38432](https://github.com/BerriAI/litellm/pull/38432) for improved request log filtering.
+> 💬 *Pro Tip:* Monitor the [UI Dashboard improvements](https://github.com/BerriAI/litellm/issues/10177) — dark mode and custom auto-router tiers are nearing release, improving operational UX significantly.
 
 ---  
-*Digest generated: 2026-08-27 | Source: [BerriAI/litellm GitHub](https://github.com/BerriAI/litellm)*
+*Data sourced from GitHub: [BerriAI/litellm](https://github.com/BerriAI/litellm)*
 
 </details>
 
@@ -476,66 +447,50 @@ The LiteLLM project is advancing rapidly toward its high-performance, production
 ---
 
 ### **1. Today's Highlights**  
-The Unsloth ecosystem continues to expand its support for advanced inference workflows, with significant progress in **multi-GPU training readiness**, **ROCm stability on AMD hardware**, and **GGUF model robustness**. Key developments include a new PR proposing a layered memory system (Memory Wheels) and critical fixes for TTS model misfires, context overflow handling, and UI reliability across platforms.
+The Unsloth project continues its rapid evolution with key stability fixes for GGUF loading and model inference, particularly on AMD ROCm systems. Critical UI/UX improvements are landing to support background generation, cross-session recovery, and better VRAM visibility—essential for long-running agent workflows. A major architectural proposal for a "Layered Memory System" has been introduced, signaling a shift toward persistent, context-aware AI agents.
 
 ---
 
 ### **2. Releases & Breaking Changes**  
-*None reported in the last 24 hours.*  
-No new releases or breaking changes were published. The current stable version remains `v0.1.803-beta` (package: `2026.8.21`), with ongoing work focused on pre-release stabilization and platform-specific reliability.
+None reported in the last 24 hours. No new versions or breaking API changes were released. The `unsloth` package remains at `2026.8.21`, with beta features (e.g., `v0.1.803-beta`) available via `pip install --upgrade unsloth`.
 
 ---
 
 ### **3. New Model & Hardware Support**  
-- **AMD ROCm Support**: Multiple issues highlight instability on newer AMD GPUs (e.g., Strix Halo, RX 7900 XT), particularly with **Qwen3.5 SFT** and **Qwen3.8-27B GGUF V3** models crashing during prefill. These are tied to `llama.cpp` context checkpoint behavior and ROCm driver compatibility.
-- **New Model Requests**:  
-  - `unsloth/Qwen3.8-Flash-Next-GGUF` requested (#9811): Currently unsupported due to unrecognized architecture (`qwen4exp`) in `llama.cpp`.  
-  - `.srt`/`.vtt` subtitle file support proposed (#9728) for enhanced multimedia data processing.
-- **Platform Expansion**:  
-  - Homebrew Cask submission preparation underway (#5156).  
-  - Windows installer improvements in progress (#9804), including better error resilience.
+- **Qwen3.8-Flash-Next-GGUF**: Unsupported due to `llama.cpp` not recognizing architecture `'qwen4exp'` — issue #9811.  
+- **AMD ROCm Support**: Continued focus on resolving issues across gfx1151 (Strix Halo), gfx1201 (Qwen3_5 SFT), and mixed Debian/ROCm stack detection (#8886).  
+- **Windows Installer Issues**: Silent hangs during repair/update if `unsloth.exe` is missing (#9758), affecting Windows users.  
+- **Linux Temporary Drives**: Feature request for mounting transient drives (e.g., USB) — #9818.
 
 ---
 
 ### **4. Performance & Optimization**  
-- **Memory & Context Management**:  
-  - A new PR proposes **"Memory Wheels"** — a layered memory system for persistent context retention (#9820). While not merge-ready, it introduces a novel architecture for long-context management via auto-compaction and rolling windows.
-  - `fix(studio): add chat settings to control GGUF auto-compaction` (#9774) enables users to disable or adjust context trimming behavior, improving predictability in long-running chats.
-- **Inference Efficiency**:  
-  - Optimizations to `torch.compile` usage on Windows AMD (PR #7704) prevent crashes caused by missing `stdlib.h`, enabling better kernel compilation when Triton’s toolchain is available.
-  - Frontend optimizations reduce idle frame latency: fence grammar warming now uses real text instead of empty strings (#9799), cutting unnecessary rendering overhead.
+- **Memory Management**: PR #9822 proposes warning instead of rejecting GGUF models larger than VRAM + RAM, improving usability.  
+- **Context Handling**: PR #9774 introduces user-configurable auto-compaction settings for GGUF chats, enabling fine-grained control over memory vs. context trade-offs.  
+- **Background Generation**: PR #9187 enables resume after client disconnect — critical for headless server use cases.  
+- **AI-Generated Architecture Proposal**: PR #9820 introduces *Memory Wheels*, a layered memory system designed to enable “unforgettable” long-term state — foundational for next-gen agent memory.
 
 ---
 
 ### **5. Stability & Regressions**  
-| Severity | Issue | Status | Fix PR? | Link |
-|---------|------|--------|--------|------|
-| Critical | TTS model auto-loaded in chat without validation (#9813) | Open | ✅ Yes | [PR #9813](https://github.com/unslothai/unsloth/pull/9813) |
-| High | `llama-server.exe` holds ~15GB mmap’d memory after unloading model (#9790) | Open | ❌ No | [Issue #9790](https://github.com/unslothai/unsloth/issues/9790) |
-| High | OXC validator subprocess hangs indefinitely (#9750) | Closed | ✅ Yes | [PR #9759](https://github.com/unslothai/unsloth/pull/9759) |
-| Medium | Web search arguments misparsed → no search executed (#9716) | Open | ❌ No | [PR #9716](https://github.com/unslothai/unsloth/pull/9716) |
-| Medium | Qwen3.8-27B V3 GGUF crashes post-prefill on AMD (#9792) | Open | ❌ No | [Issue #9792](https://github.com/unslothai/unsloth/issues/9792) |
-| Low | Failed downloads not visible in Downloads list (#9780) | Open | ❌ No | [Issue #9780](https://github.com/unslothai/unsloth/issues/9780) |
-
-> 🔥 **Top Priority**: Preventing unintended TTS model loading in chat (#9813) and fixing GPU memory leaks (#9790) remain urgent for user experience.
+| Issue | Severity | Status | Fix/Workaround |
+|------|----------|--------|----------------|
+| `save_pretrained_merged` produces garbage output (#5410) | High | Closed | Unknown; likely related to merge logic or quantization |
+| Qwen3.8 V3 GGUF crashes on AMD after prefill (#9792) | Critical | Open | Rolling back to V2 (`408fcc1807ab`) works; evidence points to `llama.cpp` context checkpoint bug |
+| GGUF load fails with AttributeError on large models (#9821) | High | Closed | Fixed in PR #9821 (missing `_HOST_RAM_HEADROOM_MIB` handling) |
+| OXC validator hangs indefinitely without timeout (#9750) | Medium | Closed | Fixed: added `timeout=` to `subprocess.run()` |
+| Phone disconnect ends streaming (#8925) | Medium | Closed | Not directly fixable without background generation support |
 
 ---
 
 ### **6. What This Means for Application Developers**  
-- **Multi-GPU Training**: While not yet supported, the high-demand feature request (#2435) signals strong community interest. Developers should prepare for future distributed training support via `torchrun` and `device_map`.
-- **Model Serving Robustness**: Be cautious with GGUF models on AMD — especially `Qwen3.8-V3`, which has known crash patterns. Use older V2 versions as fallbacks until `llama.cpp` updates are released.
-- **UI/UX Considerations**:  
-  - Disable auto-scrolling if building custom interfaces (feature request #9761).  
-  - Avoid relying on `web_search` with malformed arguments; validate inputs before sending.  
-  - Expect context truncation in local GGUF chats unless explicitly disabled via new settings (coming in #9774).
-- **Security & Reliability**:  
-  - The recent fix to avoid `exec`-ing model mappers (#9777) strengthens trust boundaries — ensure your own model pipelines follow similar patterns.
-  - On Windows, be aware of silent failures in update/repair flows due to missing `unsloth.exe` launcher (#9758).
+- **Build resilient agents**: Use `--resume-generation` patterns enabled by PR #9187 to survive network drops and UI reloads—critical for remote deployment.  
+- **Design for memory constraints**: Leverage PR #9774’s upcoming compaction controls to balance context length and VRAM usage in real-time apps.  
+- **Prepare for persistent memory**: The *Memory Wheels* proposal (PR #9820) hints at future native support for multi-turn, stateful agents—consider structuring your app around modular, recoverable state.  
+- **Avoid AMD pitfalls**: For ROCm deployments, monitor V3 GGUF releases and consider pinning to stable V2 revisions until `llama.cpp` compatibility is resolved.  
+- **Handle edge cases**: Expect silent failures on Windows (e.g., missing `unsloth.exe`) and malformed manifests (PR #9746); validate inputs early in pipelines.
 
-> ✅ **Actionable Takeaway**: For production-grade apps, use **V2 GGUFs** for AMD, avoid TTS models in chat contexts, and monitor the `#9820` Memory Wheels proposal for next-gen context persistence.
-
----  
-*Digest compiled from GitHub activity (unslothai/unsloth, 2026-08-27).*
+> 🔗 [Explore Issues](https://github.com/unslothai/unsloth/issues) | 🔗 [View Pull Requests](https://github.com/unslothai/unsloth/pulls)
 
 </details>
 

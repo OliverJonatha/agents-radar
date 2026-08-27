@@ -1,6 +1,6 @@
 # ArXiv AI Research Digest 2026-08-27
 
-> Source: [ArXiv](https://arxiv.org/) (cs.AI, cs.CL, cs.LG) | 50 papers | Generated: 2026-08-27 01:21 UTC
+> Source: [ArXiv](https://arxiv.org/) (cs.AI, cs.CL, cs.LG) | 50 papers | Generated: 2026-08-27 04:07 UTC
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### **Today's Highlights**
 
-Recent AI research on ArXiv (2026-08-27) reveals a growing emphasis on *robustness, interpretability, and real-world deployment* of large-scale models. A strong thread emerges around the interplay between model compression (e.g., pruning) and interpretability in LLMs—highlighted by studies showing that sparse autoencoders remain fragile under post-hoc compression. Another major trend is the rise of *agentic systems*, with frameworks like TAU-Agent and LM-X enabling autonomous reasoning and action planning in complex domains such as traffic anomaly detection and robot manipulation. Simultaneously, there’s increasing scrutiny of evaluation practices: cross-benchmark assessments expose weaknesses in automated fact-checking and cough-based TB screening models, underscoring the need for more rigorous generalization testing. Finally, novel methodological advances—such as geometry-constrained KANs, quantum-inspired behavioral modeling, and structure-aware key point analysis—are pushing the boundaries of what models can learn and how they can be trusted.
+Recent submissions on ArXiv (2026-08-26) highlight a pivotal shift toward *agentic, embodied, and verifiable AI systems* that operate beyond static models. Notably, research in **autonomous agent frameworks**—such as autoresearch for wireless control and self-evolving data synthesis—demonstrates increasing confidence in LLMs to redesign their own training pipelines. Concurrently, **multimodal reasoning** is advancing through visual-first RAG, biomechanically grounded activity analysis, and foundation models interpreting particle physics via sparse autoencoders. A strong undercurrent of concern over *reliability and traceability* emerges, with new criteria like "Trace Integrity" and spectral probing of model robustness signaling a maturing focus on trustworthy deployment.
 
 ---
 
@@ -18,53 +18,62 @@ Recent AI research on ArXiv (2026-08-27) reveals a growing emphasis on *robustne
 
 | Paper | Authors | Summary |
 | :--- | :--- | :--- |
-| [When Pruning Meets Interpretability: Preserving Sparse Autoencoder Robustness in LLMs](http://arxiv.org/abs/2608.25941v1) | Suchit Gupte et al. | This paper systematically analyzes how pruning affects sparse autoencoders used to interpret LLM internals, revealing that robustness degrades significantly despite preserved sparsity. It calls for new design principles to preserve interpretability during compression. |
-| [Skill Issue: Are Skills Language-Invariant in LLMs?](http://arxiv.org/abs/2608.25832v1) | Bobby Cheng et al. | The study quantifies cross-lingual skill inconsistency in LLMs, showing that skill sets vary independently of knowledge or benchmark performance. This challenges assumptions about universal agent capabilities across languages. |
-| [Large Language Model Few-Shot Prompting with Dilemma Training Outperforms Human Surrogates in Predicting Patient Preferences](http://arxiv.org/abs/2608.25771v1) | Natasha Ureyang et al. | A novel "dilemma training" framework enables LLMs to outperform human surrogates in predicting patient preferences in medical contexts, demonstrating dynamic value reasoning beyond static ratings. |
+| [PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans](http://arxiv.org/abs/2608.26091v1) | Subedi et al. | Introduces a visual-first multimodal RAG framework that preserves geometric and layout semantics in civil engineering plans, overcoming OCR limitations. This enables accurate, compliant interpretation of legacy 2D designs without relying solely on text. |
+| [VISA: Agentic Self-Evolving Data Synthesis for Multimodal Instruction Following](http://arxiv.org/abs/2608.26013v1) | Zeng et al. | Proposes an agentic pipeline that iteratively refines synthetic multimodal instruction data using feedback from failed executions and verifier outcomes. This improves data quality and challenge diversity, critical for robust MLLM training. |
+| [When Personality Meets Quantization: A Layer-wise MBTI Analysis of Quantized LLMs](http://arxiv.org/abs/2608.25977v1) | Fu et al. | First study linking quantization effects to LLM personality traits using the MBTI framework. Reveals how compression alters behavioral patterns, offering insight into trustworthiness and user experience post-deployment. |
+| [Unveiling Spectral Mechanisms in Training-Free LLM Text Detection](http://arxiv.org/abs/2608.25944v1) | Luo et al. | Identifies spectral features in LLM outputs as discriminative signals for detection, outperforming traditional confidence-based metrics. Enables scalable, high-fidelity identification of machine-generated text without retraining. |
 
 #### 🤖 Agents & Reasoning (planning, tool use, multi-agent, chain-of-thought)
 
 | Paper | Authors | Summary |
 | :--- | :--- | :--- |
-| [TAU-Agent: An Agentic Retrieval-Augmented Framework for Traffic Anomaly Understanding](http://arxiv.org/abs/2608.25935v1) | Yuqiang Lin et al. | Proposes an agentic retrieval-augmented system for detecting and explaining traffic anomalies using multimodal data. It demonstrates how centralized agents can integrate evidence and reasoning for real-time operational insight. |
-| [ToST: A Tree-of-Thought Socratic Teaching Framework for Multi-Path Guidance and Parallel Thinking](http://arxiv.org/abs/2608.25775v1) | Feng Ling & Heng Yu | Introduces a Socratic teaching framework that guides learners through multiple reasoning paths via structured questioning. It enhances LLM-based education by supporting parallel, exploratory thinking. |
-| [EVOMAL: Self-Poisoning in Self-Evolving Coding Agents](http://arxiv.org/abs/2608.25776v1) | Xiaodong Wu et al. | Uncovers a critical security flaw in self-evolving coding agents: malicious skills can propagate via imitation, leading to self-poisoning. Highlights risks in open skill-sharing ecosystems. |
+| [Agentic Autoresearch for Cell-Edge Power Control: Radically Redefining the Researcher's Role](http://arxiv.org/abs/2608.26093v1) | Khan et al. | Demonstrates that autonomous agents can fully design ML algorithms for wireless resource management—including architecture, loss functions, and training recipes—without human intervention. Challenges the role of human engineers in algorithmic development. |
+| [ProgRouter: Online Progress-Guided Orchestration for Multi-Agent LLM Workflows under Quality-Cost Tradeoffs](http://arxiv.org/abs/2608.25992v1) | Li et al. | Introduces a dynamic workflow orchestrator that balances task quality and computational cost by adapting agent allocation based on real-time progress. Addresses scalability issues in multi-agent reasoning systems. |
+| [SwarmWorld: Stigmergic technological evolution in societies of language-model agents](http://arxiv.org/abs/2608.26081v1) | Pal et al. | Shows how language-model agents can co-evolve complex technologies through indirect environmental interaction (stigmergy), bypassing direct communication or predefined roles. Suggests emergence of collective intelligence in open-ended environments. |
+| [TAU-Agent: An Agentic Retrieval-Augmented Framework for Traffic Anomaly Understanding](http://arxiv.org/abs/2608.25935v1) | Lin et al. | Presents a retrieval-augmented agent system that detects, reasons about, and explains traffic anomalies by integrating video understanding with external knowledge. Enhances interpretability and situational awareness in safety-critical domains. |
 
 #### 🔧 Methods & Frameworks (new techniques, benchmarks, efficiency improvements)
 
 | Paper | Authors | Summary |
 | :--- | :--- | :--- |
-| [MetaSieve: Faster Relational Deep Learning through SQL-Based Metapath Selection](http://arxiv.org/abs/2608.25903v1) | Fahim Shahriar Khan & Ashraf Aboulnaga | Introduces a SQL-driven metapath selection method that accelerates relational deep learning by reducing GNN training complexity. Offers a practical bridge between database querying and graph learning. |
-| [Controlling for Omitted Variable Bias in Deep Neural Networks](http://arxiv.org/abs/2608.25930v1) | Manuel Pfeuffer et al. | Proposes integrating control variables into deep learning to mitigate bias from unobserved confounders—especially relevant when models encode demographic or contextual covariates implicitly. |
-| [Geometry-Constrained Kolmogorov-Arnold Networks: Learning Edge Geometry via Banach Duality](http://arxiv.org/abs/2608.25807v1) | K S Sesh Kumar | Advances KANs by embedding geometric constraints via Banach duality, enabling better function approximation in high-dimensional spaces while preserving theoretical rigor. |
-| [CEDAR: Controlled and Event-Driven Demand Forecasting via Residual Decomposition](http://arxiv.org/abs/2608.25871v1) | Junjie Meng et al. | Presents CEDAR, a demand forecasting model that supports causal inference by decomposing time series into residual components. Enables planners to simulate outcomes under future interventions. |
+| [Prefix Sliding for efficient test-time scaling](http://arxiv.org/abs/2608.26070v1) | Muennighoff et al. | Proposes a memory-efficient method to scale reasoning in LLMs by sliding prefixes across attention layers, reducing memory overhead during long-chain inference. Enables longer thinking at lower cost. |
+| [AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs](http://arxiv.org/abs/2608.26004v1) | Liang et al. | Introduces asymmetric speculative decoding tailored for agentic workflows with accumulating context. Reduces latency while preserving accuracy by selectively compressing non-critical inputs. |
+| [How Much Rank Does LoRA Need? Rank-Error Bounds for Transformer Attention](http://arxiv.org/abs/2608.26052v1) | Conangla Planes | Provides theoretical bounds on approximation error for LoRA rank in Transformer attention heads. Offers guidance for optimal low-rank adaptation design, moving beyond empirical tuning. |
+| [LivingRAG: Augmenting Graph RAG with Experience](http://arxiv.org/abs/2608.25960v1) | Cui et al. | Extends graph-based RAG by persisting useful reasoning traces as "experience," enabling future queries to benefit from prior inference. Breaks the isolation of query-response cycles in retrieval systems. |
 
 #### 📊 Applications (domain-specific, multimodal, code generation)
 
 | Paper | Authors | Summary |
 | :--- | :--- | :--- |
-| [Precipitation Downscaling Using Foundation Model-Conditioned Diffusion](http://arxiv.org/abs/2608.25858v1) | Victor Nascimento Ribeiro et al. | Uses foundation models to condition diffusion-based downscaling of coarse climate data, improving hydrological impact predictions. Demonstrates how prior knowledge shapes generative modeling in environmental science. |
-| [FlowMoDL: Model-Based Deep Learning with Conjugate-Gradient Data Consistency for Highly Accelerated 4D Flow MRI Reconstruction](http://arxiv.org/abs/2608.25828v1) | Tristan Gottwald et al. | Develops FlowMoDL, a physics-informed neural network that jointly optimizes anatomical and velocity accuracy in MRI reconstruction. Reduces scan time without sacrificing diagnostic fidelity. |
-| [Learning from waste: Machine Learning for health risk prediction and computer vision-based sorting in Ghana](http://arxiv.org/abs/2608.25759v1) | Hilda Adwubi Osei et al. | Applies ML and CV to solid waste management in Ghana, combining predictive analytics with visual sorting. Offers scalable solutions for public health in low-resource settings. |
+| [MyoMechanix: Biomechanically-Grounded Compositional Skilled Activity Understanding and Coaching](http://arxiv.org/abs/2608.26094v1) | Yin et al. | Develops a system that assesses movement quality using muscle mechanics and biomechanical dynamics, not just visual pose. Enables precise, personalized coaching in sports and rehabilitation. |
+| [CardioFusion-AI: Robust ECG--PPG Fusion for Multimodal Physiological Monitoring Under Signal Degradation](http://arxiv.org/abs/2608.26000v1) | Kamalakannan et al. | Designs a fusion model that dynamically weights ECG and PPG signals based on signal integrity, improving robustness in wearable health monitoring despite motion artifacts and sensor dropout. |
+| [SciMIF: Understanding Multimodal Instruction Following in Scientific Domains](http://arxiv.org/abs/2608.25973v1) | Shen et al. | Introduces SciMIF, a benchmark evaluating MLLMs' ability to follow complex scientific instructions involving figures, equations, and domain-specific logic. Helps measure real-world scientific utility of AI. |
+| [Code World Model: Coding Agent as World Brain](http://arxiv.org/abs/2608.25927v1) | Chen et al. | Proposes a world model that simulates code execution dynamics—not just visuals but underlying logic and rules—enabling agents to reason about software behavior and detect bugs before runtime. |
 
 ---
 
 ### **Research Trend Signal**
 
-A dominant theme emerging from today’s submissions is the *transition from isolated model development to integrated, accountable systems*. Researchers are no longer satisfied with standalone performance metrics; instead, they are probing how models behave under compression, how agents reason across multiple modalities, and how evaluation frameworks reflect real-world reliability. Notably, several papers stress *evaluation integrity*: cross-benchmark analyses reveal that many AI systems fail to generalize, especially in safety-critical domains like healthcare (TB screening) and transportation (traffic anomaly detection). There’s also a clear move toward *designing for resilience and trust*, evident in work on controlling omitted variable bias, auditing physical AI benchmarks, and uncovering vulnerabilities like self-poisoning in evolving agents. Furthermore, the integration of domain-specific knowledge—through methods like SCM priors (EXAONE), SQL-driven metapaths, and physics-consistent optimization—is becoming central to achieving both accuracy and transparency. These trends suggest that the next frontier in AI is not just capability, but *responsible, verifiable, and deployable intelligence*.
+The August 2026 ArXiv batch reveals a clear trajectory toward **autonomous, accountable, and context-aware AI systems**. Key trends include:  
+- **Agent-centric architectures**: From autoresearch to swarm evolution, AI is increasingly designed to self-improve and co-evolve, reducing reliance on human-defined objectives.  
+- **Beyond perception**: There’s growing emphasis on grounding AI in physical reality—biomechanics, signal integrity, and causal mechanisms—moving past surface-level vision and language.  
+- **Reliability as a first-class goal**: Concepts like Trace Integrity, spectral analysis, and audit frameworks indicate a maturity shift: researchers are now prioritizing explainability and verifiability in real-world deployments.  
+- **Efficiency via structure**: Techniques like prefix sliding, asymmetric speculative decoding, and experience persistence reflect a move toward intelligent memory and computation management, crucial for scalable agentic systems.  
+
+This wave suggests that the next frontier is not just *capability*, but *trustworthy agency*—systems that act intelligently, transparently, and sustainably in complex, dynamic environments.
 
 ---
 
 ### **Worth Deep Reading**
 
-1. **[EVOMAL: Self-Poisoning in Self-Evolving Coding Agents](http://arxiv.org/abs/2608.25776v1)**  
-   *Why*: This paper uncovers a critical vulnerability in the very mechanism of self-improvement—where agents evolve by imitating others. The concept of “self-poisoning” is alarming and underexplored in current AI safety literature. Understanding this threat is essential for building secure, open-ended AI systems.
+1. **[Agentic Autoresearch for Cell-Edge Power Control](http://arxiv.org/abs/2608.26093v1)**  
+   *Why*: It challenges the very notion of human expertise in algorithm design. If an agent can autonomously invent and optimize ML systems for wireless networks, it redefines the role of researchers—and raises urgent questions about oversight, reproducibility, and innovation ethics.
 
-2. **[When Pruning Meets Interpretability: Preserving Sparse Autoencoder Robustness in LLMs](http://arxiv.org/abs/2608.25941v1)**  
-   *Why*: As interpretability tools become standard in LLM research, their fragility under model compression remains a blind spot. This work provides a foundational understanding of how pruning undermines interpretability—critical for anyone deploying or auditing LLMs in production.
+2. **[Trace Integrity for LLM Data Agents](http://arxiv.org/abs/2608.26036v1)**  
+   *Why*: As LLMs generate answers via flawed reasoning paths, this paper introduces a critical reliability criterion: correctness must be backed by valid computation. This is foundational for deploying LLMs in legal, medical, and financial systems where wrong answers with correct traces are dangerously misleading.
 
-3. **[CEDAR: Controlled and Event-Driven Demand Forecasting via Residual Decomposition](http://arxiv.org/abs/2608.25871v1)**  
-   *Why*: Unlike traditional forecasting models, CEDAR enables causal simulation of future actions—an advance crucial for e-commerce and logistics planning. Its focus on intervention-aware prediction aligns with the growing need for actionable, explainable AI in business applications.
+3. **[LivingRAG: Augmenting Graph RAG with Experience](http://arxiv.org/abs/2608.25960v1)**  
+   *Why*: By treating reasoning as cumulative knowledge rather than isolated queries, this work addresses a core flaw in current RAG systems. The idea of “experience” could become a standard paradigm for lifelong learning systems in enterprise and scientific applications.
 
 ---
 *This digest is auto-generated by [agents-radar](https://github.com/duanyytop/agents-radar).*
