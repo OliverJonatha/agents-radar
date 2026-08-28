@@ -3,6 +3,9 @@
  * Reads GITHUB_TOKEN and DIGEST_REPO from environment at call time.
  */
 
+import { ISSUE_LABELS } from "./i18n.ts";
+import { toCstDateStr, sleep } from "./date.ts";
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -372,35 +375,91 @@ function neutralizeGitHubRefs(text: string): string {
  * Close open issues created more than `days` days ago.
  * Uses pagination to handle large backlogs. Returns the number of issues closed.
  */
-export async function closeStaleIssues(days: number): Promise<number> {
+/**
+ * Every label the digest pipeline attaches, plus the discontinued rollup
+ * labels that older archived issues still carry. Only issues bearing one of
+ * these are eligible for auto-closing, so an issue a person opened is never
+ * touched.
+ */
+const DIGEST_ISSUE_LABELS = new Set([
+  ...Object.values(ISSUE_LABELS).flatMap((l) => [l.zh, l.en]),
+  "weekly",
+  "weekly-en",
+  "monthly",
+  "monthly-en",
+]);
+
+interface OpenIssue {
+  number: number;
+  created_at: string;
+  /** Present only on pull requests — the /issues endpoint returns both. */
+  pull_request?: unknown;
+  labels: { name: string }[];
+}
+
+function isDigestIssue(i: OpenIssue): boolean {
+  return i.pull_request === undefined && i.labels.some((l) => DIGEST_ISSUE_LABELS.has(l.name));
+}
+
+/** Stop paginating well before a runaway loop could exhaust the rate limit. */
+const MAX_ISSUE_PAGES = 50;
+/** Closes are spaced out: GitHub throttles bursts of mutating requests. */
+const CLOSE_BATCH = 10;
+
+/**
+ * Close every digest issue except those from the most recent digest day.
+ *
+ * The retained day is derived from the newest digest issue that is actually
+ * open, not from today's date: when a run fails, yesterday's reports stay up
+ * rather than the repo being left with nothing open. Dates are compared as CST
+ * days so that one run's issues — created just before 23:00 UTC — group
+ * together the way the digests/YYYY-MM-DD folders do.
+ *
+ * The full open list is collected before anything is closed. Closing shifts
+ * pagination, so interleaving the two skips items.
+ */
+export async function closeSupersededIssues(): Promise<number> {
   const digestRepo = process.env["DIGEST_REPO"] ?? "";
   if (!digestRepo) return 0;
-  const cutoff = new Date(Date.now() - days * 86_400_000);
+
+  const open: OpenIssue[] = [];
+  for (let page = 1; page <= MAX_ISSUE_PAGES; page++) {
+    const batch = await githubGet<OpenIssue[]>(`https://api.github.com/repos/${digestRepo}/issues`, {
+      state: "open",
+      sort: "created",
+      direction: "asc",
+      per_page: "100",
+      page: String(page),
+    });
+    open.push(...batch);
+    if (batch.length < 100) break;
+  }
+
+  const digestIssues = open.filter(isDigestIssue);
+  if (digestIssues.length === 0) return 0;
+
+  const keepDate = digestIssues
+    .map((i) => toCstDateStr(new Date(i.created_at)))
+    .reduce((a, b) => (a > b ? a : b));
+  const toClose = digestIssues.filter((i) => toCstDateStr(new Date(i.created_at)) !== keepDate);
+  if (toClose.length === 0) return 0;
+
+  console.log(`[github] Keeping ${digestIssues.length - toClose.length} issue(s) from ${keepDate}.`);
+
   let closed = 0;
-
-  // Always re-fetch page 1: closing issues shifts pagination, so incrementing
-  // pages would skip items.
-  while (true) {
-    const issues = await githubGet<{ number: number; created_at: string }[]>(
-      `https://api.github.com/repos/${digestRepo}/issues`,
-      { state: "open", sort: "created", direction: "asc", per_page: "100" },
-    );
-    if (issues.length === 0) break;
-
-    const stale = issues.filter((i) => new Date(i.created_at) < cutoff);
-    if (stale.length === 0) break;
-
+  for (let i = 0; i < toClose.length; i += CLOSE_BATCH) {
+    if (i > 0) await sleep(1_000);
     await Promise.all(
-      stale.map(async (i) => {
-        const resp = await fetch(`https://api.github.com/repos/${digestRepo}/issues/${i.number}`, {
+      toClose.slice(i, i + CLOSE_BATCH).map(async (issue) => {
+        const resp = await fetch(`https://api.github.com/repos/${digestRepo}/issues/${issue.number}`, {
           method: "PATCH",
           headers: { ...headers(), "Content-Type": "application/json" },
           body: JSON.stringify({ state: "closed" }),
         });
-        if (!resp.ok) console.error(`[github] Failed to close #${i.number}: ${resp.status}`);
+        if (resp.ok) closed++;
+        else console.error(`[github] Failed to close #${issue.number}: ${resp.status}`);
       }),
     );
-    closed += stale.length;
   }
   return closed;
 }
