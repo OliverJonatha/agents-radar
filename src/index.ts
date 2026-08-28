@@ -455,17 +455,37 @@ async function main(): Promise<void> {
     summary: summariesByLang[lang].openclawSummary,
   });
 
+  // Routed through summarize() so a failed comparison degrades to a fixed
+  // notice, the same way a failed per-repo summary does. These calls used to be
+  // bare: on 2026-08-28 the provider was unreachable, and the rejection here
+  // aborted main() — discarding every summary already generated along with the
+  // HN, ArXiv, Product Hunt, trending and web reports, whose data had all been
+  // fetched successfully and which have nothing to do with a comparison.
   const [enComparison, enPeersComparison, enInfraComparison] = await Promise.all([
-    callLlm(buildComparisonPrompt(enSummaries.cliDigests, dateStr, "en")),
-    callLlm(buildPeersComparisonPrompt(makeOpenclawDigest("en"), enSummaries.peerDigests, dateStr, "en")),
-    callLlm(buildInfraComparisonPrompt(enSummaries.infraDigests, dateStr, "en")),
+    summarize(
+      "cli-comparison",
+      buildComparisonPrompt(enSummaries.cliDigests, dateStr, "en"),
+      MSG.comparisonFailed.en,
+    ),
+    summarize(
+      "peers-comparison",
+      buildPeersComparisonPrompt(makeOpenclawDigest("en"), enSummaries.peerDigests, dateStr, "en"),
+      MSG.comparisonFailed.en,
+    ),
+    summarize(
+      "infra-comparison",
+      buildInfraComparisonPrompt(enSummaries.infraDigests, dateStr, "en"),
+      MSG.comparisonFailed.en,
+    ),
   ]);
 
   console.log("  Translating comparative analyses (EN -> ZH)...");
+  // localize(), not translateToZh(): when a comparison fell back to the fixed
+  // notice there is nothing to translate, and its Chinese text is already known.
   const [zhComparison, zhPeersComparison, zhInfraComparison] = await Promise.all([
-    translateToZh(enComparison),
-    translateToZh(enPeersComparison),
-    translateToZh(enInfraComparison),
+    localize(enComparison),
+    localize(enPeersComparison),
+    localize(enInfraComparison),
   ]);
 
   const comparisonByLang = { zh: zhComparison, en: enComparison };

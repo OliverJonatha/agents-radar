@@ -22,6 +22,7 @@ export const MSG = {
     "⚠️ Trending data unavailable, unable to generate report.",
   ),
   trendingFailed: t("⚠️ 趋势报告生成失败。", "⚠️ Trending report generation failed."),
+  comparisonFailed: t("⚠️ 横向对比生成失败。", "⚠️ Comparative analysis generation failed."),
 } as const;
 
 // ---------------------------------------------------------------------------
