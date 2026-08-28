@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
-import { fetchRecentDiscussions } from "../github.ts";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { fetchRecentDiscussions, closeSupersededIssues } from "../github.ts";
 
 // ---------------------------------------------------------------------------
 // Test helpers
@@ -160,5 +160,123 @@ describe("fetchRecentDiscussions", () => {
 
   it("rejects a malformed repo slug", async () => {
     await expect(fetchRecentDiscussions("not-a-slug", SINCE)).rejects.toThrow("Invalid repo slug");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// closeSupersededIssues
+// ---------------------------------------------------------------------------
+
+interface FakeIssue {
+  number: number;
+  created_at: string;
+  labels?: string[];
+  isPr?: boolean;
+}
+
+/**
+ * Mock the issue list endpoint and record every issue number that gets PATCHed
+ * closed. A single page is returned, which ends pagination (< 100 items).
+ */
+function mockIssues(issues: FakeIssue[]): { closed: number[] } {
+  const closed: number[] = [];
+  vi.spyOn(globalThis, "fetch").mockImplementation((input, init) => {
+    const url = String(input);
+    if (init?.method === "PATCH") {
+      closed.push(Number(url.match(/\/issues\/(\d+)$/)?.[1]));
+      return Promise.resolve({ ok: true } as Response);
+    }
+    return Promise.resolve({
+      ok: true,
+      json: () =>
+        Promise.resolve(
+          issues.map((i) => ({
+            number: i.number,
+            created_at: i.created_at,
+            labels: (i.labels ?? ["digest"]).map((name) => ({ name })),
+            ...(i.isPr ? { pull_request: { url: "x" } } : {}),
+          })),
+        ),
+    } as Response);
+  });
+  return { closed };
+}
+
+describe("closeSupersededIssues", () => {
+  const originalRepo = process.env["DIGEST_REPO"];
+
+  beforeEach(() => {
+    process.env["DIGEST_REPO"] = "owner/repo";
+  });
+
+  afterEach(() => {
+    if (originalRepo === undefined) delete process.env["DIGEST_REPO"];
+    else process.env["DIGEST_REPO"] = originalRepo;
+  });
+
+  it("keeps the newest CST day and closes everything older", async () => {
+    const { closed } = mockIssues([
+      { number: 1, created_at: "2026-08-25T23:10:00Z" },
+      { number: 2, created_at: "2026-08-26T23:10:00Z" },
+      { number: 3, created_at: "2026-08-27T23:10:00Z" },
+    ]);
+
+    // #3 was created at 23:10 UTC on 08-27, which is 07:10 CST on 08-28.
+    expect(await closeSupersededIssues()).toBe(2);
+    expect(closed.sort()).toEqual([1, 2]);
+  });
+
+  it("keeps every issue from the retained day, including a duplicate run", async () => {
+    // A manual catch-up run at 01:29 UTC and the delayed cron at 04:14 UTC both
+    // published on 2026-08-27 CST, matching the digests/2026-08-27 folder.
+    const { closed } = mockIssues([
+      { number: 1, created_at: "2026-08-25T23:10:00Z" },
+      { number: 2, created_at: "2026-08-27T01:29:00Z" },
+      { number: 3, created_at: "2026-08-27T04:14:00Z" },
+    ]);
+
+    expect(await closeSupersededIssues()).toBe(1);
+    expect(closed).toEqual([1]);
+  });
+
+  it("never closes pull requests or issues a person opened", async () => {
+    const { closed } = mockIssues([
+      { number: 1, created_at: "2026-01-01T00:00:00Z", isPr: true },
+      { number: 2, created_at: "2026-01-01T00:00:00Z", labels: ["bug"] },
+      { number: 3, created_at: "2026-01-01T00:00:00Z", labels: [] },
+      { number: 4, created_at: "2026-08-25T23:10:00Z" },
+      { number: 5, created_at: "2026-08-27T23:10:00Z" },
+    ]);
+
+    expect(await closeSupersededIssues()).toBe(1);
+    expect(closed).toEqual([4]);
+  });
+
+  it("closes discontinued rollup issues, which carry a legacy label", async () => {
+    const { closed } = mockIssues([
+      { number: 1, created_at: "2026-05-19T23:10:00Z", labels: ["weekly"] },
+      { number: 2, created_at: "2026-08-27T23:10:00Z" },
+    ]);
+
+    expect(await closeSupersededIssues()).toBe(1);
+    expect(closed).toEqual([1]);
+  });
+
+  it("closes nothing when only the newest day is open", async () => {
+    const { closed } = mockIssues([
+      { number: 1, created_at: "2026-08-27T23:10:00Z" },
+      { number: 2, created_at: "2026-08-27T23:11:00Z" },
+    ]);
+
+    expect(await closeSupersededIssues()).toBe(0);
+    expect(closed).toEqual([]);
+  });
+
+  it("is a no-op when DIGEST_REPO is unset", async () => {
+    delete process.env["DIGEST_REPO"];
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+
+    expect(await closeSupersededIssues()).toBe(0);
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 });
