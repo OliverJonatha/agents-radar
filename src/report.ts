@@ -60,6 +60,49 @@ export function is429(err: unknown): boolean {
   return (err as { status?: number })?.status === 429 || String(err).includes("429");
 }
 
+/** Node/undici error codes for a connection that never carried a request. */
+const CONNECTION_ERROR_CODES = new Set([
+  "ETIMEDOUT",
+  "ECONNRESET",
+  "ECONNREFUSED",
+  "ENOTFOUND",
+  "EAI_AGAIN",
+  "EPIPE",
+  "UND_ERR_CONNECT_TIMEOUT",
+  "UND_ERR_HEADERS_TIMEOUT",
+  "UND_ERR_SOCKET",
+]);
+
+/**
+ * True when the request never reached the model — DNS, TCP or TLS failed.
+ *
+ * The signal is buried: the OpenAI SDK reports these as `APIConnectionError`
+ * with `status: undefined`, wrapping a `TypeError: fetch failed`, wrapping the
+ * `AggregateError` that actually carries `code`. So walk the cause chain rather
+ * than inspecting only the outermost error. The depth cap guards against a
+ * self-referencing chain.
+ */
+export function isConnectionError(err: unknown): boolean {
+  for (let cur: unknown = err, depth = 0; cur != null && depth < 5; depth++) {
+    const e = cur as { name?: string; code?: string; message?: string; cause?: unknown };
+    if (e.name === "APIConnectionError" || e.name === "APIConnectionTimeoutError") return true;
+    if (typeof e.code === "string" && CONNECTION_ERROR_CODES.has(e.code)) return true;
+    if (typeof e.message === "string" && /fetch failed|Connection error/i.test(e.message)) return true;
+    cur = e.cause;
+  }
+  return false;
+}
+
+/**
+ * Retry rate limits and connection failures; let everything else through.
+ *
+ * A 4xx that is not 429 will fail identically on the next attempt, and retrying
+ * a 5xx risks a duplicate generation that already billed.
+ */
+export function isRetryable(err: unknown): boolean {
+  return is429(err) || isConnectionError(err);
+}
+
 export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): Promise<string> {
   for (let attempt = 0; ; attempt++) {
     await acquireSlot();
@@ -67,11 +110,12 @@ export async function callLlm(prompt: string, maxTokens = LLM_TOKENS_DEFAULT): P
     try {
       return await provider.call(prompt, maxTokens);
     } catch (err) {
-      if (attempt < MAX_RETRIES && is429(err)) {
+      if (attempt < MAX_RETRIES && isRetryable(err)) {
         releaseSlot();
         released = true;
         const wait = RETRY_BASE_MS * 2 ** attempt;
-        console.error(`[llm] 429 — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s...`);
+        const reason = is429(err) ? "429" : "connection error";
+        console.error(`[llm] ${reason} — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s...`);
         await sleep(wait);
         continue;
       }
