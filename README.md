@@ -449,11 +449,13 @@ Weekly and monthly rollup reports were discontinued in July 2026; past ones rema
 
 | Workflow | Cron | UTC | CST |
 |----------|------|-----|-----|
-| Daily digest | `0 23 * * *` | 23:00 daily | 07:00 next day |
+| Daily digest | `37 22 * * *` | 22:37 daily | 06:37 next day |
 
 To change the schedule, edit the cron expression in `.github/workflows/daily-digest.yml`.
 
-GitHub's scheduled runs are queued, not guaranteed — observed delays for this workflow range from 45 to 125 minutes. The 07:00 CST target aims to get the whole run (~20 min) finished before 09:00 CST, which keeps it inside the DeepSeek off-peak pricing window.
+GitHub's scheduled runs are queued, not guaranteed — typical delay for this workflow is 10-15 minutes, so a 06:37 CST start lands the digest around 07:00 CST. The minute is off the hour on purpose: the `:00` slot is the most contended, and while this workflow sat at `0 23 * * *` the delays degraded from minutes to hours (the 2026-08-26 run was dispatched 5h07m late, and the 2026-08-27 run was never created at all).
+
+When a scheduled run is late enough that you dispatch a catch-up run manually, the two would otherwise both build the same day's digest and open a duplicate set of issues. Two guards prevent that: a `concurrency: daily-digest` group serializes overlapping runs, and a `guard` job skips any **scheduled** run whose `digests/YYYY-MM-DD` folder (CST date) is already committed. Manual `workflow_dispatch` runs always proceed, so you can still force a regeneration.
 
 ## Star History
 
