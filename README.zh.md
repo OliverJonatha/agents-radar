@@ -432,7 +432,9 @@ OpenAI 内容精选            (research / release / company / safety / ...)
 值得深读
 ```
 
-历史简报存储在 [`digests/`](./digests/)。已发布的 Issues 按类型打标签：[`digest`](../../issues?label=digest) · [`openclaw`](../../issues?label=openclaw) · [`web`](../../issues?label=web) · [`trending`](../../issues?label=trending) · [`hn`](../../issues?label=hn)。
+只有最近一天的 Issue 保持 open —— 每次运行 `pnpm close-stale` 会关闭更早的全部日报 Issue，列表因此稳定在一天的量级，而不是几千条。不会删除任何内容：上面的标签链接包含已关闭的 Issue，完整存档同时保存在 `digests/` 和 Web UI 里。没有日报标签的 Issue 以及 Pull Request 不会被动到。
+
+历史简报存储在 [`digests/`](./digests/)。已发布的 Issues 按类型打标签：[`digest`](../../issues?q=is%3Aissue+label%3Adigest) · [`openclaw`](../../issues?q=is%3Aissue+label%3Aopenclaw) · [`web`](../../issues?q=is%3Aissue+label%3Aweb) · [`trending`](../../issues?q=is%3Aissue+label%3Atrending) · [`hn`](../../issues?q=is%3Aissue+label%3Ahn)。
 
 ## 定时计划
 
