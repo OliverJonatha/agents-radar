@@ -3,8 +3,8 @@ import { toCstDateStr, toUtcStr, weekdayOf } from "../date.ts";
 
 describe("toCstDateStr", () => {
   it("shifts a late-UTC timestamp to the next CST day", () => {
-    // The cron fires at 23:00 UTC, which is 07:00 CST the following day.
-    expect(toCstDateStr(new Date("2026-08-27T23:00:00Z"))).toBe("2026-08-28");
+    // The cron fires at 22:37 UTC, which is 06:37 CST the following day.
+    expect(toCstDateStr(new Date("2026-08-27T22:37:00Z"))).toBe("2026-08-28");
   });
 
   it("keeps a mid-UTC-day timestamp on the same CST day", () => {
