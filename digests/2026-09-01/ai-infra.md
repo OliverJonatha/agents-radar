@@ -1,6 +1,6 @@
 # AI 基础设施日报 2026-09-01
 
-> 生成时间: 2026-08-31 16:14 UTC | 覆盖项目: 6 个
+> 生成时间: 2026-08-31 16:32 UTC | 覆盖项目: 6 个
 
 - [vLLM](https://github.com/vllm-project/vllm)
 - [SGLang](https://github.com/sgl-project/sglang)

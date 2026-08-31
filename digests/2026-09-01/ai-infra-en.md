@@ -1,6 +1,6 @@
 # AI Infrastructure Digest 2026-09-01
 
-> Generated: 2026-08-31 16:14 UTC | Projects covered: 6
+> Generated: 2026-08-31 16:32 UTC | Projects covered: 6
 
 - [vLLM](https://github.com/vllm-project/vllm)
 - [SGLang](https://github.com/sgl-project/sglang)
