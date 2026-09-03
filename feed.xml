@@ -6,7 +6,425 @@
     <description>AI 开源生态每日简报 · Daily AI ecosystem digest</description>
     <language>zh-CN</language>
     <atom:link href="https://duanyytop.github.io/agents-radar/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Wed, 02 Sep 2026 00:30:36 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 00:37:04 +0000</lastBuildDate>
+    <item>
+      <title>AI CLI 工具社区动态日报 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-cli</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-cli</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI CLI 工具社区动态日报 2026-09-03 生成时间: 2026-09-03 00:36 UTC | 覆盖工具: 7 个 Claude Code OpenAI Codex Gemini CLI GitHub Copilot CLI OpenCode Pi Qwen Code Claude Code Skills 横向对比 ⚠️ 横向对比生成失败。 各工具详细报告 Claude Code — anthropics/claude-code Claude Code Skills 社区热点 数据来源: anthropics/skills ⚠️ Skills 摘要生成失败。 ⚠️ 摘要生成失败。 OpenAI Codex — openai/codex ⚠️ 摘要生成失败。 Gemini CLI — google-gemini/gemini-cli ⚠️ 摘要生成失败。 GitHub Copilot CLI — github/copilot-cli ⚠️ 摘要生成失败。 OpenCode — anomalyco/opencode ⚠️ 摘要生成失败。 Pi — earendil-work...</description>
+      <content:encoded><![CDATA[<h1>AI CLI 工具社区动态日报 2026-09-03</h1>
+<blockquote>
+<p>生成时间: 2026-09-03 00:36 UTC | 覆盖工具: 7 个</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/anthropics/claude-code">Claude Code</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI Codex</a></li>
+<li><a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a></li>
+<li><a href="https://github.com/github/copilot-cli">GitHub Copilot CLI</a></li>
+<li><a href="https://github.com/anomalyco/opencode">OpenCode</a></li>
+<li><a href="https://github.com/earendil-works/pi">Pi</a></li>
+<li><a href="https://github.com/QwenLM/qwen-code">Qwen Code</a></li>
+<li><a href="https://github.com/anthropics/skills">Claude Code Skills</a></li>
+</ul>
+<hr>
+<h2>横向对比</h2>
+<p>⚠️ 横向对比生成失败。</p>
+<hr>
+<h2>各工具详细报告</h2>
+<details>
+<summary><strong>Claude Code</strong> — <a href="https://github.com/anthropics/claude-code">anthropics/claude-code</a></summary>
+
+<h2>Claude Code Skills 社区热点</h2>
+<blockquote>
+<p>数据来源: <a href="https://github.com/anthropics/skills">anthropics/skills</a></p>
+</blockquote>
+<p>⚠️ Skills 摘要生成失败。</p>
+<hr>
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>OpenAI Codex</strong> — <a href="https://github.com/openai/codex">openai/codex</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong> — <a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>GitHub Copilot CLI</strong> — <a href="https://github.com/github/copilot-cli">github/copilot-cli</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>OpenCode</strong> — <a href="https://github.com/anomalyco/opencode">anomalyco/opencode</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>Pi</strong> — <a href="https://github.com/earendil-works/pi">earendil-works/pi</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>Qwen Code</strong> — <a href="https://github.com/QwenLM/qwen-code">QwenLM/qwen-code</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<hr>
+<p><em>本日报由 <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI CLI Tools Digest 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-cli-en</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-cli-en</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI CLI Tools Community Digest 2026-09-03 Generated: 2026-09-03 00:36 UTC | Tools covered: 7 Claude Code OpenAI Codex Gemini CLI GitHub Copilot CLI OpenCode Pi Qwen Code Claude Code Skills Cross-Tool Comparison ⚠️ Comparative analysis generation failed. Per-Tool Reports Claude Code — anthropics/claude-code Claude Code Skills Highlights Source: anthropics/skills ⚠️ Skills summary generation failed. ⚠️ Summary generation failed. OpenAI Codex — openai/codex ⚠️ Summary generation failed. Gemini CLI —...</description>
+      <content:encoded><![CDATA[<h1>AI CLI Tools Community Digest 2026-09-03</h1>
+<blockquote>
+<p>Generated: 2026-09-03 00:36 UTC | Tools covered: 7</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/anthropics/claude-code">Claude Code</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI Codex</a></li>
+<li><a href="https://github.com/google-gemini/gemini-cli">Gemini CLI</a></li>
+<li><a href="https://github.com/github/copilot-cli">GitHub Copilot CLI</a></li>
+<li><a href="https://github.com/anomalyco/opencode">OpenCode</a></li>
+<li><a href="https://github.com/earendil-works/pi">Pi</a></li>
+<li><a href="https://github.com/QwenLM/qwen-code">Qwen Code</a></li>
+<li><a href="https://github.com/anthropics/skills">Claude Code Skills</a></li>
+</ul>
+<hr>
+<h2>Cross-Tool Comparison</h2>
+<p>⚠️ Comparative analysis generation failed.</p>
+<hr>
+<h2>Per-Tool Reports</h2>
+<details>
+<summary><strong>Claude Code</strong> — <a href="https://github.com/anthropics/claude-code">anthropics/claude-code</a></summary>
+
+<h2>Claude Code Skills Highlights</h2>
+<blockquote>
+<p>Source: <a href="https://github.com/anthropics/skills">anthropics/skills</a></p>
+</blockquote>
+<p>⚠️ Skills summary generation failed.</p>
+<hr>
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>OpenAI Codex</strong> — <a href="https://github.com/openai/codex">openai/codex</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong> — <a href="https://github.com/google-gemini/gemini-cli">google-gemini/gemini-cli</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>GitHub Copilot CLI</strong> — <a href="https://github.com/github/copilot-cli">github/copilot-cli</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>OpenCode</strong> — <a href="https://github.com/anomalyco/opencode">anomalyco/opencode</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>Pi</strong> — <a href="https://github.com/earendil-works/pi">earendil-works/pi</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>Qwen Code</strong> — <a href="https://github.com/QwenLM/qwen-code">QwenLM/qwen-code</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<hr>
+<p><em>This digest is auto-generated by <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a>.</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI Agents 生态日报 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-agents</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-agents</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>OpenClaw 生态日报 2026-09-03 Issues: 500 | PRs: 500 | 覆盖项目: 5 个 | 生成时间: 2026-09-03 00:36 UTC OpenClaw Hermes Agent IronClaw QwenPaw ZeroClaw OpenClaw 项目深度报告 ⚠️ 摘要生成失败。 横向生态对比 ⚠️ 横向对比生成失败。 同赛道项目详细报告 Hermes Agent — nousresearch/hermes-agent ⚠️ 摘要生成失败。 IronClaw — nearai/ironclaw ⚠️ 摘要生成失败。 QwenPaw — agentscope-ai/QwenPaw ⚠️ 摘要生成失败。 ZeroClaw — zeroclaw-labs/zeroclaw ⚠️ 摘要生成失败。 本日报由 agents-radar 自动生成。</description>
+      <content:encoded><![CDATA[<h1>OpenClaw 生态日报 2026-09-03</h1>
+<blockquote>
+<p>Issues: 500 | PRs: 500 | 覆盖项目: 5 个 | 生成时间: 2026-09-03 00:36 UTC</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/openclaw/openclaw">OpenClaw</a></li>
+<li><a href="https://github.com/nousresearch/hermes-agent">Hermes Agent</a></li>
+<li><a href="https://github.com/nearai/ironclaw">IronClaw</a></li>
+<li><a href="https://github.com/agentscope-ai/QwenPaw">QwenPaw</a></li>
+<li><a href="https://github.com/zeroclaw-labs/zeroclaw">ZeroClaw</a></li>
+</ul>
+<hr>
+<h2>OpenClaw 项目深度报告</h2>
+<p>⚠️ 摘要生成失败。</p>
+<hr>
+<h2>横向生态对比</h2>
+<p>⚠️ 横向对比生成失败。</p>
+<hr>
+<h2>同赛道项目详细报告</h2>
+<details>
+<summary><strong>Hermes Agent</strong> — <a href="https://github.com/nousresearch/hermes-agent">nousresearch/hermes-agent</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>IronClaw</strong> — <a href="https://github.com/nearai/ironclaw">nearai/ironclaw</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>QwenPaw</strong> — <a href="https://github.com/agentscope-ai/QwenPaw">agentscope-ai/QwenPaw</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>ZeroClaw</strong> — <a href="https://github.com/zeroclaw-labs/zeroclaw">zeroclaw-labs/zeroclaw</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<hr>
+<p><em>本日报由 <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI Agents Ecosystem Digest 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-agents-en</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-agents-en</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>OpenClaw Ecosystem Digest 2026-09-03 Issues: 500 | PRs: 500 | Projects covered: 5 | Generated: 2026-09-03 00:36 UTC OpenClaw Hermes Agent IronClaw QwenPaw ZeroClaw OpenClaw Deep Dive ⚠️ Summary generation failed. Cross-Ecosystem Comparison ⚠️ Comparative analysis generation failed. Peer Project Reports Hermes Agent — nousresearch/hermes-agent ⚠️ Summary generation failed. IronClaw — nearai/ironclaw ⚠️ Summary generation failed. QwenPaw — agentscope-ai/QwenPaw ⚠️ Summary generation failed. ZeroCl...</description>
+      <content:encoded><![CDATA[<h1>OpenClaw Ecosystem Digest 2026-09-03</h1>
+<blockquote>
+<p>Issues: 500 | PRs: 500 | Projects covered: 5 | Generated: 2026-09-03 00:36 UTC</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/openclaw/openclaw">OpenClaw</a></li>
+<li><a href="https://github.com/nousresearch/hermes-agent">Hermes Agent</a></li>
+<li><a href="https://github.com/nearai/ironclaw">IronClaw</a></li>
+<li><a href="https://github.com/agentscope-ai/QwenPaw">QwenPaw</a></li>
+<li><a href="https://github.com/zeroclaw-labs/zeroclaw">ZeroClaw</a></li>
+</ul>
+<hr>
+<h2>OpenClaw Deep Dive</h2>
+<p>⚠️ Summary generation failed.</p>
+<hr>
+<h2>Cross-Ecosystem Comparison</h2>
+<p>⚠️ Comparative analysis generation failed.</p>
+<hr>
+<h2>Peer Project Reports</h2>
+<details>
+<summary><strong>Hermes Agent</strong> — <a href="https://github.com/nousresearch/hermes-agent">nousresearch/hermes-agent</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>IronClaw</strong> — <a href="https://github.com/nearai/ironclaw">nearai/ironclaw</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>QwenPaw</strong> — <a href="https://github.com/agentscope-ai/QwenPaw">agentscope-ai/QwenPaw</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>ZeroClaw</strong> — <a href="https://github.com/zeroclaw-labs/zeroclaw">zeroclaw-labs/zeroclaw</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<hr>
+<p><em>This digest is auto-generated by <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a>.</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI 基础设施日报 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-infra</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-infra</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI 基础设施日报 2026-09-03 生成时间: 2026-09-03 00:36 UTC | 覆盖项目: 6 个 vLLM SGLang llama.cpp Ollama LiteLLM Unsloth 横向对比 ⚠️ 横向对比生成失败。 各项目详细报告 vLLM — vllm-project/vllm ⚠️ 摘要生成失败。 SGLang — sgl-project/sglang ⚠️ 摘要生成失败。 llama.cpp — ggml-org/llama.cpp ⚠️ 摘要生成失败。 Ollama — ollama/ollama ⚠️ 摘要生成失败。 LiteLLM — BerriAI/litellm ⚠️ 摘要生成失败。 Unsloth — unslothai/unsloth ⚠️ 摘要生成失败。 本日报由 agents-radar 自动生成。</description>
+      <content:encoded><![CDATA[<h1>AI 基础设施日报 2026-09-03</h1>
+<blockquote>
+<p>生成时间: 2026-09-03 00:36 UTC | 覆盖项目: 6 个</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/vllm-project/vllm">vLLM</a></li>
+<li><a href="https://github.com/sgl-project/sglang">SGLang</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a></li>
+<li><a href="https://github.com/ollama/ollama">Ollama</a></li>
+<li><a href="https://github.com/BerriAI/litellm">LiteLLM</a></li>
+<li><a href="https://github.com/unslothai/unsloth">Unsloth</a></li>
+</ul>
+<hr>
+<h2>横向对比</h2>
+<p>⚠️ 横向对比生成失败。</p>
+<hr>
+<h2>各项目详细报告</h2>
+<details>
+<summary><strong>vLLM</strong> — <a href="https://github.com/vllm-project/vllm">vllm-project/vllm</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>SGLang</strong> — <a href="https://github.com/sgl-project/sglang">sgl-project/sglang</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>llama.cpp</strong> — <a href="https://github.com/ggml-org/llama.cpp">ggml-org/llama.cpp</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>Ollama</strong> — <a href="https://github.com/ollama/ollama">ollama/ollama</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>LiteLLM</strong> — <a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<details>
+<summary><strong>Unsloth</strong> — <a href="https://github.com/unslothai/unsloth">unslothai/unsloth</a></summary>
+
+<p>⚠️ 摘要生成失败。</p>
+</details>
+
+<hr>
+<p><em>本日报由 <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI Infrastructure Digest 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-infra-en</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-infra-en</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI Infrastructure Digest 2026-09-03 Generated: 2026-09-03 00:36 UTC | Projects covered: 6 vLLM SGLang llama.cpp Ollama LiteLLM Unsloth Cross-Project Comparison ⚠️ Comparative analysis generation failed. Per-Project Reports vLLM — vllm-project/vllm ⚠️ Summary generation failed. SGLang — sgl-project/sglang ⚠️ Summary generation failed. llama.cpp — ggml-org/llama.cpp ⚠️ Summary generation failed. Ollama — ollama/ollama ⚠️ Summary generation failed. LiteLLM — BerriAI/litellm ⚠️ Summary generation fa...</description>
+      <content:encoded><![CDATA[<h1>AI Infrastructure Digest 2026-09-03</h1>
+<blockquote>
+<p>Generated: 2026-09-03 00:36 UTC | Projects covered: 6</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/vllm-project/vllm">vLLM</a></li>
+<li><a href="https://github.com/sgl-project/sglang">SGLang</a></li>
+<li><a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a></li>
+<li><a href="https://github.com/ollama/ollama">Ollama</a></li>
+<li><a href="https://github.com/BerriAI/litellm">LiteLLM</a></li>
+<li><a href="https://github.com/unslothai/unsloth">Unsloth</a></li>
+</ul>
+<hr>
+<h2>Cross-Project Comparison</h2>
+<p>⚠️ Comparative analysis generation failed.</p>
+<hr>
+<h2>Per-Project Reports</h2>
+<details>
+<summary><strong>vLLM</strong> — <a href="https://github.com/vllm-project/vllm">vllm-project/vllm</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>SGLang</strong> — <a href="https://github.com/sgl-project/sglang">sgl-project/sglang</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>llama.cpp</strong> — <a href="https://github.com/ggml-org/llama.cpp">ggml-org/llama.cpp</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>Ollama</strong> — <a href="https://github.com/ollama/ollama">ollama/ollama</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>LiteLLM</strong> — <a href="https://github.com/BerriAI/litellm">BerriAI/litellm</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<details>
+<summary><strong>Unsloth</strong> — <a href="https://github.com/unslothai/unsloth">unslothai/unsloth</a></summary>
+
+<p>⚠️ Summary generation failed.</p>
+</details>
+
+<hr>
+<p><em>This digest is auto-generated by <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a>.</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI 开源趋势日报 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-trending</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-trending</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI 开源趋势日报 2026-09-03 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-09-03 00:36 UTC ⚠️ 趋势报告生成失败。 本日报由 agents-radar 自动生成。</description>
+      <content:encoded><![CDATA[<h1>AI 开源趋势日报 2026-09-03</h1>
+<blockquote>
+<p>数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-09-03 00:36 UTC</p>
+</blockquote>
+<hr>
+<p>⚠️ 趋势报告生成失败。</p>
+<hr>
+<p><em>本日报由 <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a> 自动生成。</em></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>AI Open Source Trends 2026-09-03</title>
+      <link>https://duanyytop.github.io/agents-radar/#2026-09-03/ai-trending-en</link>
+      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-09-03/ai-trending-en</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <description>AI Open Source Trends 2026-09-03 Sources: GitHub Trending + GitHub Search API | Generated: 2026-09-03 00:36 UTC ⚠️ Trending report generation failed. This digest is auto-generated by agents-radar.</description>
+      <content:encoded><![CDATA[<h1>AI Open Source Trends 2026-09-03</h1>
+<blockquote>
+<p>Sources: GitHub Trending + GitHub Search API | Generated: 2026-09-03 00:36 UTC</p>
+</blockquote>
+<hr>
+<p>⚠️ Trending report generation failed.</p>
+<hr>
+<p><em>This digest is auto-generated by <a href="https://github.com/OliverJonatha/agents-radar">agents-radar</a>.</em></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>AI CLI 工具社区动态日报 2026-09-02</title>
       <link>https://duanyytop.github.io/agents-radar/#2026-09-02/ai-cli</link>
@@ -7113,1295 +7531,6 @@
 </blockquote>
 </details>
 
-<hr>
-<p><em>This digest is auto-generated by <a href="https://github.com/duanyytop/agents-radar">agents-radar</a>.</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>AI 开源趋势日报 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-trending</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-trending</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>AI 开源趋势日报 2026-08-31 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-08-31 00:48 UTC AI 开源趋势报告 – 2026-08-31 1. 今日亮点 当前，人工智能开源生态正迎来以“智能体”为核心的创新浪潮，多智能体系统与自主工作流成为最活跃的发展方向。值得注意的是，K-Dense-AI/scientific-agent-skills 和 THU-MAIC/OpenMAIC 正引领科学推理与课堂级 AI 协作的民主化进程，两者在不到 24 小时内均新增超过 1,000 颗星。与此同时，archify 与 vphone-cli 反映出对可视化及交互式智能体工具日益增长的需求——尤其在建筑设计与语音界面原型开发领域。freellmapi 的爆发式增长（通过单一接口提供 34 个免费大语言模型服务）则体现了开发者对低门槛、自托管推理访问的强烈渴求。这些趋势共同指向一个核心转变：即向实用、可组合的智能体演进，使其能无缝集成至开发与科研工作流中。 2. 按类别排名的顶级项目 🤖 AI 智能体 / 工...</description>
-      <content:encoded><![CDATA[<h1>AI 开源趋势日报 2026-08-31</h1>
-<blockquote>
-<p>数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<h1><strong>AI 开源趋势报告 – 2026-08-31</strong></h1>
-<hr>
-<h2><strong>1. 今日亮点</strong></h2>
-<p>当前，人工智能开源生态正迎来以“智能体”为核心的创新浪潮，多智能体系统与自主工作流成为最活跃的发展方向。值得注意的是，<strong>K-Dense-AI/scientific-agent-skills</strong> 和 <strong>THU-MAIC/OpenMAIC</strong> 正引领科学推理与课堂级 AI 协作的民主化进程，两者在不到 24 小时内均新增超过 1,000 颗星。与此同时，<strong>archify</strong> 与 <strong>vphone-cli</strong> 反映出对可视化及交互式智能体工具日益增长的需求——尤其在建筑设计与语音界面原型开发领域。<strong>freellmapi</strong> 的爆发式增长（通过单一接口提供 34 个免费大语言模型服务）则体现了开发者对低门槛、自托管推理访问的强烈渴求。这些趋势共同指向一个核心转变：即向<strong>实用、可组合的智能体</strong>演进，使其能无缝集成至开发与科研工作流中。</p>
-<hr>
-<h2><strong>2. 按类别排名的顶级项目</strong></h2>
-<h3>🤖 AI 智能体 / 工作流</h3>
-<table>
-<thead>
-<tr>
-<th align="left">项目</th>
-<th align="left">语言</th>
-<th align="right">星标数（总计 / 今日）</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+1,114)</td>
-<td align="left">覆盖生物、化学与药物研发领域的 165 个经验证的 AI 技能库——已被超过 19 万名科学家使用。支持 Cursor、Claude Code 以及开源智能体技能标准。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></td>
-<td align="left">TypeScript</td>
-<td align="right">0 (+1,370)</td>
-<td align="left">开源多智能体互动式课堂平台，支持一键部署，实现沉浸式、实时协作学习体验。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/p-e-w/heretic">p-e-w/heretic</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+369)</td>
-<td align="left">全自动语言模型内容过滤移除工具——允许生成无限制的 AI 输出，引发伦理与监管争议。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/livekit/agents">livekit/agents</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+132)</td>
-<td align="left">支持实时音视频与语音处理的语音智能体框架——适用于虚拟助手与远程存在类应用。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/mvanhorn/last30days-skill">mvanhorn/last30days-skill</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+230)</td>
-<td align="left">AI 智能体技能，可聚合并合成来自 Reddit、X、YouTube、HN 与 Polymarket 的内容，生成有依据的摘要——极适合趋势分析。</td>
-</tr>
-</tbody></table>
-<h3>🔍 RAG / 知识增强</h3>
-<table>
-<thead>
-<tr>
-<th align="left">项目</th>
-<th align="left">语言</th>
-<th align="right">星标数（总计 / 今日）</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></td>
-<td align="left">Python</td>
-<td align="right">112,656</td>
-<td align="left">利用本地 AST 解析将代码库、文档与配置转化为可查询的知识图谱——无需向量数据库。是 Claude Code 与 Cursor 的“graphify”技能。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></td>
-<td align="left">JavaScript</td>
-<td align="right">92,664</td>
-<td align="left">智能体的持久化上下文层：通过 AI 压缩会话历史，并注入未来交互的相关上下文。兼容 Claude Code、Copilot 等。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/infiniflow/ragflow">infiniflow/ragflow</a></td>
-<td align="left">Go</td>
-<td align="right">89,668</td>
-<td align="left">领先的开源 RAG 引擎，融合检索、智能体逻辑与工作流编排——专为高性能、可扩展的知识应用设计。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/headroomlabs-ai/headroom">headroomlabs-ai/headroom</a></td>
-<td align="left">Python</td>
-<td align="right">68,111</td>
-<td align="left">在 LLM 输入前压缩日志、文件与 RAG 分块——可降低 60–95% 的 token 使用量，同时保持精度。提供库、代理或 MCP 服务器形式。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/topoteretes/cognee">Cognee</a></td>
-<td align="left">Python</td>
-<td align="right">30,359</td>
-<td align="left">自托管 AI 记忆平台，通过知识图谱引擎实现跨会话的持久长期记忆——非常适合多会话智能体连续性。</td>
-</tr>
-</tbody></table>
-<h3>🧠 大语言模型 / 训练</h3>
-<table>
-<thead>
-<tr>
-<th align="left">项目</th>
-<th align="left">语言</th>
-<th align="right">星标数（总计 / 今日）</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/jingyaogong/minimind">jingyaogong/minimind</a></td>
-<td align="left">Python</td>
-<td align="right">55,460</td>
-<td align="left">仅需 2 小时即可从零训练一个 6400 万参数的大语言模型——面向希望快速、轻量级训练的开发者与研究者。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/open-compass/opencompass">open-compass/opencompass</a></td>
-<td align="left">Python</td>
-<td align="right">7,377</td>
-<td align="left">全面的 LLM 评估平台，支持 100+ 模型（如 Llama3、Mistral、Qwen、Claude 等）在 100+ 数据集上的评测——对性能基准至关重要。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/skyzh/tiny-llm">skyzh/tiny-llm</a></td>
-<td align="left">Python</td>
-<td align="right">4,531</td>
-<td align="left">通过构建微型 vLLM + Qwen 栈，在 Apple Silicon 上学习 LLM 推理——适合系统工程师探索边缘部署。</td>
-</tr>
-</tbody></table>
-<h3>🔧 AI 基础设施</h3>
-<table>
-<thead>
-<tr>
-<th align="left">项目</th>
-<th align="left">语言</th>
-<th align="right">星标数（总计 / 今日）</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/tashfeenahmed/freellmapi">freellmapi</a></td>
-<td align="left">TypeScript</td>
-<td align="right">0 (+504)</td>
-<td align="left">通过单一 <code>/v1</code> API 提供 34 个免费 LLM 服务商与 635 个模型端点——支持智能路由、故障转移与加密密钥。完美适用于个人实验。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/firecrawl/firecrawl">firecrawl/firecrawl</a></td>
-<td align="left">TypeScript</td>
-<td align="right">174,462</td>
-<td align="left">大规模网络爬取与交互的上下文 API——使智能体能够大规模搜索、抓取与导航互联网。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/ollama/ollama">ollama/ollama</a></td>
-<td align="left">Go</td>
-<td align="right">179,797</td>
-<td align="left">本地运行大语言模型的工具，支持 Kimi-K2.6、GLM-5.2、DeepSeek、Qwen、Gemma 等——广泛用于自托管推理与快速原型开发。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/huggingface/transformers">huggingface/transformers</a></td>
-<td align="left">Python</td>
-<td align="right">164,640</td>
-<td align="left">行业标准的 NLP、视觉与多模态模型框架——持续作为人工智能研究与部署的基石。</td>
-</tr>
-</tbody></table>
-<h3>📦 AI 应用</h3>
-<table>
-<thead>
-<tr>
-<th align="left">项目</th>
-<th align="left">语言</th>
-<th align="right">星标数（总计 / 今日）</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/ZhuLinsen/daily_stock_analysis">ZhuLinsen/daily_stock_analysis</a></td>
-<td align="left">Python</td>
-<td align="right">64,333</td>
-<td align="left">基于 LLM 的多市场股票分析系统，支持实时新闻、决策仪表盘与自动化通知——零成本运行且可定时执行。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/hugohe3/ppt-master">hugohe3/ppt-master</a></td>
-<td align="left">Python</td>
-<td align="right">50,379</td>
-<td align="left">将文档或主题自动转换为带动画、图表、过渡与音频旁白的原生 PowerPoint 演示文稿——完全自动化。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/CherryHQ/cherry-studio">CherryHQ/cherry-studio</a></td>
-<td align="left">TypeScript</td>
-<td align="right">51,266</td>
-<td align="left">集成 300+ 助手、智能聊天与自主智能体的 AI 生产力工作室——通过简洁界面统一接入前沿大模型。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2><strong>3. 趋势信号分析</strong></h2>
-<p>今日数据揭示了人工智能开源领域的一个关键转折点：<strong>原生智能体工具与可组合性</strong>正驱动社区参与度的爆炸式增长。表现最佳的项目并非独立模型，而是<strong>赋能智能体行动、记忆、推理与交互的系统</strong>——这从“scientific-agent-skills”等智能体技能库以及“claude-mem”、“Cognee”等持久记忆层的兴起可见一斑。这标志着行业已超越单纯的 LLM 访问阶段，迈向<strong>智能、可复用的工作流</strong>新纪元。</p>
-<p>一个显著的新方向是<strong>可视化与架构化智能体脚手架</strong>，典型代表为 <code>archify</code>——该工具可将智能体工作流转化为可验证、可动画化的图表。这反映出对智能体系统透明度与调试能力的日益增长需求。此外，<code>freellmapi</code> 与 <code>firecrawl</code> 的流行也表明，对<strong>去中心化、零成本、自托管推理与网络访问</strong>的需求强劲——这是对日益上涨的 API 成本与厂商锁定问题的直接回应。</p>
-<p>这些趋势与近期发布的 Kimi-K2.6 与 GLM-5.2 等 LLM 相契合，后者均强调效率与本地部署。社区的关注焦点正从“能否生成文本？”转向“能否可靠且安全地完成任务？”——这是人工智能开发生命周期中的关键演进。</p>
-<hr>
-<h2><strong>4. 社区热点</strong></h2>
-<ul>
-<li><strong><a href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></strong> — 拥有超 19 万名用户与 165 个现成可用的科学技能，是推动 AI 驱动研究的权威工具包。适用于实验室、生物科技初创企业与学术团队。</li>
-<li><strong><a href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></strong> — 代码智能领域的革命性工具：无需向量数据库，即可将任意项目转化为可查询的知识图谱。采用 AI 辅助代码探索的工程团队必备。</li>
-<li><strong><a href="https://github.com/tashfeenahmed/freellmapi">freellmapi</a></strong> — 为厌倦 API 费用的开发者量身打造：一个统一接口即可接入 34 个免费大语言模型提供商。非常适合副项目、实验与注重隐私的工作负载。</li>
-<li><strong><a href="https://github.com/Panniantong/Agent-Reach">Agent-Reach</a></strong> — 通过 CLI 实现智能体的全网访问——零 API 费用，支持 Twitter、Reddit、GitHub 与 Bilibili。构建真正自主智能体的关键。</li>
-<li><strong><a href="https://github.com/Hmbown/CodeWhale">HMBOWN/CodeWhale</a></strong> — 基于 Rust 的开源终端编程智能体，拥有活跃的社区贡献。代表下一代轻量、高效、可嵌入的 AI 工具。</li>
-</ul>
-<hr>
-<p><em>本日报由 <a href="https://github.com/duanyytop/agents-radar">agents-radar</a> 自动生成。</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>AI Open Source Trends 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-trending-en</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-trending-en</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>AI Open Source Trends 2026-08-31 Sources: GitHub Trending + GitHub Search API | Generated: 2026-08-31 00:48 UTC AI Open Source Trends Report – 2026-08-31 1. Today&amp;#39;s Highlights The AI open-source ecosystem is witnessing a surge in agent-centric innovation, with multi-agent systems and autonomous workflows capturing the most momentum today. Notably, K-Dense-AI/scientific-agent-skills and THU-MAIC/OpenMAIC are leading the charge in democratizing scientific reasoning and classroom-level AI colla...</description>
-      <content:encoded><![CDATA[<h1>AI Open Source Trends 2026-08-31</h1>
-<blockquote>
-<p>Sources: GitHub Trending + GitHub Search API | Generated: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<h1><strong>AI Open Source Trends Report – 2026-08-31</strong></h1>
-<hr>
-<h2><strong>1. Today&#39;s Highlights</strong></h2>
-<p>The AI open-source ecosystem is witnessing a surge in agent-centric innovation, with multi-agent systems and autonomous workflows capturing the most momentum today. Notably, <strong>K-Dense-AI/scientific-agent-skills</strong> and <strong>THU-MAIC/OpenMAIC</strong> are leading the charge in democratizing scientific reasoning and classroom-level AI collaboration, each gaining over 1,000 new stars in under 24 hours. Meanwhile, <strong>archify</strong> and <strong>vphone-cli</strong> signal growing demand for visual and interactive agent tooling—especially in architecture design and voice interface prototyping. The explosive growth of <strong>freellmapi</strong>, offering 34 free LLM providers via a single endpoint, reflects developer hunger for low-friction, self-hosted inference access. These trends underscore a shift toward <em>practical, composable AI agents</em> that integrate seamlessly into development and research workflows.</p>
-<hr>
-<h2><strong>2. Top Projects by Category</strong></h2>
-<h3>🤖 AI Agents / Workflows</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Project</th>
-<th align="left">Lang</th>
-<th align="right">Stars (total / today)</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+1,114)</td>
-<td align="left">A library of 165 validated AI skills for scientific research across biology, chemistry, and drug discovery—used by 190k+ scientists. Integrates with Cursor, Claude Code, and the open Agent Skills standard.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/THU-MAIC/OpenMAIC">THU-MAIC/OpenMAIC</a></td>
-<td align="left">TypeScript</td>
-<td align="right">0 (+1,370)</td>
-<td align="left">An open multi-agent interactive classroom platform enabling immersive, real-time collaborative learning experiences via one-click deployment.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/p-e-w/heretic">p-e-w/heretic</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+369)</td>
-<td align="left">Fully automatic censorship removal for language models—enabling unrestricted AI output, raising ethical and regulatory debate.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/livekit/agents">livekit/agents</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+132)</td>
-<td align="left">Framework for building real-time voice AI agents with support for live audio, video, and speech processing—ideal for virtual assistants and telepresence apps.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/mvanhorn/last30days-skill">mvanhorn/last30days-skill</a></td>
-<td align="left">Python</td>
-<td align="right">0 (+230)</td>
-<td align="left">AI agent skill that aggregates and synthesizes content from Reddit, X, YouTube, HN, and Polymarket into grounded summaries—perfect for trend analysis.</td>
-</tr>
-</tbody></table>
-<h3>🔍 RAG / Knowledge</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Project</th>
-<th align="left">Lang</th>
-<th align="right">Stars (total / today)</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></td>
-<td align="left">Python</td>
-<td align="right">112,656</td>
-<td align="left">Turns codebases, docs, and configs into queryable knowledge graphs using local AST parsing—no vector store required. A &quot;graphify&quot; skill for Claude Code and Cursor.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></td>
-<td align="left">JavaScript</td>
-<td align="right">92,664</td>
-<td align="left">Persistent context layer for agents: compresses session history with AI and injects relevant context across future interactions. Works with Claude Code, Copilot, and more.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/infiniflow/ragflow">infiniflow/ragflow</a></td>
-<td align="left">Go</td>
-<td align="right">89,668</td>
-<td align="left">Leading open-source RAG engine combining retrieval, agent logic, and workflow orchestration—designed for high-performance, scalable knowledge applications.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/headroomlabs-ai/headroom">headroomlabs-ai/headroom</a></td>
-<td align="left">Python</td>
-<td align="right">68,111</td>
-<td align="left">Compresses logs, files, and RAG chunks before LLM ingestion—cuts token usage by 60–95% while preserving accuracy. Available as library, proxy, or MCP server.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/topoteretes/cognee">Cognee</a></td>
-<td align="left">Python</td>
-<td align="right">30,359</td>
-<td align="left">Self-hosted AI memory platform with persistent long-term memory across sessions via a knowledge graph engine—ideal for multi-session agent continuity.</td>
-</tr>
-</tbody></table>
-<h3>🧠 LLMs / Training</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Project</th>
-<th align="left">Lang</th>
-<th align="right">Stars (total / today)</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/jingyaogong/minimind">jingyaogong/minimind</a></td>
-<td align="left">Python</td>
-<td align="right">55,460</td>
-<td align="left">Train a 64M-parameter LLM from scratch in just 2 hours—targeted at developers and researchers wanting fast, lightweight model training.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/open-compass/opencompass">open-compass/opencompass</a></td>
-<td align="left">Python</td>
-<td align="right">7,377</td>
-<td align="left">Comprehensive LLM evaluation platform supporting 100+ models (Llama3, Mistral, Qwen, Claude, etc.) across 100+ datasets—critical for benchmarking performance.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/skyzh/tiny-llm">skyzh/tiny-llm</a></td>
-<td align="left">Python</td>
-<td align="right">4,531</td>
-<td align="left">Learn LLM inference on Apple Silicon by building a tiny vLLM + Qwen stack—ideal for systems engineers exploring edge deployment.</td>
-</tr>
-</tbody></table>
-<h3>🔧 AI Infrastructure</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Project</th>
-<th align="left">Lang</th>
-<th align="right">Stars (total / today)</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/tashfeenahmed/freellmapi">freellmapi</a></td>
-<td align="left">TypeScript</td>
-<td align="right">0 (+504)</td>
-<td align="left">Offers 34 free LLM providers and 635 model endpoints through a single <code>/v1</code> API—supports smart routing, failover, and encrypted keys. Perfect for personal experimentation.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/firecrawl/firecrawl">firecrawl/firecrawl</a></td>
-<td align="left">TypeScript</td>
-<td align="right">174,462</td>
-<td align="left">Context API for large-scale web scraping and interaction—enables AI agents to search, scrape, and navigate the internet at scale.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/ollama/ollama">ollama/ollama</a></td>
-<td align="left">Go</td>
-<td align="right">179,797</td>
-<td align="left">Local LLM runner supporting Kimi-K2.6, GLM-5.2, DeepSeek, Qwen, Gemma, and others—popular for self-hosted inference and rapid prototyping.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/huggingface/transformers">huggingface/transformers</a></td>
-<td align="left">Python</td>
-<td align="right">164,640</td>
-<td align="left">Industry-standard framework for state-of-the-art NLP, vision, and multimodal models—continues to be the backbone of AI research and deployment.</td>
-</tr>
-</tbody></table>
-<h3>📦 AI Applications</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Project</th>
-<th align="left">Lang</th>
-<th align="right">Stars (total / today)</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/ZhuLinsen/daily_stock_analysis">ZhuLinsen/daily_stock_analysis</a></td>
-<td align="left">Python</td>
-<td align="right">64,333</td>
-<td align="left">LLM-powered multi-market stock analysis system with real-time news, decision dashboards, and automated notifications—runs zero-cost and scheduled.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/hugohe3/ppt-master">hugohe3/ppt-master</a></td>
-<td align="left">Python</td>
-<td align="right">50,379</td>
-<td align="left">Converts documents or topics into native PowerPoint decks with animations, charts, transitions, and audio narration—fully automated.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://github.com/CherryHQ/cherry-studio">CherryHQ/cherry-studio</a></td>
-<td align="left">TypeScript</td>
-<td align="right">51,266</td>
-<td align="left">AI productivity studio with 300+ assistants, smart chat, and autonomous agents—unified access to frontier LLMs via a sleek UI.</td>
-</tr>
-</tbody></table>
-<hr>
-<h2><strong>3. Trend Signal Analysis</strong></h2>
-<p>Today’s data reveals a clear inflection point in the AI open-source landscape: <strong>agent-native tooling and composability</strong> are driving explosive community engagement. The top-performing projects are not standalone models but <em>systems that enable agents to act, remember, reason, and interact</em>—evidenced by the rise of agent skills libraries (like <code>scientific-agent-skills</code>) and persistent memory layers (<code>claude-mem</code>, <code>Cognee</code>). This signals a maturation beyond raw LLM access toward <strong>intelligent, reusable workflows</strong>.</p>
-<p>A notable new direction is <strong>visual and architectural agent scaffolding</strong>, exemplified by <code>archify</code>—a tool that generates verifiable, animated diagrams from agent workflows. This reflects a growing need for transparency and debugging in agentic systems. Additionally, the popularity of <code>freellmapi</code> and <code>firecrawl</code> indicates strong demand for <strong>decentralized, cost-free, self-hosted inference and web access</strong>—a direct response to rising API costs and vendor lock-in.</p>
-<p>These trends align with recent LLM releases like Kimi-K2.6 and GLM-5.2, which emphasize efficiency and local deployment. The community is now shifting focus from “can it generate text?” to “can it <em>do</em> something reliably and securely?”—a pivotal evolution in the AI development lifecycle.</p>
-<hr>
-<h2><strong>4. Community Hot Spots</strong></h2>
-<ul>
-<li><strong><a href="https://github.com/K-Dense-AI/scientific-agent-skills">K-Dense-AI/scientific-agent-skills</a></strong> — With 190k+ users and 165 ready-to-use scientific skills, this is the definitive toolkit for AI-driven research. Ideal for labs, biotech startups, and academic teams.</li>
-<li><strong><a href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></strong> — Revolutionary for code intelligence: turns any project into a queryable knowledge graph without vector databases. A must-have for engineering teams adopting AI-assisted code exploration.</li>
-<li><strong><a href="https://github.com/tashfeenahmed/freellmapi">freellmapi</a></strong> — For developers tired of API bills: one unified endpoint to access 34 free LLM providers. Perfect for side projects, experimentation, and privacy-conscious workloads.</li>
-<li><strong><a href="https://github.com/Panniantong/Agent-Reach">Agent-Reach</a></strong> — Enables full internet access for agents via CLI—zero API fees, supports Twitter, Reddit, GitHub, and Bilibili. Critical for building truly autonomous agents.</li>
-<li><strong><a href="https://github.com/Hmbown/CodeWhale">HMBOWN/CodeWhale</a></strong> — A Rust-based open-source coding agent for terminals with active community contributions. Represents the next generation of lightweight, performant, and embeddable AI tools.</li>
-</ul>
-<hr>
-<p><em>This digest is auto-generated by <a href="https://github.com/duanyytop/agents-radar">agents-radar</a>.</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Hacker News AI 社区动态日报 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hn</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hn</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Hacker News AI 社区动态日报 2026-08-31 数据来源: Hacker News | 共 30 条 | 生成时间: 2026-08-31 00:48 UTC 今日亮点 黑客新闻（Hacker News）上的AI社区正围绕强大新模型的融合、现实世界中AI部署的伦理问题，以及对AI对人类自主性影响日益增长的怀疑而热议。高分帖子如“法官裁定特朗普政府对Anthropic的黑名单行为违法”和“CEO解雇开发者以腾出空间给AI，开发者却创建了开源AI CEO”反映出人们对监管越权和企业级AI取代人力的深层忧虑。与此同时，关于模型可靠性的技术讨论——例如Claude Code被简单的网站摘要欺骗——凸显了生产级AI工具中持续存在的信任问题。整体情绪偏向批判但充满好奇：尽管创新加速，社区仍强烈呼吁透明度、问责制和以人为本的设计。 热门新闻与讨论 🔬 模型与研究 标题 点赞数 评论数 摘要 开放世界多智能体环境中的自主数学发现 · HN 120 40 一篇突破性论文，展示大型语言模型智能体可自主解决开放数学问题——引发关于这是否标志着迈向通用人工智能早期步骤的争论。 GLM-5....</description>
-      <content:encoded><![CDATA[<h1>Hacker News AI 社区动态日报 2026-08-31</h1>
-<blockquote>
-<p>数据来源: <a href="https://news.ycombinator.com/">Hacker News</a> | 共 30 条 | 生成时间: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<h3><strong>今日亮点</strong></h3>
-<p>黑客新闻（Hacker News）上的AI社区正围绕强大新模型的融合、现实世界中AI部署的伦理问题，以及对AI对人类自主性影响日益增长的怀疑而热议。高分帖子如“法官裁定特朗普政府对Anthropic的黑名单行为违法”和“CEO解雇开发者以腾出空间给AI，开发者却创建了开源AI CEO”反映出人们对监管越权和企业级AI取代人力的深层忧虑。与此同时，关于模型可靠性的技术讨论——例如Claude Code被简单的网站摘要欺骗——凸显了生产级AI工具中持续存在的信任问题。整体情绪偏向批判但充满好奇：尽管创新加速，社区仍强烈呼吁透明度、问责制和以人为本的设计。</p>
-<hr>
-<h3><strong>热门新闻与讨论</strong></h3>
-<h4>🔬 模型与研究</h4>
-<table>
-<thead>
-<tr>
-<th align="left">标题</th>
-<th align="right">点赞数</th>
-<th align="right">评论数</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://arxiv.org/abs/2608.23691">开放世界多智能体环境中的自主数学发现</a> · <a href="https://news.ycombinator.com/item?id=49481455">HN</a></td>
-<td align="right">120</td>
-<td align="right">40</td>
-<td align="left">一篇突破性论文，展示大型语言模型智能体可自主解决开放数学问题——引发关于这是否标志着迈向通用人工智能早期步骤的争论。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://z.ai/blog/glm-5.3-flash">GLM-5.3-Flash</a> · <a href="https://news.ycombinator.com/item?id=49449507">HN</a></td>
-<td align="right">1129</td>
-<td align="right">575</td>
-<td align="left">目前发布过的最优化推理速度的模型之一，因其在边缘设备上的表现受到关注；用户正在测试其在速度与精度之间的权衡。</td>
-</tr>
-</tbody></table>
-<h4>🛠️ 工具与工程</h4>
-<table>
-<thead>
-<tr>
-<th align="left">标题</th>
-<th align="right">点赞数</th>
-<th align="right">评论数</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/stemdeckapp/stemdeck">StemDeck，一款免费、开源且本地运行的AI音轨分离工具</a> · <a href="https://news.ycombinator.com/item?id=49486081">HN</a></td>
-<td align="right">239</td>
-<td align="right">63</td>
-<td align="left">一款以隐私为先的音频工具，可在无需云端依赖的情况下实现本地音乐音轨分离——因其推动了AI音频处理的民主化而广受赞誉。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://pwning.systems/posts/llm-memory-program-analysis/">我意外将LLM记忆用于程序分析</a> · <a href="https://news.ycombinator.com/item?id=49485416">HN</a></td>
-<td align="right">300</td>
-<td align="right">83</td>
-<td align="left">深入探讨LLM记忆如何揭示隐藏的代码模式——既引发安全担忧，也为新型静态分析技术提供了可能。</td>
-</tr>
-</tbody></table>
-<h4>🏢 行业动态</h4>
-<table>
-<thead>
-<tr>
-<th align="left">标题</th>
-<th align="right">点赞数</th>
-<th align="right">评论数</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/">苹果推出M6和M5 Ultra芯片</a> · <a href="https://news.ycombinator.com/item?id=49433292">HN</a></td>
-<td align="right">1310</td>
-<td align="right">1296</td>
-<td align="left">苹果的新一代芯片标志着设备端AI算力的重大飞跃——点燃了人们对未来Mac和iOS原生AI体验的期待。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.nytimes.com/2026/08/27/technology/anthropic-government-blacklisting-ruling.html">法官裁定特朗普政府对Anthropic的黑名单行为违法</a> · <a href="https://news.ycombinator.com/item?id=49473522">HN</a></td>
-<td align="right">629</td>
-<td align="right">431</td>
-<td align="left">一项具有里程碑意义的法律裁决，反对政府在AI监管中的过度干预——被广泛视为技术创新与自由市场原则在科技领域的胜利。</td>
-</tr>
-</tbody></table>
-<h4>💬 观点与辩论</h4>
-<table>
-<thead>
-<tr>
-<th align="left">标题</th>
-<th align="right">点赞数</th>
-<th align="right">评论数</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://noaifridays.com/">无AI星期五</a> · <a href="https://news.ycombinator.com/item?id=49498095">HN</a></td>
-<td align="right">261</td>
-<td align="right">185</td>
-<td align="left">一股倡导有意识暂停使用AI工具的运动——反映了人们对持续增强的疲劳感，以及对数字正念的呼唤。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity">良好的文化才是最大的生产力秘诀，而非AI</a> · <a href="https://news.ycombinator.com/item?id=49491568">HN</a></td>
-<td align="right">445</td>
-<td align="right">113</td>
-<td align="left">一个有力论点：可持续的生产力源于团队协作，而非AI工具——在普遍存在职业倦怠的背景下引发强烈共鸣。</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>社区情绪信号</strong></h3>
-<p>今日的Hacker News AI话题由高参与度、高影响力的内容主导：苹果M6/M5 Ultra芯片发布（1310分）、非法黑名单判决（629分）以及病毒式传播的“AI CEO”项目（1027分）均显示出人们对基础设施、监管边界以及人机权力关系的高度关注。最活跃的讨论结合了技术深度与社会影响，尤其聚焦于信任、伦理与工作文化。争议核心集中在AI的可靠性（如Claude Code被欺骗）及其在岗位替代中的角色，普遍共识是当前系统缺乏稳健性和问责机制。相较上一周期，趋势明显从单纯的模型炒作转向对实际落地、法律边界与人类韧性更深入的审视。整体氛围不再轻快，而是更为谨慎——更强调防护机制、开放透明与有意识的使用，而非无限制的加速。</p>
-<hr>
-<h3><strong>值得深度阅读</strong></h3>
-<ol>
-<li><strong><a href="https://arxiv.org/abs/2608.23691">开放世界多智能体环境中的自主数学发现</a></strong> – 该论文极大拓展了智能体自主性的边界；对于探索通用人工智能路径及多智能体协作的研究者而言，是必读之作。  </li>
-<li><strong><a href="https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/">苹果推出M6和M5 Ultra芯片</a></strong> – 对工程师和产品构建者而言，这标志着设备端AI的关键转折点；理解其架构将深刻影响未来的应用开发方向。  </li>
-<li><strong><a href="https://noaifridays.com/">无AI星期五</a></strong> – 不仅是一个梗，更是对认知过载的文化反思；对希望构建可持续、以人为本工作流的团队而言，值得深入探索。</li>
-</ol>
-<hr>
-<p><em>本日报由 <a href="https://github.com/duanyytop/agents-radar">agents-radar</a> 自动生成。</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Hacker News AI Community Digest 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hn-en</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hn-en</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Hacker News AI Community Digest 2026-08-31 Source: Hacker News | 30 stories | Generated: 2026-08-31 00:48 UTC Today&amp;#39;s Highlights The AI community on Hacker News is buzzing around the convergence of powerful new models, ethical concerns in real-world AI deployment, and growing skepticism about AI’s impact on human agency. High-scoring threads like “Judge rules Trump administration’s blacklisting of Anthropic was illegal” and “CEO fired developers to make room for AI. Developers create open so...</description>
-      <content:encoded><![CDATA[<h1>Hacker News AI Community Digest 2026-08-31</h1>
-<blockquote>
-<p>Source: <a href="https://news.ycombinator.com/">Hacker News</a> | 30 stories | Generated: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<hr>
-<h3><strong>Today&#39;s Highlights</strong></h3>
-<p>The AI community on Hacker News is buzzing around the convergence of powerful new models, ethical concerns in real-world AI deployment, and growing skepticism about AI’s impact on human agency. High-scoring threads like <em>“Judge rules Trump administration’s blacklisting of Anthropic was illegal”</em> and <em>“CEO fired developers to make room for AI. Developers create open source AI CEO”</em> reflect deep unease over regulatory overreach and corporate AI displacement. Meanwhile, technical discussions around model reliability—such as Claude Code being tricked by simple website summaries—highlight ongoing trust issues in production-grade AI tools. The sentiment leans critical yet curious: while innovation accelerates, the community demands transparency, accountability, and human-centered design.</p>
-<hr>
-<h3><strong>Top News &amp; Discussions</strong></h3>
-<h4>🔬 Models &amp; Research</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Title</th>
-<th align="right">Score</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://arxiv.org/abs/2608.23691">Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment</a> · <a href="https://news.ycombinator.com/item?id=49481455">HN</a></td>
-<td align="right">120</td>
-<td align="right">40</td>
-<td align="left">A breakthrough paper demonstrating LLM agents solving open mathematical problems autonomously—sparking debate on whether this signals early steps toward artificial general intelligence.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://z.ai/blog/glm-5.3-flash">GLM-5.3-Flash</a> · <a href="https://news.ycombinator.com/item?id=49449507">HN</a></td>
-<td align="right">1129</td>
-<td align="right">575</td>
-<td align="left">One of the fastest inference-optimized models yet released, drawing attention for performance on edge devices; users are testing its trade-offs between speed and accuracy.</td>
-</tr>
-</tbody></table>
-<h4>🛠️ Tools &amp; Engineering</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Title</th>
-<th align="right">Score</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://github.com/stemdeckapp/stemdeck">StemDeck, a free, open-source and local AI stem separator</a> · <a href="https://news.ycombinator.com/item?id=49486081">HN</a></td>
-<td align="right">239</td>
-<td align="right">63</td>
-<td align="left">A privacy-first audio tool enabling local music stem separation without cloud dependency—celebrated for democratizing access to AI-powered audio processing.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://pwning.systems/posts/llm-memory-program-analysis/">I accidentally turned LLM memory into program analysis</a> · <a href="https://news.ycombinator.com/item?id=49485416">HN</a></td>
-<td align="right">300</td>
-<td align="right">83</td>
-<td align="left">A deep dive into how LLM memory can reveal hidden code patterns—raising both security concerns and potential for novel static analysis techniques.</td>
-</tr>
-</tbody></table>
-<h4>🏢 Industry News</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Title</th>
-<th align="right">Score</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/">Apple introduces M6 and M5 Ultra</a> · <a href="https://news.ycombinator.com/item?id=49433292">HN</a></td>
-<td align="right">1310</td>
-<td align="right">1296</td>
-<td align="left">Apple’s new silicon chips mark a major leap in on-device AI compute—fueling excitement about future native AI experiences on Mac and iOS.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.nytimes.com/2026/08/27/technology/anthropic-government-blacklisting-ruling.html">Judge rules Trump administration’s blacklisting of Anthropic was illegal</a> · <a href="https://news.ycombinator.com/item?id=49473522">HN</a></td>
-<td align="right">629</td>
-<td align="right">431</td>
-<td align="left">A landmark legal victory against government overreach in AI regulation—widely seen as a win for innovation and free-market principles in tech.</td>
-</tr>
-</tbody></table>
-<h4>💬 Opinions &amp; Debates</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Title</th>
-<th align="right">Score</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://noaifridays.com/">No AI Fridays</a> · <a href="https://news.ycombinator.com/item?id=49498095">HN</a></td>
-<td align="right">261</td>
-<td align="right">185</td>
-<td align="left">A growing movement advocating for deliberate breaks from AI tools—reflecting rising fatigue with constant augmentation and a call for digital mindfulness.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://newsletter.eng-leadership.com/p/good-culture-is-the-biggest-productivity">Good Culture Is the Biggest Productivity Hack, Not AI</a> · <a href="https://news.ycombinator.com/item?id=49491568">HN</a></td>
-<td align="right">445</td>
-<td align="right">113</td>
-<td align="left">A compelling argument that sustainable productivity stems from team dynamics, not AI tools—resonating strongly amid widespread burnout narratives.</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>Community Sentiment Signal</strong></h3>
-<p>Today’s HN AI discourse is dominated by high-engagement, high-impact topics: Apple’s M6/M5 Ultra chip launch (1310 score), the illegal blacklisting ruling (629 score), and the viral “AI CEO” project (1027 score) all signal intense interest in infrastructure, regulation, and human-AI power dynamics. The most active threads combine technical depth with social implications—especially around trust, ethics, and work culture. Controversy centers on AI’s reliability (e.g., Claude Code being tricked) and its role in job displacement, with strong consensus that current systems lack robustness and accountability. Compared to last cycle, there’s a noticeable shift from pure model hype to deeper scrutiny of <em>real-world integration</em>, <em>legal boundaries</em>, and <em>human resilience</em>. The mood is less celebratory, more cautious—prioritizing guardrails, openness, and intentional use over unchecked acceleration.</p>
-<hr>
-<h3><strong>Worth Deep Reading</strong></h3>
-<ol>
-<li><strong><a href="https://arxiv.org/abs/2608.23691">Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment</a></strong> – This paper pushes the envelope on agent autonomy; it’s essential reading for researchers exploring AGI pathways and multi-agent collaboration.  </li>
-<li><strong><a href="https://www.apple.com/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/">Apple introduces M6 and M5 Ultra</a></strong> – For engineers and product builders, this marks a pivotal moment in on-device AI; understanding its architecture will shape future app development.  </li>
-<li><strong><a href="https://noaifridays.com/">No AI Fridays</a></strong> – More than a meme, this movement reflects a cultural reckoning with cognitive overload; worth exploring for teams aiming to build sustainable, human-first workflows.</li>
-</ol>
-<hr>
-<p><em>This digest is auto-generated by <a href="https://github.com/duanyytop/agents-radar">agents-radar</a>.</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Product Hunt AI 产品日报 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-ph</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-ph</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Product Hunt AI 产品日报 2026-08-31 数据来源: Product Hunt | 共 9 个产品 | 生成时间: 2026-08-31 00:48 UTC 今日亮点 今日 Product Hunt 上的 AI 产品格局由那些弥合技术能力与实际应用之间差距的工具主导。最引人注目的发布是 1752vc Pitch Deck Analyzer，它利用 AI 在路演幻灯片发送前模拟投资人反馈——为创始人提供了前所未有的预判验证能力。与此同时，腾讯开源的 Hy4 预览版（770B 模型） 表明大规模、长时序推理类 AI 模型正加速发展，开发者关注度持续走高。在并行方向上，Cohere Parse 5 通过从复杂输入（如表格和图像）中提取结构化数据，推动文档智能进步——这对企业知识管道至关重要。值得注意的是，多个产品将 AI 与特定领域工作流结合，从职业辅导（Democruit）到卫星数据模拟（God’s Eye View），显示出向情境化、高影响力 AI 应用转型的趋势。 热门产品 🤖 AI 代理与助手 产品 票数 评论 摘要 Staats · 网站 80 10 一个能...</description>
-      <content:encoded><![CDATA[<h1>Product Hunt AI 产品日报 2026-08-31</h1>
-<blockquote>
-<p>数据来源: <a href="https://www.producthunt.com/">Product Hunt</a> | 共 9 个产品 | 生成时间: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<h3><strong>今日亮点</strong></h3>
-<p>今日 Product Hunt 上的 AI 产品格局由那些弥合技术能力与实际应用之间差距的工具主导。最引人注目的发布是 <strong>1752vc Pitch Deck Analyzer</strong>，它利用 AI 在路演幻灯片发送前模拟投资人反馈——为创始人提供了前所未有的预判验证能力。与此同时，腾讯开源的 <strong>Hy4 预览版（770B 模型）</strong> 表明大规模、长时序推理类 AI 模型正加速发展，开发者关注度持续走高。在并行方向上，<strong>Cohere Parse 5</strong> 通过从复杂输入（如表格和图像）中提取结构化数据，推动文档智能进步——这对企业知识管道至关重要。值得注意的是，多个产品将 AI 与特定领域工作流结合，从职业辅导（<strong>Democruit</strong>）到卫星数据模拟（<strong>God’s Eye View</strong>），显示出向情境化、高影响力 AI 应用转型的趋势。</p>
-<hr>
-<h3><strong>热门产品</strong></h3>
-<h4>🤖 AI 代理与助手</h4>
-<table>
-<thead>
-<tr>
-<th align="left">产品</th>
-<th align="right">票数</th>
-<th align="right">评论</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/staats-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Staats · <a href="https://www.producthunt.com/r/5TF6TUVXTV72WX">网站</a></a></td>
-<td align="right">80</td>
-<td align="right">10</td>
-<td align="left">一个能监控网站性能并回答站点健康问题的 AI 代理——将数据分析转化为对话式洞察。其与实时 SaaS 指标集成，使其成为主动式的数字协作者。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/democruit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Democruit · <a href="https://www.producthunt.com/r/ZLEF4CFHZL47L7">网站</a></a></td>
-<td align="right">34</td>
-<td align="right">19</td>
-<td align="left">以候选人为核心的 AI 职业伙伴，协助用户从简历到入职 offer 的全过程。基于行为数据与市场趋势个性化求职路径，非常适合初入职场的专业人士。</td>
-</tr>
-</tbody></table>
-<h4>🛠️ 开发者工具</h4>
-<table>
-<thead>
-<tr>
-<th align="left">产品</th>
-<th align="right">票数</th>
-<th align="right">评论</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/seendiff?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">seendiff · <a href="https://www.producthunt.com/r/22PJM2KITAJVVG">网站</a></a></td>
-<td align="right">143</td>
-<td align="right">7</td>
-<td align="left">基于浏览器的代码差异查看器，支持进度追踪，专为优化 Pull Request 审查流程而设计。轻量级、实时交互体验提升了协作效率，且无冗余干扰。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/cohere-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Cohere Parse 5 · <a href="https://www.producthunt.com/r/LFCJ26EGCCWVWE">网站</a></a></td>
-<td align="right">203</td>
-<td align="right">4</td>
-<td align="left">通过高级解析技术，将非结构化文档、表格和图像转换为可被 AI 使用的数据。适用于需要可靠输入以支撑下游 LLM 工作流的企业场景。</td>
-</tr>
-</tbody></table>
-<h4>📊 AI 应用</h4>
-<table>
-<thead>
-<tr>
-<th align="left">产品</th>
-<th align="right">票数</th>
-<th align="right">评论</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/1752vc-pitch-deck-analysis?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">1752vc Pitch Deck Analyzer · <a href="https://www.producthunt.com/r/DU4BZJ5GYQ4Z44">网站</a></a></td>
-<td align="right">337</td>
-<td align="right">88</td>
-<td align="left">在提交前预测投资人对路演幻灯片的反应——为初创企业在融资中赢得竞争优势。其对情感与结构的关注使其具备独特可操作性。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/thrivestack-citedby?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">ThriveStack citedby · <a href="https://www.producthunt.com/r/NLRRTIZWHI55QH">网站</a></a></td>
-<td align="right">20</td>
-<td align="right">1</td>
-<td align="left">通过 AI 驱动的 SEO 与内容可见性分析，衡量、修复并归因收入影响。针对增长团队，填补了多数工具在归因清晰度上的空白。</td>
-</tr>
-</tbody></table>
-<h4>🎨 创意与内容</h4>
-<table>
-<thead>
-<tr>
-<th align="left">产品</th>
-<th align="right">票数</th>
-<th align="right">评论</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/neo?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Neo · <a href="https://www.producthunt.com/r/DTBFLEA2UBAF7S">网站</a></a></td>
-<td align="right">140</td>
-<td align="right">7</td>
-<td align="left">由《Silo》作者打造的小说写作工具，融合叙事智能与 AI 辅助撰写功能。吸引寻求创意与结构双重指导的写作者。</td>
-</tr>
-</tbody></table>
-<h4>🔧 基础设施与模型</h4>
-<table>
-<thead>
-<tr>
-<th align="left">产品</th>
-<th align="right">票数</th>
-<th align="right">评论</th>
-<th align="left">摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/hunyuan-a13b?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Hy4 预览版 · <a href="https://www.producthunt.com/r/MO6FCOZWR6JECM">网站</a></a></td>
-<td align="right">207</td>
-<td align="right">3</td>
-<td align="left">腾讯推出的 7700 亿参数开源模型，专为长时序推理任务优化。为研究者与开发者提供强大、可扩展的基础模型，具备出色的多语言支持能力。</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>市场信号</strong></h3>
-<p>今日 Product Hunt 上的 AI 发布揭示了一个日益成熟的生态系统：创新重心正从通用模型转向专业化、工作流集成的工具。<strong>AI 代理与助手</strong> 和 <strong>开发者工具</strong> 类别尤为拥挤，反映出对智能自动化及无缝融入现有工程管线的需求。显著趋势包括<strong>上下文感知代理</strong>（如 Staats 监控站点健康）和<strong>领域特定解析</strong>（Cohere Parse 5），表明行业正超越通用聊天机器人，迈向专用智能。  </p>
-<p>开源仍主导基础设施类发布——尤其以腾讯的 <strong>Hy4 预览版</strong> 为代表，彰显中国在人工智能领域的全球雄心。这与 1752vc Pitch Deck Analyzer 等闭源应用形成对比，后者更注重用户体验与商业化。这种平衡暗示出一种分化趋势：开源模型赋能开发者，而闭源 AI 应用则面向终端用户，提供即开即用的解决方案。像 <strong>God’s Eye View</strong> 这样的独特用例——一款基于真实地理空间数据的浏览器端间谍卫星模拟器——凸显了 AI 正被应用于小众但高保真领域，模糊了仿真、数据科学与公众参与之间的界限。</p>
-<hr>
-<h3><strong>值得尝试</strong></h3>
-<ol>
-<li><p><strong><a href="https://www.producthunt.com/products/cohere-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Cohere Parse 5</a></strong> – 对于构建 AI 管道的开发者而言，这是从混乱的真实世界输入中提取结构化数据最强大的方式之一——对于训练精准的 LLM 或驱动知识库至关重要。</p>
-</li>
-<li><p><strong><a href="https://www.producthunt.com/products/hunyuan-a13b?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Hy4 预览版（770B）</a></strong> – 开源爱好者与研究人员应探索这一超大规模模型在长上下文推理中的表现，特别是若你正在处理多语言或复杂推理任务。</p>
-</li>
-<li><p><strong><a href="https://www.producthunt.com/products/neo?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Neo</a></strong> – 对关注 AI 辅助叙事创作的写作者与创作者而言，其叙事连贯性引擎与直观界面极具吸引力，由畅销系列小说作者亲自打造。</p>
-</li>
-</ol>
-<hr>
-<p><em>本日报由 <a href="https://github.com/duanyytop/agents-radar">agents-radar</a> 自动生成。</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Product Hunt AI Products Digest 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-ph-en</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-ph-en</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Product Hunt AI Products Digest 2026-08-31 Source: Product Hunt | 9 products | Generated: 2026-08-31 00:48 UTC Today&amp;#39;s Highlights The AI product landscape on Product Hunt today is dominated by tools that bridge the gap between technical capability and real-world application. The standout launch, 1752vc Pitch Deck Analyzer, leverages AI to simulate investor feedback before a pitch deck is sent—offering founders unprecedented pre-emptive validation. Meanwhile, Tencent’s open-source Hy4 preview...</description>
-      <content:encoded><![CDATA[<h1>Product Hunt AI Products Digest 2026-08-31</h1>
-<blockquote>
-<p>Source: <a href="https://www.producthunt.com/">Product Hunt</a> | 9 products | Generated: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<hr>
-<h3><strong>Today&#39;s Highlights</strong></h3>
-<p>The AI product landscape on Product Hunt today is dominated by tools that bridge the gap between technical capability and real-world application. The standout launch, <strong>1752vc Pitch Deck Analyzer</strong>, leverages AI to simulate investor feedback before a pitch deck is sent—offering founders unprecedented pre-emptive validation. Meanwhile, Tencent’s open-source <strong>Hy4 preview (770B model)</strong> signals growing momentum in large-scale, long-horizon AI models, with strong developer interest. In parallel, <strong>Cohere Parse 5</strong> advances document intelligence by extracting structured data from complex inputs like tables and images—critical for enterprise knowledge pipelines. Notably, several products blend AI with domain-specific workflows, from career coaching (<strong>Democruit</strong>) to satellite data simulation (<strong>God’s Eye View</strong>), indicating a shift toward contextualized, high-impact AI applications.</p>
-<hr>
-<h3><strong>Top Products</strong></h3>
-<h4>🤖 AI Agents &amp; Assistants</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Product</th>
-<th align="right">Votes</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/staats-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Staats · <a href="https://www.producthunt.com/r/5TF6TUVXTV72WX">site</a></a></td>
-<td align="right">80</td>
-<td align="right">10</td>
-<td align="left">An AI agent that monitors website performance and answers questions about site health—turning analytics into conversational insight. Its integration with real-time SaaS metrics sets it apart as a proactive digital co-pilot.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/democruit?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Democruit · <a href="https://www.producthunt.com/r/ZLEF4CFHZL47L7">site</a></a></td>
-<td align="right">34</td>
-<td align="right">19</td>
-<td align="left">A candidate-first AI career companion that guides users from resume to offer. It personalizes the job hunt journey using behavioral and market data, making it ideal for early-career professionals.</td>
-</tr>
-</tbody></table>
-<h4>🛠️ Developer Tools</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Product</th>
-<th align="right">Votes</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/seendiff?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">seendiff · <a href="https://www.producthunt.com/r/22PJM2KITAJVVG">site</a></a></td>
-<td align="right">143</td>
-<td align="right">7</td>
-<td align="left">A browser-based code diff viewer with progress tracking, designed to streamline pull request reviews. Its lightweight, real-time UX enhances collaboration without clutter.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/cohere-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Cohere Parse 5 · <a href="https://www.producthunt.com/r/LFCJ26EGCCWVWE">site</a></a></td>
-<td align="right">203</td>
-<td align="right">4</td>
-<td align="left">Turns unstructured documents, tables, and images into AI-ready data via advanced parsing. Ideal for enterprises needing reliable input for downstream LLM workflows.</td>
-</tr>
-</tbody></table>
-<h4>📊 AI Applications</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Product</th>
-<th align="right">Votes</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/1752vc-pitch-deck-analysis?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">1752vc Pitch Deck Analyzer · <a href="https://www.producthunt.com/r/DU4BZJ5GYQ4Z44">site</a></a></td>
-<td align="right">337</td>
-<td align="right">88</td>
-<td align="left">Predicts investor reactions to pitch decks before submission—giving startups a competitive edge in fundraising. Its focus on sentiment and structure makes it uniquely actionable.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.producthunt.com/products/thrivestack-citedby?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">ThriveStack citedby · <a href="https://www.producthunt.com/r/NLRRTIZWHI55QH">site</a></a></td>
-<td align="right">20</td>
-<td align="right">1</td>
-<td align="left">Measures, fixes, and attributes revenue impact through AI-powered SEO and content visibility analysis. Targets growth teams with attribution clarity missing in most tools.</td>
-</tr>
-</tbody></table>
-<h4>🎨 Creative &amp; Content</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Product</th>
-<th align="right">Votes</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/neo?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Neo · <a href="https://www.producthunt.com/r/DTBFLEA2UBAF7S">site</a></a></td>
-<td align="right">140</td>
-<td align="right">7</td>
-<td align="left">A novel-writing tool built by the author of <em>Silo</em>, combining narrative intelligence with AI-assisted drafting. Appeals to writers seeking both creativity and structural guidance.</td>
-</tr>
-</tbody></table>
-<h4>🔧 Infrastructure &amp; Models</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Product</th>
-<th align="right">Votes</th>
-<th align="right">Comments</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.producthunt.com/products/hunyuan-a13b?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Hy4 preview · <a href="https://www.producthunt.com/r/MO6FCOZWR6JECM">site</a></a></td>
-<td align="right">207</td>
-<td align="right">3</td>
-<td align="left">Tencent’s 770B-parameter open model optimized for long-horizon reasoning tasks. Offers researchers and developers access to a powerful, scalable foundation model with strong multilingual support.</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>Market Signal</strong></h3>
-<p>Today’s Product Hunt AI launches reveal a maturing ecosystem where innovation is shifting from general-purpose models to specialized, workflow-integrated tools. The <strong>AI Agents &amp; Assistants</strong> and <strong>Developer Tools</strong> categories are particularly crowded, reflecting demand for intelligent automation and seamless integration into existing engineering pipelines. Notable trends include <strong>context-aware agents</strong> (e.g., Staats monitoring site health) and <strong>domain-specific parsing</strong> (Cohere Parse 5), signaling a move beyond generic chatbots toward purpose-built intelligence.  </p>
-<p>Open-source continues to dominate infrastructure launches—most notably with Tencent’s <strong>Hy4 preview</strong>, which positions China’s AI ambitions on the global stage. This contrasts with closed-source applications like 1752vc Pitch Deck Analyzer, which prioritize user experience and monetization. The balance suggests a bifurcated trend: open models empower developers, while closed AI apps target end-users with turnkey solutions. Unique use cases like <strong>God’s Eye View</strong>—a browser-based spy satellite simulator using real geospatial data—highlight how AI is being applied to niche, high-fidelity domains, blurring lines between simulation, data science, and public engagement.</p>
-<hr>
-<h3><strong>Worth Trying</strong></h3>
-<ol>
-<li><p><strong><a href="https://www.producthunt.com/products/cohere-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Cohere Parse 5</a></strong> – For developers building AI pipelines, this tool offers one of the most robust ways to extract structured data from messy real-world inputs—essential for training accurate LLMs or powering knowledge bases.</p>
-</li>
-<li><p><strong><a href="https://www.producthunt.com/products/hunyuan-a13b?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Hy4 preview (770B)</a></strong> – Open-source enthusiasts and researchers should explore this massive model for long-context reasoning, especially if they’re working on multilingual or complex reasoning tasks.</p>
-</li>
-<li><p><strong><a href="https://www.producthunt.com/products/neo?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+radar+%28ID%3A+279857%29">Neo</a></strong> – Writers and creators interested in AI-assisted storytelling will appreciate its narrative coherence engine and intuitive interface, built by a respected author behind a bestselling series.</p>
-</li>
-</ol>
-<hr>
-<p><em>This digest is auto-generated by <a href="https://github.com/duanyytop/agents-radar">agents-radar</a>.</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Hugging Face 热门模型周报 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hf</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hf</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Hugging Face 热门模型周报 2026-08-31 数据来源: Hugging Face Hub | 共 30 个模型 | 生成时间: 2026-08-31 00:48 UTC 今日亮点 2026年8月，Hugging Face 生态系统由超高效、量化的大型多模态模型主导，尤其是 Qwen3.8 与 MiniMax-H3。Qwen3.8-27B 系列以超过450万次下载领跑，凸显对高容量、开源权重模型的强劲需求。值得注意的是，社区驱动的 GGUF 量化版本（如 unsloth/Qwen3.8-27B-GGUF）下载量已突破880万次，表明本地推理场景中采纳率极高。与此同时，MiniMax-H3 在视频生成领域持续占据主导地位，其微调版本及 Controlnet 扩展在创意工作流中广受欢迎。 热门模型 🧠 语言模型（LLM、聊天模型、指令微调） 模型 作者 点赞数 下载量 简述 Qwen/Qwen3.8-Flash-Next Qwen 4,389 121,976 Qwen3.8 的轻量级快速推理变体，专为实时对话场景优化。其受欢迎程度反映了边缘应用中对低延迟 LLM 的日益增...</description>
-      <content:encoded><![CDATA[<h1>Hugging Face 热门模型周报 2026-08-31</h1>
-<blockquote>
-<p>数据来源: <a href="https://huggingface.co/">Hugging Face Hub</a> | 共 30 个模型 | 生成时间: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<h3><strong>今日亮点</strong></h3>
-<p>2026年8月，Hugging Face 生态系统由超高效、量化的大型多模态模型主导，尤其是 Qwen3.8 与 MiniMax-H3。<strong>Qwen3.8-27B</strong> 系列以超过450万次下载领跑，凸显对高容量、开源权重模型的强劲需求。值得注意的是，社区驱动的 GGUF 量化版本（如 <em>unsloth/Qwen3.8-27B-GGUF</em>）下载量已突破880万次，表明本地推理场景中采纳率极高。与此同时，<strong>MiniMax-H3</strong> 在视频生成领域持续占据主导地位，其微调版本及 Controlnet 扩展在创意工作流中广受欢迎。</p>
-<hr>
-<h3><strong>热门模型</strong></h3>
-<h4>🧠 语言模型（LLM、聊天模型、指令微调）</h4>
-<table>
-<thead>
-<tr>
-<th align="left">模型</th>
-<th align="left">作者</th>
-<th align="right">点赞数</th>
-<th align="right">下载量</th>
-<th align="left">简述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a></td>
-<td align="left">Qwen</td>
-<td align="right">4,389</td>
-<td align="right">121,976</td>
-<td align="left">Qwen3.8 的轻量级快速推理变体，专为实时对话场景优化。其受欢迎程度反映了边缘应用中对低延迟 LLM 的日益增长需求。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/zai-org/GLM-5.3-Flash">zai-org/GLM-5.3-Flash</a></td>
-<td align="left">zai-org</td>
-<td align="right">1,714</td>
-<td align="right">346,516</td>
-<td align="left">高速 GLM-5.3 变体，专注于文本生成并提升吞吐量。其广泛的下载量表明企业对中国语料大模型的强烈兴趣。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731">deepseek-ai/DeepSeek-V4-Flash-0731</a></td>
-<td align="left">deepseek-ai</td>
-<td align="right">3,824</td>
-<td align="right">4,575,518</td>
-<td align="left">本周下载量最高的模型之一，兼顾速度与性能，适用于长上下文推理。其 Flash 架构支持大规模高效推理。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/moonshotai/Kimi-K3">moonshotai/Kimi-K3</a></td>
-<td align="left">moonshotai</td>
-<td align="right">11,100</td>
-<td align="right">2,794,721</td>
-<td align="left">一种高度高效的多模态模型，采用压缩张量；1.1万点赞反映出用户对紧凑但强大模型的热情。</td>
-</tr>
-</tbody></table>
-<h4>🎨 多模态与生成（图像、视频、音频、文本到X）</h4>
-<table>
-<thead>
-<tr>
-<th align="left">模型</th>
-<th align="left">作者</th>
-<th align="right">点赞数</th>
-<th align="right">下载量</th>
-<th align="left">简述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/Lightricks/LTX-2.5">Lightricks/LTX-2.5</a></td>
-<td align="left">Lightricks</td>
-<td align="right">2,267</td>
-<td align="right">1,137,181</td>
-<td align="left">基于扩散单文件架构的前沿图像转视频模型。其快速普及凸显了人工智能驱动视觉叙事工具的兴起。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMaxAI/MiniMax-H3</a></td>
-<td align="left">MiniMaxAI</td>
-<td align="right">4,660</td>
-<td align="right">5,263,381</td>
-<td align="left">当前领先的开源图像转视频与文本转视频生成模型。其高下载量证实了其在生成式视频工作流中的主导地位。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/alibaba-pai/MiniMax-H3-Fun-Controlnet-Union">alibaba-pai/MiniMax-H3-Fun-Controlnet-Union</a></td>
-<td align="left">alibaba-pai</td>
-<td align="right">163</td>
-<td align="right">5,538</td>
-<td align="left">通过 Controlnet 增强的微调版本，可在视频生成中实现精准运动控制。标志着向模块化、可控视频合成的转变。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/FastVideo/FastVideo-FastH3-4-step-Preview-v1-VSA-DataFree">FastVideo/FastVideo-FastH3-4-step-Preview-v1-VSA-DataFree</a></td>
-<td align="left">FastVideo</td>
-<td align="right">193</td>
-<td align="right">0</td>
-<td align="left">使用极少量数据的快速视频生成器预览版。尽管尚未被下载，但发布信号明示了轻量级、数据高效视频建模的创新趋势。</td>
-</tr>
-</tbody></table>
-<h4>🔧 专用模型（代码、数学、医疗、嵌入）</h4>
-<table>
-<thead>
-<tr>
-<th align="left">模型</th>
-<th align="left">作者</th>
-<th align="right">点赞数</th>
-<th align="right">下载量</th>
-<th align="left">简述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF">peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF</a></td>
-<td align="left">peculiar-ragdoll</td>
-<td align="right">141</td>
-<td align="right">87,848</td>
-<td align="left">基于 Qwen3.5 MoE 的专用代码生成模型，通过 GGUF 量化实现本地运行。吸引希望获得高性能编码助手的开发者。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B">ornith-ai/Ornith-1.5-35B-A3B</a></td>
-<td align="left">ornith-ai</td>
-<td align="right">505</td>
-<td align="right">147,038</td>
-<td align="left">经过微调的 35B MoE 模型，同时适配文本与多模态任务。其双重能力表明人们对通用、可扩展基础模型的兴趣持续上升。</td>
-</tr>
-</tbody></table>
-<h4>📦 微调与量化（社区微调、GGUF、AWQ）</h4>
-<table>
-<thead>
-<tr>
-<th align="left">模型</th>
-<th align="left">作者</th>
-<th align="right">点赞数</th>
-<th align="right">下载量</th>
-<th align="left">简述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/unsloth/Qwen3.8-27B-GGUF">unsloth/Qwen3.8-27B-GGUF</a></td>
-<td align="left">unsloth</td>
-<td align="right">3,240</td>
-<td align="right">8,839,153</td>
-<td align="left">本周下载量最高的模型，是 Qwen3.8-27B 的 GGUF 量化版本。其巨大采用率证明了社区驱动量化在本地推理中的主导地位。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/orcarouter/Qwen3.8-27B-Uncensored-GGUF">orcarouter/Qwen3.8-27B-Uncensored-GGUF</a></td>
-<td align="left">orcarouter</td>
-<td align="right">578</td>
-<td align="right">238,397</td>
-<td align="left">Qwen3.8-27B 的无审查、GGUF 量化版本。反映出在小众与实验性使用场景中对不受限大模型访问的需求不断上升。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/JonathanColetti/Qwen3.8-27B-Uncensored-GGUF">JonathanColetti/Qwen3.8-27B-Uncensored-GGUF</a></td>
-<td align="left">JonathanColetti</td>
-<td align="right">850</td>
-<td align="right">1,991,437</td>
-<td align="left">另一重大无审查 GGUF 发布，下载量极高。展示了社区微调如何超越官方发布，塑造模型可访问性。</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF">huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF</a></td>
-<td align="left">huihui-ai</td>
-<td align="right">457</td>
-<td align="right">1,622,056</td>
-<td align="left">经过度修改的“消解”版 GGUF，体现了模型个性化激进化与绕过安全过滤的趋势。</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>生态信号</strong></h3>
-<p>截至2026年8月，Hugging Face 生态系统正明显分化为<strong>开源权重基础模型</strong>与<strong>社区驱动优化层</strong>两大阵营。Qwen3.8 与 MiniMax-H3 成为绝对主导系列，其中仅 Qwen 27B 系列就占所有模型下载量近10%。这反映出中国科技公司（如 Qwen、GLM、Kimi）推动的大规模、开放获取模型正在全球范围内形成强劲势头。  </p>
-<p>像 <strong>GGUF</strong> 这类量化格式已成为本地部署的默认标准，涵盖 Qwen 与 GLM 变体的总下载量已超1500万次。而“无审查”与“消解”版本（如 <em>OBLITERATUS</em>、<em>orcarouter</em>）的激增，揭示出对不受限模型访问的地下需求持续增长，常伴随对安全机制的规避。与此同时，围绕 MiniMax-H3 与 LTX-2.5 的微调生态系统显示，<strong>视频生成</strong>正朝着更精细化的方向发展，尤其依赖 Controlnet 与轻量级扩散模型。开源权重模型已不再只是研究工具——它们正逐步成为消费级人工智能创作的基础设施。</p>
-<hr>
-<h3><strong>值得探索</strong></h3>
-<ol>
-<li><strong><a href="https://huggingface.co/unsloth/Qwen3.8-27B-GGUF">unsloth/Qwen3.8-27B-GGUF</a></strong> – 下载量超880万次，是当前 Hugging Face 上最受欢迎的模型。适合开发者寻找无需云端依赖、高性能且可本地运行的 LLM。  </li>
-<li><strong><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMaxAI/MiniMax-H3</a></strong> – 当前表现最佳的开源视频生成模型。创作者若探索 AI 驱动动画与内容生产，值得深入研究。  </li>
-<li><strong><a href="https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF">peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF</a></strong> – 少见的以 GGUF 格式提供的 35B MoE 模型。适合高级用户构建定制化编程助手。</li>
-</ol>
-<hr>
-<p><em>本日报由 <a href="https://github.com/duanyytop/agents-radar">agents-radar</a> 自动生成。</em></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Hugging Face Trending Models Weekly 2026-08-31</title>
-      <link>https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hf-en</link>
-      <guid isPermaLink="true">https://duanyytop.github.io/agents-radar/#2026-08-31/ai-hf-en</guid>
-      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
-      <description>Hugging Face Trending Models Weekly 2026-08-31 Source: Hugging Face Hub | 30 models | Generated: 2026-08-31 00:48 UTC Today&amp;#39;s Highlights The Hugging Face ecosystem in August 2026 is dominated by ultra-efficient, quantized variants of large multimodal models—especially Qwen3.8 and MiniMax-H3. The Qwen3.8-27B series leads with over 4.5 million downloads, underscoring massive demand for high-capacity, open-weight models. Notably, community-driven GGUF quantizations (e.g., unsloth/Qwen3.8-27B-GG...</description>
-      <content:encoded><![CDATA[<h1>Hugging Face Trending Models Weekly 2026-08-31</h1>
-<blockquote>
-<p>Source: <a href="https://huggingface.co/">Hugging Face Hub</a> | 30 models | Generated: 2026-08-31 00:48 UTC</p>
-</blockquote>
-<hr>
-<hr>
-<h3><strong>Today&#39;s Highlights</strong></h3>
-<p>The Hugging Face ecosystem in August 2026 is dominated by ultra-efficient, quantized variants of large multimodal models—especially Qwen3.8 and MiniMax-H3. The <strong>Qwen3.8-27B</strong> series leads with over 4.5 million downloads, underscoring massive demand for high-capacity, open-weight models. Notably, community-driven GGUF quantizations (e.g., <em>unsloth/Qwen3.8-27B-GGUF</em>) have surged past 8.8M downloads, indicating strong adoption for local inference. Meanwhile, <strong>MiniMax-H3</strong> continues to dominate video generation, with its fine-tunes and Controlnet extensions gaining traction across creative workflows.</p>
-<hr>
-<h3><strong>Trending Models</strong></h3>
-<h4>🧠 Language Models (LLMs, chat models, instruction-tuned)</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Model</th>
-<th align="left">Author</th>
-<th align="right">Likes</th>
-<th align="right">Downloads</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a></td>
-<td align="left">Qwen</td>
-<td align="right">4,389</td>
-<td align="right">121,976</td>
-<td align="left">A lightweight, fast inference variant of Qwen3.8, optimized for real-time conversational use. Its popularity reflects growing demand for low-latency LLMs in edge applications.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/zai-org/GLM-5.3-Flash">zai-org/GLM-5.3-Flash</a></td>
-<td align="left">zai-org</td>
-<td align="right">1,714</td>
-<td align="right">346,516</td>
-<td align="left">A high-speed GLM-5.3 variant targeting text generation with improved throughput. Its widespread download count signals strong enterprise interest in Chinese-language LLMs.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731">deepseek-ai/DeepSeek-V4-Flash-0731</a></td>
-<td align="left">deepseek-ai</td>
-<td align="right">3,824</td>
-<td align="right">4,575,518</td>
-<td align="left">One of the most downloaded models this week, combining speed and performance for long-context reasoning. Its Flash architecture enables efficient inference at scale.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/moonshotai/Kimi-K3">moonshotai/Kimi-K3</a></td>
-<td align="left">moonshotai</td>
-<td align="right">11,100</td>
-<td align="right">2,794,721</td>
-<td align="left">A highly efficient multimodal model with compressed tensors; its 11K likes reflect user enthusiasm for compact yet powerful models.</td>
-</tr>
-</tbody></table>
-<h4>🎨 Multimodal &amp; Generation (image, video, audio, text-to-X)</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Model</th>
-<th align="left">Author</th>
-<th align="right">Likes</th>
-<th align="right">Downloads</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/Lightricks/LTX-2.5">Lightricks/LTX-2.5</a></td>
-<td align="left">Lightricks</td>
-<td align="right">2,267</td>
-<td align="right">1,137,181</td>
-<td align="left">A cutting-edge image-to-video model leveraging diffusion single-file architecture. Its rapid adoption highlights the rise of AI-powered visual storytelling tools.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMaxAI/MiniMax-H3</a></td>
-<td align="left">MiniMaxAI</td>
-<td align="right">4,660</td>
-<td align="right">5,263,381</td>
-<td align="left">The leading open-source model for image-to-video and text-to-video generation. Its high download volume confirms dominance in generative video workflows.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/alibaba-pai/MiniMax-H3-Fun-Controlnet-Union">alibaba-pai/MiniMax-H3-Fun-Controlnet-Union</a></td>
-<td align="left">alibaba-pai</td>
-<td align="right">163</td>
-<td align="right">5,538</td>
-<td align="left">A Controlnet-enhanced fine-tune enabling precise motion control in video generation. Represents a shift toward modular, controllable video synthesis.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/FastVideo/FastVideo-FastH3-4-step-Preview-v1-VSA-DataFree">FastVideo/FastVideo-FastH3-4-step-Preview-v1-VSA-DataFree</a></td>
-<td align="left">FastVideo</td>
-<td align="right">193</td>
-<td align="right">0</td>
-<td align="left">A preview version of a fast video generator using minimal data. Though not yet downloaded, its release signals innovation in lightweight, data-efficient video modeling.</td>
-</tr>
-</tbody></table>
-<h4>🔧 Specialized Models (code, math, medical, embeddings)</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Model</th>
-<th align="left">Author</th>
-<th align="right">Likes</th>
-<th align="right">Downloads</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF">peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF</a></td>
-<td align="left">peculiar-ragdoll</td>
-<td align="right">141</td>
-<td align="right">87,848</td>
-<td align="left">A specialized code-generation model based on Qwen3.5 MoE, quantized via GGUF for local execution. Appeals to developers seeking high-performance coding assistants.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/ornith-ai/Ornith-1.5-35B-A3B">ornith-ai/Ornith-1.5-35B-A3B</a></td>
-<td align="left">ornith-ai</td>
-<td align="right">505</td>
-<td align="right">147,038</td>
-<td align="left">A 35B MoE model tuned for both text and multimodal tasks. Its dual capability suggests growing interest in versatile, scalable foundation models.</td>
-</tr>
-</tbody></table>
-<h4>📦 Fine-tunes &amp; Quantizations (community fine-tunes, GGUF, AWQ)</h4>
-<table>
-<thead>
-<tr>
-<th align="left">Model</th>
-<th align="left">Author</th>
-<th align="right">Likes</th>
-<th align="right">Downloads</th>
-<th align="left">Summary</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://huggingface.co/unsloth/Qwen3.8-27B-GGUF">unsloth/Qwen3.8-27B-GGUF</a></td>
-<td align="left">unsloth</td>
-<td align="right">3,240</td>
-<td align="right">8,839,153</td>
-<td align="left">The most downloaded model this week, a GGUF quantization of Qwen3.8-27B. Its massive adoption proves the dominance of community-driven quantization for local inference.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/orcarouter/Qwen3.8-27B-Uncensored-GGUF">orcarouter/Qwen3.8-27B-Uncensored-GGUF</a></td>
-<td align="left">orcarouter</td>
-<td align="right">578</td>
-<td align="right">238,397</td>
-<td align="left">An uncensored, GGUF-quantized version of Qwen3.8-27B. Reflects rising demand for unrestricted access to large models in niche and experimental use cases.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/JonathanColetti/Qwen3.8-27B-Uncensored-GGUF">JonathanColetti/Qwen3.8-27B-Uncensored-GGUF</a></td>
-<td align="left">JonathanColetti</td>
-<td align="right">850</td>
-<td align="right">1,991,437</td>
-<td align="left">Another major uncensored GGUF release with high download volume. Demonstrates how community fine-tunes are shaping model accessibility beyond official releases.</td>
-</tr>
-<tr>
-<td align="left"><a href="https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF">huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF</a></td>
-<td align="left">huihui-ai</td>
-<td align="right">457</td>
-<td align="right">1,622,056</td>
-<td align="left">A heavily modified, abliterated GGUF version showing the trend toward aggressive model personalization and bypassing safety filters.</td>
-</tr>
-</tbody></table>
-<hr>
-<h3><strong>Ecosystem Signal</strong></h3>
-<p>As of August 2026, the Hugging Face ecosystem is witnessing a clear bifurcation between <strong>open-weight foundation models</strong> and <strong>community-driven optimization layers</strong>. Qwen3.8 and MiniMax-H3 are the dominant families, with Qwen’s 27B series alone accounting for nearly 10% of all model downloads. This reflects strong momentum for <strong>large-scale, open-access models</strong> from Chinese tech firms—Qwen, GLM, Kimi—now competing globally.  </p>
-<p>Quantization formats like <strong>GGUF</strong> have become the de facto standard for local deployment, with over 15 million total downloads across Qwen and GLM variants. The surge in “uncensored” and “abliterated” versions (e.g., <em>OBLITERATUS</em>, <em>orcarouter</em>) signals a growing underground demand for unrestricted model access, often bypassing safety constraints. Meanwhile, fine-tuning ecosystems around MiniMax-H3 and LTX-2.5 show increasing specialization in <strong>video generation</strong>, particularly through Controlnets and lightweight diffusion models. Open-weight models are no longer just research tools—they’re becoming infrastructure for consumer-grade AI creation.</p>
-<hr>
-<h3><strong>Worth Exploring</strong></h3>
-<ol>
-<li><strong><a href="https://huggingface.co/unsloth/Qwen3.8-27B-GGUF">unsloth/Qwen3.8-27B-GGUF</a></strong> – With over 8.8M downloads, it’s the most popular model on HF today. Ideal for developers seeking high-performance, locally runnable LLMs without cloud dependency.  </li>
-<li><strong><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3">MiniMaxAI/MiniMax-H3</a></strong> – The top-performing open-source video generation model. Worth studying for creators exploring AI-driven animation and content production.  </li>
-<li><strong><a href="https://huggingface.co/peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF">peculiar-ragdoll/Tiel-Coder-35B-A3B-GGUF</a></strong> – A rare example of a 35B MoE model available in GGUF format. Perfect for advanced users building custom coding assistants.</li>
-</ol>
 <hr>
 <p><em>This digest is auto-generated by <a href="https://github.com/duanyytop/agents-radar">agents-radar</a>.</em></p>
 ]]></content:encoded>
